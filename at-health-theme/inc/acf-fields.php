@@ -168,6 +168,9 @@ acf_add_local_field_group( array(
     'fields'   => array(
         array( 'key' => 'field_ah_faq_eyebrow', 'label' => 'Eyebrow', 'name' => 'faq_eyebrow', 'type' => 'text', 'default_value' => 'Common Questions' ),
         array( 'key' => 'field_ah_faq_title', 'label' => 'Title', 'name' => 'faq_title', 'type' => 'text', 'default_value' => "Got Questions? We've Got Answers" ),
+        array( 'key' => 'field_ah_faq_subtitle', 'label' => 'Subtitle', 'name' => 'faq_subtitle', 'type' => 'text', 'default_value' => 'Everything you need to know before starting your weight loss journey.' ),
+        array( 'key' => 'field_ah_faq_still_questions', 'label' => 'Still Questions Text', 'name' => 'faq_still_questions', 'type' => 'text', 'default_value' => 'Still have questions?' ),
+        array( 'key' => 'field_ah_faq_chat_text', 'label' => 'Chat Link Text', 'name' => 'faq_chat_text', 'type' => 'text', 'default_value' => 'Chat with our team' ),
         array(
             'key'        => 'field_ah_faq_items',
             'label'      => 'FAQ Items',
@@ -221,4 +224,350 @@ acf_add_local_field_group( array(
         array( 'key' => 'field_ah_wg_cta_text', 'label' => 'CTA Text', 'name' => 'wg_cta_text', 'type' => 'text', 'default_value' => 'Start Journey →' ),
     ),
     'location' => array( array( array( 'param' => 'page_template', 'operator' => '==', 'value' => 'page-templates/page-wegovy.php' ) ) ),
+) );
+
+// ═══════════════════════════════════════════════
+// ADDITIONAL HOME PAGE FIELDS (B5-B8)
+// ═══════════════════════════════════════════════
+
+// B5: Home — Calculator
+acf_add_local_field_group( array(
+    'key'   => 'group_ah_b5_home_calc',
+    'title' => 'B5 — Home: Calculator',
+    'fields' => array(
+        array( 'key' => 'field_ah_calc_pill_text', 'label' => 'Pill Badge Text', 'name' => 'calc_pill_text', 'type' => 'text', 'default_value' => 'Takes 10 Seconds' ),
+        array( 'key' => 'field_ah_calc_title', 'label' => 'Calculator Title (HTML)', 'name' => 'calc_title', 'type' => 'textarea', 'rows' => 2 ),
+        array( 'key' => 'field_ah_calc_subtitle', 'label' => 'Calculator Subtitle', 'name' => 'calc_subtitle', 'type' => 'text' ),
+    ),
+    'location' => array( array( array( 'param' => 'page_template', 'operator' => '==', 'value' => 'page-templates/page-home.php' ) ) ),
+) );
+
+// B6: Home — Treatment Showcase
+acf_add_local_field_group( array(
+    'key'   => 'group_ah_b6_home_treatments',
+    'title' => 'B6 — Home: Treatment Showcase',
+    'fields' => array(
+        array( 'key' => 'field_ah_treatments_eyebrow', 'label' => 'Eyebrow', 'name' => 'treatments_eyebrow', 'type' => 'text', 'default_value' => 'Trusted by 10,000+ patients' ),
+        array( 'key' => 'field_ah_treatments_title', 'label' => 'Title (HTML)', 'name' => 'treatments_title', 'type' => 'textarea', 'rows' => 2 ),
+        array( 'key' => 'field_ah_treatments_subtitle', 'label' => 'Subtitle', 'name' => 'treatments_subtitle', 'type' => 'text' ),
+        array( 'key' => 'field_ah_home_mounjaro_image', 'label' => 'Mounjaro Card Image', 'name' => 'home_mounjaro_image', 'type' => 'image', 'return_format' => 'id' ),
+        array( 'key' => 'field_ah_home_mounjaro_stat', 'label' => 'Mounjaro Stat', 'name' => 'home_mounjaro_stat', 'type' => 'text', 'default_value' => 'Up to 22.5% loss' ),
+        array( 'key' => 'field_ah_home_mounjaro_desc', 'label' => 'Mounjaro Description', 'name' => 'home_mounjaro_desc', 'type' => 'textarea', 'rows' => 2 ),
+        array( 'key' => 'field_ah_home_wegovy_image', 'label' => 'Wegovy Card Image', 'name' => 'home_wegovy_image', 'type' => 'image', 'return_format' => 'id' ),
+        array( 'key' => 'field_ah_home_wegovy_stat', 'label' => 'Wegovy Stat', 'name' => 'home_wegovy_stat', 'type' => 'text', 'default_value' => 'Up to 20.7% loss' ),
+        array( 'key' => 'field_ah_home_wegovy_desc', 'label' => 'Wegovy Description', 'name' => 'home_wegovy_desc', 'type' => 'textarea', 'rows' => 2 ),
+        array( 'key' => 'field_ah_home_included_title', 'label' => "What's Included Title", 'name' => 'home_included_title', 'type' => 'text', 'default_value' => "What's Included" ),
+    ),
+    'location' => array( array( array( 'param' => 'page_template', 'operator' => '==', 'value' => 'page-templates/page-home.php' ) ) ),
+) );
+
+// B7: Home — Stats
+acf_add_local_field_group( array(
+    'key'   => 'group_ah_b7_home_stats',
+    'title' => 'B7 — Home: Stats',
+    'fields' => array(
+        array( 'key' => 'field_ah_stats_eyebrow', 'label' => 'Eyebrow', 'name' => 'stats_eyebrow', 'type' => 'text', 'default_value' => 'Why Patients Choose Us' ),
+        array( 'key' => 'field_ah_stats_title', 'label' => 'Title (HTML)', 'name' => 'stats_title', 'type' => 'textarea', 'rows' => 2 ),
+    ),
+    'location' => array( array( array( 'param' => 'page_template', 'operator' => '==', 'value' => 'page-templates/page-home.php' ) ) ),
+) );
+
+// B8: Home — How It Works (step details)
+acf_add_local_field_group( array(
+    'key'   => 'group_ah_b8_home_hiw_steps',
+    'title' => 'B8 — Home: How It Works Steps',
+    'fields' => array(
+        array( 'key' => 'field_ah_hiw_step1_title', 'label' => 'Step 1 Title (HTML)', 'name' => 'hiw_step1_title', 'type' => 'text' ),
+        array( 'key' => 'field_ah_hiw_step1_description', 'label' => 'Step 1 Description', 'name' => 'hiw_step1_description', 'type' => 'textarea', 'rows' => 2 ),
+        array( 'key' => 'field_ah_hiw_step1_badge', 'label' => 'Step 1 Badge', 'name' => 'hiw_step1_badge', 'type' => 'text', 'default_value' => 'Takes 5 minutes' ),
+        array( 'key' => 'field_ah_hiw_step2_title', 'label' => 'Step 2 Title (HTML)', 'name' => 'hiw_step2_title', 'type' => 'text' ),
+        array( 'key' => 'field_ah_hiw_step2_description', 'label' => 'Step 2 Description', 'name' => 'hiw_step2_description', 'type' => 'textarea', 'rows' => 2 ),
+        array( 'key' => 'field_ah_hiw_step2_badge', 'label' => 'Step 2 Badge', 'name' => 'hiw_step2_badge', 'type' => 'text', 'default_value' => 'Same-day approval' ),
+        array( 'key' => 'field_ah_hiw_step3_title', 'label' => 'Step 3 Title (HTML)', 'name' => 'hiw_step3_title', 'type' => 'text' ),
+        array( 'key' => 'field_ah_hiw_step3_description', 'label' => 'Step 3 Description', 'name' => 'hiw_step3_description', 'type' => 'textarea', 'rows' => 2 ),
+        array( 'key' => 'field_ah_hiw_step3_badge', 'label' => 'Step 3 Badge', 'name' => 'hiw_step3_badge', 'type' => 'text', 'default_value' => 'Within 48 hours' ),
+        array( 'key' => 'field_ah_hiw_trust1', 'label' => 'Trust Point 1', 'name' => 'hiw_trust1', 'type' => 'text', 'default_value' => 'No prescription transfer needed' ),
+        array( 'key' => 'field_ah_hiw_trust2', 'label' => 'Trust Point 2', 'name' => 'hiw_trust2', 'type' => 'text', 'default_value' => '100% confidential service' ),
+        array( 'key' => 'field_ah_hiw_trust3', 'label' => 'Trust Point 3', 'name' => 'hiw_trust3', 'type' => 'text', 'default_value' => 'Cancel anytime' ),
+        array( 'key' => 'field_ah_hiw_cta_text', 'label' => 'CTA Text', 'name' => 'hiw_cta_text', 'type' => 'text', 'default_value' => 'Start Journey' ),
+        array( 'key' => 'field_ah_hiw_cta_url', 'label' => 'CTA URL', 'name' => 'hiw_cta_url', 'type' => 'url' ),
+        array( 'key' => 'field_ah_hiw_social_proof', 'label' => 'Social Proof Text (HTML)', 'name' => 'hiw_social_proof', 'type' => 'textarea', 'rows' => 2 ),
+    ),
+    'location' => array( array( array( 'param' => 'page_template', 'operator' => '==', 'value' => 'page-templates/page-home.php' ) ) ),
+) );
+
+// B9: Home — CTA Section (shared template part, but needs location rules)
+acf_add_local_field_group( array(
+    'key'   => 'group_ah_b9_cta',
+    'title' => 'B9 — CTA Section',
+    'fields' => array(
+        array( 'key' => 'field_ah_cta_eyebrow', 'label' => 'Eyebrow', 'name' => 'cta_eyebrow', 'type' => 'text', 'default_value' => 'Your Transformation Awaits' ),
+        array( 'key' => 'field_ah_cta_title', 'label' => 'Title (HTML)', 'name' => 'cta_title', 'type' => 'textarea', 'rows' => 2 ),
+        array( 'key' => 'field_ah_cta_subtitle', 'label' => 'Subtitle', 'name' => 'cta_subtitle', 'type' => 'textarea', 'rows' => 2 ),
+        array( 'key' => 'field_ah_cta_button_text', 'label' => 'Button Text', 'name' => 'cta_button_text', 'type' => 'text', 'default_value' => 'Start Your Journey' ),
+        array( 'key' => 'field_ah_cta_button_url', 'label' => 'Button URL', 'name' => 'cta_button_url', 'type' => 'url' ),
+        array( 'key' => 'field_ah_cta_trust1', 'label' => 'Trust 1', 'name' => 'cta_trust1', 'type' => 'text', 'default_value' => 'GPhC Regulated' ),
+        array( 'key' => 'field_ah_cta_trust2', 'label' => 'Trust 2', 'name' => 'cta_trust2', 'type' => 'text', 'default_value' => 'Cancel Anytime' ),
+        array( 'key' => 'field_ah_cta_trust3', 'label' => 'Trust 3', 'name' => 'cta_trust3', 'type' => 'text', 'default_value' => 'Discreet Delivery' ),
+        array( 'key' => 'field_ah_cta_trust4', 'label' => 'Trust 4', 'name' => 'cta_trust4', 'type' => 'text', 'default_value' => 'Same-Day Approval' ),
+    ),
+    'location' => array(
+        array( array( 'param' => 'page_template', 'operator' => '==', 'value' => 'page-templates/page-home.php' ) ),
+        array( array( 'param' => 'page_template', 'operator' => '==', 'value' => 'page-templates/page-eligibility.php' ) ),
+        array( array( 'param' => 'page_template', 'operator' => '==', 'value' => 'page-templates/page-switching.php' ) ),
+        array( array( 'param' => 'page_template', 'operator' => '==', 'value' => 'page-templates/page-customer-care.php' ) ),
+        array( array( 'param' => 'page_template', 'operator' => '==', 'value' => 'page-templates/page-health-hub.php' ) ),
+        array( array( 'param' => 'page_template', 'operator' => '==', 'value' => 'page-templates/page-reorder.php' ) ),
+    ),
+) );
+
+// B10: Home — FAQ Subtitle (missing from B4)
+// Already handled — adding faq_subtitle to B4 group
+// Note: faq_subtitle, faq_still_questions, faq_chat_text used in section-faq.php
+
+// ═══════════════════════════════════════════════
+// C-SERIES: BLOG POST FIELDS
+// ═══════════════════════════════════════════════
+
+acf_add_local_field_group( array(
+    'key'   => 'group_ah_c1_blog',
+    'title' => 'C1 — Blog Post Fields',
+    'fields' => array(
+        array( 'key' => 'field_ah_reading_time', 'label' => 'Reading Time (minutes)', 'name' => 'reading_time', 'type' => 'number', 'default_value' => '' ),
+    ),
+    'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'post' ) ) ),
+) );
+
+// ═══════════════════════════════════════════════
+// D-SERIES ADDITIONAL: MOUNJARO PAGE
+// ═══════════════════════════════════════════════
+
+acf_add_local_field_group( array(
+    'key'   => 'group_ah_d2_mounjaro_extended',
+    'title' => 'D2 — Mounjaro: Dosing & FAQ',
+    'fields' => array(
+        array( 'key' => 'field_ah_mj_price_includes', 'label' => 'Price Includes Text', 'name' => 'mj_price_includes', 'type' => 'text', 'default_value' => 'Includes medication, consultations & support' ),
+        array( 'key' => 'field_ah_mj_dosing_eyebrow', 'label' => 'Dosing Eyebrow', 'name' => 'mj_dosing_eyebrow', 'type' => 'text', 'default_value' => 'Gradual & Personalised' ),
+        array( 'key' => 'field_ah_mj_dosing_title', 'label' => 'Dosing Title (HTML)', 'name' => 'mj_dosing_title', 'type' => 'textarea', 'rows' => 2 ),
+        array( 'key' => 'field_ah_mj_dosing_subtitle', 'label' => 'Dosing Subtitle', 'name' => 'mj_dosing_subtitle', 'type' => 'textarea', 'rows' => 2 ),
+        array( 'key' => 'field_ah_mj_dosing_note', 'label' => 'Dosing Note', 'name' => 'mj_dosing_note', 'type' => 'textarea', 'rows' => 2 ),
+        array(
+            'key' => 'field_ah_mj_doses', 'label' => 'Doses', 'name' => 'mj_doses', 'type' => 'repeater', 'min' => 0, 'max' => 8, 'layout' => 'table',
+            'sub_fields' => array(
+                array( 'key' => 'field_ah_mj_dose_dose', 'label' => 'Dose', 'name' => 'dose', 'type' => 'text' ),
+                array( 'key' => 'field_ah_mj_dose_label', 'label' => 'Label', 'name' => 'label', 'type' => 'text' ),
+                array( 'key' => 'field_ah_mj_dose_desc', 'label' => 'Description', 'name' => 'desc', 'type' => 'text' ),
+            ),
+        ),
+        array(
+            'key' => 'field_ah_mj_benefits', 'label' => 'Benefits List', 'name' => 'mj_benefits', 'type' => 'repeater', 'min' => 0, 'max' => 6, 'layout' => 'table',
+            'sub_fields' => array(
+                array( 'key' => 'field_ah_mj_benefit_text', 'label' => 'Benefit (HTML)', 'name' => 'text', 'type' => 'text' ),
+            ),
+        ),
+        array( 'key' => 'field_ah_mj_faq_title', 'label' => 'FAQ Title', 'name' => 'mj_faq_title', 'type' => 'text', 'default_value' => 'Mounjaro FAQs' ),
+        array(
+            'key' => 'field_ah_mj_faqs', 'label' => 'FAQs', 'name' => 'mj_faqs', 'type' => 'repeater', 'min' => 0, 'max' => 10, 'layout' => 'block',
+            'sub_fields' => array(
+                array( 'key' => 'field_ah_mj_faq_q', 'label' => 'Question', 'name' => 'question', 'type' => 'text' ),
+                array( 'key' => 'field_ah_mj_faq_a', 'label' => 'Answer', 'name' => 'answer', 'type' => 'textarea', 'rows' => 3 ),
+            ),
+        ),
+        array( 'key' => 'field_ah_mj_cta_eyebrow', 'label' => 'CTA Eyebrow', 'name' => 'mj_cta_eyebrow', 'type' => 'text', 'default_value' => 'Start Today' ),
+        array( 'key' => 'field_ah_mj_cta_title', 'label' => 'CTA Title (HTML)', 'name' => 'mj_cta_title', 'type' => 'textarea', 'rows' => 2 ),
+        array( 'key' => 'field_ah_mj_cta_subtitle', 'label' => 'CTA Subtitle', 'name' => 'mj_cta_subtitle', 'type' => 'textarea', 'rows' => 2 ),
+    ),
+    'location' => array( array( array( 'param' => 'page_template', 'operator' => '==', 'value' => 'page-templates/page-mounjaro.php' ) ) ),
+) );
+
+// ═══════════════════════════════════════════════
+// E-SERIES ADDITIONAL: WEGOVY PAGE
+// ═══════════════════════════════════════════════
+
+acf_add_local_field_group( array(
+    'key'   => 'group_ah_e2_wegovy_extended',
+    'title' => 'E2 — Wegovy: Dosing & FAQ',
+    'fields' => array(
+        array( 'key' => 'field_ah_wg_price_includes', 'label' => 'Price Includes Text', 'name' => 'wg_price_includes', 'type' => 'text', 'default_value' => 'Includes medication, consultations & support' ),
+        array( 'key' => 'field_ah_wg_dosing_eyebrow', 'label' => 'Dosing Eyebrow', 'name' => 'wg_dosing_eyebrow', 'type' => 'text', 'default_value' => 'Gradual & Personalised' ),
+        array( 'key' => 'field_ah_wg_dosing_title', 'label' => 'Dosing Title (HTML)', 'name' => 'wg_dosing_title', 'type' => 'textarea', 'rows' => 2 ),
+        array( 'key' => 'field_ah_wg_dosing_note', 'label' => 'Dosing Note', 'name' => 'wg_dosing_note', 'type' => 'textarea', 'rows' => 2 ),
+        array(
+            'key' => 'field_ah_wg_doses', 'label' => 'Doses', 'name' => 'wg_doses', 'type' => 'repeater', 'min' => 0, 'max' => 8, 'layout' => 'table',
+            'sub_fields' => array(
+                array( 'key' => 'field_ah_wg_dose_dose', 'label' => 'Dose', 'name' => 'dose', 'type' => 'text' ),
+                array( 'key' => 'field_ah_wg_dose_label', 'label' => 'Label', 'name' => 'label', 'type' => 'text' ),
+                array( 'key' => 'field_ah_wg_dose_desc', 'label' => 'Description', 'name' => 'desc', 'type' => 'text' ),
+            ),
+        ),
+        array(
+            'key' => 'field_ah_wg_benefits', 'label' => 'Benefits List', 'name' => 'wg_benefits', 'type' => 'repeater', 'min' => 0, 'max' => 6, 'layout' => 'table',
+            'sub_fields' => array(
+                array( 'key' => 'field_ah_wg_benefit_text', 'label' => 'Benefit (HTML)', 'name' => 'text', 'type' => 'text' ),
+            ),
+        ),
+        array( 'key' => 'field_ah_wg_faq_title', 'label' => 'FAQ Title', 'name' => 'wg_faq_title', 'type' => 'text', 'default_value' => 'Wegovy FAQs' ),
+        array(
+            'key' => 'field_ah_wg_faqs', 'label' => 'FAQs', 'name' => 'wg_faqs', 'type' => 'repeater', 'min' => 0, 'max' => 10, 'layout' => 'block',
+            'sub_fields' => array(
+                array( 'key' => 'field_ah_wg_faq_q', 'label' => 'Question', 'name' => 'question', 'type' => 'text' ),
+                array( 'key' => 'field_ah_wg_faq_a', 'label' => 'Answer', 'name' => 'answer', 'type' => 'textarea', 'rows' => 3 ),
+            ),
+        ),
+        array( 'key' => 'field_ah_wg_cta_title', 'label' => 'CTA Title (HTML)', 'name' => 'wg_cta_title', 'type' => 'textarea', 'rows' => 2 ),
+        array( 'key' => 'field_ah_wg_cta_subtitle', 'label' => 'CTA Subtitle', 'name' => 'wg_cta_subtitle', 'type' => 'textarea', 'rows' => 2 ),
+    ),
+    'location' => array( array( array( 'param' => 'page_template', 'operator' => '==', 'value' => 'page-templates/page-wegovy.php' ) ) ),
+) );
+
+// ═══════════════════════════════════════════════
+// F-SERIES: TREATMENTS PAGE
+// ═══════════════════════════════════════════════
+
+acf_add_local_field_group( array(
+    'key'   => 'group_ah_f1_treatments',
+    'title' => 'F1 — Treatments: All Fields',
+    'fields' => array(
+        array( 'key' => 'field_ah_tr_eyebrow', 'label' => 'Eyebrow', 'name' => 'tr_eyebrow', 'type' => 'text', 'default_value' => 'All Treatments' ),
+        array( 'key' => 'field_ah_tr_title', 'label' => 'Title (HTML)', 'name' => 'tr_title', 'type' => 'textarea', 'rows' => 2 ),
+        array( 'key' => 'field_ah_tr_subtitle', 'label' => 'Subtitle', 'name' => 'tr_subtitle', 'type' => 'textarea', 'rows' => 2 ),
+        array( 'key' => 'field_ah_tr_mounjaro_image', 'label' => 'Mounjaro Card Image', 'name' => 'tr_mounjaro_image', 'type' => 'image', 'return_format' => 'id' ),
+        array( 'key' => 'field_ah_tr_mounjaro_desc', 'label' => 'Mounjaro Description', 'name' => 'tr_mounjaro_desc', 'type' => 'textarea', 'rows' => 2 ),
+        array( 'key' => 'field_ah_tr_wegovy_image', 'label' => 'Wegovy Card Image', 'name' => 'tr_wegovy_image', 'type' => 'image', 'return_format' => 'id' ),
+        array( 'key' => 'field_ah_tr_wegovy_desc', 'label' => 'Wegovy Description', 'name' => 'tr_wegovy_desc', 'type' => 'textarea', 'rows' => 2 ),
+    ),
+    'location' => array( array( array( 'param' => 'page_template', 'operator' => '==', 'value' => 'page-templates/page-treatments.php' ) ) ),
+) );
+
+// ═══════════════════════════════════════════════
+// G-SERIES: ELIGIBILITY PAGE
+// ═══════════════════════════════════════════════
+
+acf_add_local_field_group( array(
+    'key'   => 'group_ah_g1_eligibility',
+    'title' => 'G1 — Eligibility: All Fields',
+    'fields' => array(
+        array( 'key' => 'field_ah_el_eyebrow', 'label' => 'Eyebrow', 'name' => 'el_eyebrow', 'type' => 'text', 'default_value' => 'Free Eligibility Check' ),
+        array( 'key' => 'field_ah_el_title', 'label' => 'Title (HTML)', 'name' => 'el_title', 'type' => 'textarea', 'rows' => 2 ),
+        array( 'key' => 'field_ah_el_subtitle', 'label' => 'Subtitle', 'name' => 'el_subtitle', 'type' => 'textarea', 'rows' => 3 ),
+        array( 'key' => 'field_ah_el_hero_image', 'label' => 'Hero Image', 'name' => 'el_hero_image', 'type' => 'image', 'return_format' => 'id' ),
+    ),
+    'location' => array( array( array( 'param' => 'page_template', 'operator' => '==', 'value' => 'page-templates/page-eligibility.php' ) ) ),
+) );
+
+// ═══════════════════════════════════════════════
+// H-SERIES: SWITCHING PROVIDERS PAGE
+// ═══════════════════════════════════════════════
+
+acf_add_local_field_group( array(
+    'key'   => 'group_ah_h1_switching',
+    'title' => 'H1 — Switching: All Fields',
+    'fields' => array(
+        array( 'key' => 'field_ah_sw_eyebrow', 'label' => 'Eyebrow', 'name' => 'sw_eyebrow', 'type' => 'text', 'default_value' => 'Seamless Provider Switching' ),
+        array( 'key' => 'field_ah_sw_title', 'label' => 'Title (HTML)', 'name' => 'sw_title', 'type' => 'textarea', 'rows' => 2 ),
+        array( 'key' => 'field_ah_sw_subtitle', 'label' => 'Subtitle', 'name' => 'sw_subtitle', 'type' => 'textarea', 'rows' => 3 ),
+        array( 'key' => 'field_ah_sw_hero_image', 'label' => 'Hero Image', 'name' => 'sw_hero_image', 'type' => 'image', 'return_format' => 'id' ),
+    ),
+    'location' => array( array( array( 'param' => 'page_template', 'operator' => '==', 'value' => 'page-templates/page-switching.php' ) ) ),
+) );
+
+// ═══════════════════════════════════════════════
+// I-SERIES: ABOUT PAGE
+// ═══════════════════════════════════════════════
+
+acf_add_local_field_group( array(
+    'key'   => 'group_ah_i1_about',
+    'title' => 'I1 — About: All Fields',
+    'fields' => array(
+        array( 'key' => 'field_ah_ab_eyebrow', 'label' => 'Eyebrow', 'name' => 'ab_eyebrow', 'type' => 'text', 'default_value' => 'Our Story' ),
+        array( 'key' => 'field_ah_ab_title', 'label' => 'Title (HTML)', 'name' => 'ab_title', 'type' => 'textarea', 'rows' => 2 ),
+        array( 'key' => 'field_ah_ab_subtitle', 'label' => 'Subtitle', 'name' => 'ab_subtitle', 'type' => 'textarea', 'rows' => 3 ),
+        array( 'key' => 'field_ah_ab_story_image', 'label' => 'Story Section Image', 'name' => 'ab_story_image', 'type' => 'image', 'return_format' => 'id' ),
+        array( 'key' => 'field_ah_ab_story_title', 'label' => 'Story Title', 'name' => 'ab_story_title', 'type' => 'text', 'default_value' => 'Our Story' ),
+        array( 'key' => 'field_ah_ab_story_1', 'label' => 'Story Point 1', 'name' => 'ab_story_1', 'type' => 'textarea', 'rows' => 3 ),
+        array( 'key' => 'field_ah_ab_story_2', 'label' => 'Story Point 2', 'name' => 'ab_story_2', 'type' => 'textarea', 'rows' => 3 ),
+        array( 'key' => 'field_ah_ab_story_3', 'label' => 'Story Point 3', 'name' => 'ab_story_3', 'type' => 'textarea', 'rows' => 3 ),
+    ),
+    'location' => array( array( array( 'param' => 'page_template', 'operator' => '==', 'value' => 'page-templates/page-about.php' ) ) ),
+) );
+
+// ═══════════════════════════════════════════════
+// J-SERIES: CONTACT PAGE
+// ═══════════════════════════════════════════════
+
+acf_add_local_field_group( array(
+    'key'   => 'group_ah_j1_contact',
+    'title' => 'J1 — Contact: All Fields',
+    'fields' => array(
+        array( 'key' => 'field_ah_ct_title', 'label' => 'Title (HTML)', 'name' => 'ct_title', 'type' => 'textarea', 'rows' => 2 ),
+        array( 'key' => 'field_ah_ct_subtitle', 'label' => 'Subtitle', 'name' => 'ct_subtitle', 'type' => 'textarea', 'rows' => 2 ),
+    ),
+    'location' => array( array( array( 'param' => 'page_template', 'operator' => '==', 'value' => 'page-templates/page-contact.php' ) ) ),
+) );
+
+// ═══════════════════════════════════════════════
+// K-SERIES: CUSTOMER CARE PAGE
+// ═══════════════════════════════════════════════
+
+acf_add_local_field_group( array(
+    'key'   => 'group_ah_k1_customer_care',
+    'title' => 'K1 — Customer Care: All Fields',
+    'fields' => array(
+        array( 'key' => 'field_ah_cc_eyebrow', 'label' => 'Eyebrow', 'name' => 'cc_eyebrow', 'type' => 'text', 'default_value' => 'Customer Care' ),
+        array( 'key' => 'field_ah_cc_title', 'label' => 'Title (HTML)', 'name' => 'cc_title', 'type' => 'textarea', 'rows' => 2 ),
+        array( 'key' => 'field_ah_cc_subtitle', 'label' => 'Subtitle', 'name' => 'cc_subtitle', 'type' => 'textarea', 'rows' => 2 ),
+        array( 'key' => 'field_ah_cc_card1_title', 'label' => 'Card 1 Title', 'name' => 'cc_card1_title', 'type' => 'text', 'default_value' => 'Discreet Delivery' ),
+        array( 'key' => 'field_ah_cc_card1_desc', 'label' => 'Card 1 Description', 'name' => 'cc_card1_desc', 'type' => 'textarea', 'rows' => 2 ),
+        array( 'key' => 'field_ah_cc_card2_title', 'label' => 'Card 2 Title', 'name' => 'cc_card2_title', 'type' => 'text', 'default_value' => 'Fast & Secure' ),
+        array( 'key' => 'field_ah_cc_card2_desc', 'label' => 'Card 2 Description', 'name' => 'cc_card2_desc', 'type' => 'textarea', 'rows' => 2 ),
+        array( 'key' => 'field_ah_cc_card3_title', 'label' => 'Card 3 Title', 'name' => 'cc_card3_title', 'type' => 'text', 'default_value' => 'Easy Management' ),
+        array( 'key' => 'field_ah_cc_card3_desc', 'label' => 'Card 3 Description', 'name' => 'cc_card3_desc', 'type' => 'textarea', 'rows' => 2 ),
+    ),
+    'location' => array( array( array( 'param' => 'page_template', 'operator' => '==', 'value' => 'page-templates/page-customer-care.php' ) ) ),
+) );
+
+// ═══════════════════════════════════════════════
+// L-SERIES: HEALTH HUB PAGE
+// ═══════════════════════════════════════════════
+
+acf_add_local_field_group( array(
+    'key'   => 'group_ah_l1_health_hub',
+    'title' => 'L1 — Health Hub: All Fields',
+    'fields' => array(
+        array( 'key' => 'field_ah_hh_title', 'label' => 'Title (HTML)', 'name' => 'hh_title', 'type' => 'textarea', 'rows' => 2 ),
+    ),
+    'location' => array( array( array( 'param' => 'page_template', 'operator' => '==', 'value' => 'page-templates/page-health-hub.php' ) ) ),
+) );
+
+// ═══════════════════════════════════════════════
+// M-SERIES: REORDER PAGE
+// ═══════════════════════════════════════════════
+
+acf_add_local_field_group( array(
+    'key'   => 'group_ah_m1_reorder',
+    'title' => 'M1 — Reorder: All Fields',
+    'fields' => array(
+        array( 'key' => 'field_ah_ro_title', 'label' => 'Title (HTML)', 'name' => 'ro_title', 'type' => 'textarea', 'rows' => 2 ),
+        array( 'key' => 'field_ah_ro_subtitle', 'label' => 'Subtitle', 'name' => 'ro_subtitle', 'type' => 'textarea', 'rows' => 2 ),
+        array( 'key' => 'field_ah_ro_selection_title', 'label' => 'Selection Title', 'name' => 'ro_selection_title', 'type' => 'text', 'default_value' => 'Which medication are you reordering?' ),
+        array( 'key' => 'field_ah_ro_wegovy_price', 'label' => 'Wegovy Price', 'name' => 'ro_wegovy_price', 'type' => 'text', 'default_value' => '125' ),
+        array( 'key' => 'field_ah_ro_wegovy_stat', 'label' => 'Wegovy Stat', 'name' => 'ro_wegovy_stat', 'type' => 'text', 'default_value' => '15% average weight loss within 68 weeks' ),
+        array( 'key' => 'field_ah_ro_mounjaro_price', 'label' => 'Mounjaro Price', 'name' => 'ro_mounjaro_price', 'type' => 'text', 'default_value' => '145' ),
+        array( 'key' => 'field_ah_ro_mounjaro_stat', 'label' => 'Mounjaro Stat', 'name' => 'ro_mounjaro_stat', 'type' => 'text', 'default_value' => '20% average weight loss within 72 weeks' ),
+    ),
+    'location' => array( array( array( 'param' => 'page_template', 'operator' => '==', 'value' => 'page-templates/page-reorder.php' ) ) ),
+) );
+
+// ═══════════════════════════════════════════════
+// N-SERIES: TERMS PAGE
+// ═══════════════════════════════════════════════
+
+acf_add_local_field_group( array(
+    'key'   => 'group_ah_n1_terms',
+    'title' => 'N1 — Terms: All Fields',
+    'fields' => array(
+        array( 'key' => 'field_ah_tm_title', 'label' => 'Title', 'name' => 'tm_title', 'type' => 'text', 'default_value' => 'Terms and Conditions' ),
+        array( 'key' => 'field_ah_tm_content', 'label' => 'Terms Content', 'name' => 'tm_content', 'type' => 'wysiwyg', 'instructions' => 'Full terms and conditions. If left blank, the standard WordPress content editor is used as fallback.' ),
+    ),
+    'location' => array( array( array( 'param' => 'page_template', 'operator' => '==', 'value' => 'page-templates/page-terms.php' ) ) ),
 ) );
