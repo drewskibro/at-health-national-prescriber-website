@@ -1,0 +1,65 @@
+/* ═══════════════════════════════════════════════
+   AT Health — Terms Page Styles
+   Prefix: tm-
+   ═══════════════════════════════════════════════ */
+
+.tm-hero {
+    background: var(--ah-cream);
+}
+
+.tm-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.tm-content h2 {
+    font-size: 1.75rem;
+    color: var(--ah-gray-900);
+    margin-top: 48px;
+    margin-bottom: 16px;
+}
+
+.tm-content h3 {
+    font-size: 1.25rem;
+    color: var(--ah-gray-800);
+    margin-top: 32px;
+    margin-bottom: 12px;
+}
+
+.tm-content p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--ah-gray-600);
+    margin-bottom: 16px;
+}
+
+.tm-content ul,
+.tm-content ol {
+    padding-left: 24px;
+    margin-bottom: 16px;
+}
+
+.tm-content li {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--ah-gray-600);
+    margin-bottom: 8px;
+}
+
+.tm-toc {
+    background: #fff;
+    border-radius: 16px;
+    border: 1px solid var(--ah-gray-200);
+    padding: 24px;
+    margin-bottom: 40px;
+}
+
+.tm-toc a {
+    color: var(--ah-purple-600);
+    font-size: 14px;
+    line-height: 2;
+}
+
+.tm-toc a:hover {
+    text-decoration: underline;
+}

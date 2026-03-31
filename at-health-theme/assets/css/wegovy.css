@@ -1,0 +1,52 @@
+/* ═══════════════════════════════════════════════
+   AT Health — Wegovy Page Styles
+   Prefix: wg-
+   ═══════════════════════════════════════════════ */
+
+.wg-hero {
+    background: var(--ah-cream);
+}
+
+.wg-info-card {
+    background: #fff;
+    border-radius: 24px;
+    border: 1px solid var(--ah-gray-200);
+    padding: 32px;
+    transition: all 0.3s ease;
+}
+
+.wg-info-card:hover {
+    border-color: var(--ah-purple-300);
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
+}
+
+.wg-dosing-step {
+    position: relative;
+    padding-left: 48px;
+}
+
+.wg-dosing-step::before {
+    content: '';
+    position: absolute;
+    left: 18px;
+    top: 40px;
+    bottom: -20px;
+    width: 2px;
+    background: var(--ah-purple-200);
+}
+
+.wg-dosing-step:last-child::before {
+    display: none;
+}
+
+.wg-stat {
+    text-align: center;
+    padding: 24px;
+}
+
+.wg-stat-number {
+    font-family: var(--ah-font-serif);
+    font-size: 2.5rem;
+    line-height: 1;
+    color: var(--ah-purple-700);
+}

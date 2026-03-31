@@ -1,0 +1,38 @@
+/* ═══════════════════════════════════════════════
+   AT Health — Navigation Styles
+   ═══════════════════════════════════════════════ */
+
+/* Top Banner */
+.ah-top-banner {
+    background: var(--ah-purple-600);
+}
+
+.ah-top-banner a {
+    color: #fff;
+    text-decoration: underline;
+}
+
+/* Sticky Nav */
+.ah-nav {
+    background: #fff;
+    border-bottom: 1px solid var(--ah-gray-100);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+
+/* Desktop dropdown */
+.ah-nav .group:hover .group-hover\:opacity-100 {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Mobile menu slide animation */
+#mobileMenu.open {
+    transform: translateX(0);
+}
+
+#mobileMenuOverlay.open {
+    opacity: 1;
+    pointer-events: auto;
+}

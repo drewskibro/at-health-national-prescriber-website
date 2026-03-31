@@ -1,0 +1,133 @@
+<?php
+/**
+ * Template Name: Treatments
+ * Description: All treatments overview with comparison table.
+ */
+get_header();
+?>
+
+<!-- Hero -->
+<section class="py-16 md:py-20" style="background:#fdf8f3;">
+  <div class="ah-container text-center">
+    <p class="text-purple-600 text-xs font-bold uppercase tracking-wider mb-4"><?php echo esc_html( ah_field( 'tr_eyebrow', 'All Treatments' ) ); ?></p>
+    <h1 class="text-4xl md:text-5xl lg:text-6xl font-serif text-gray-900 leading-tight mb-6">
+      <?php echo wp_kses_post( ah_field( 'tr_title', 'Choose the right weight loss<br>treatment <span style="color:#7c6fba;">for you</span>' ) ); ?>
+    </h1>
+    <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
+      <?php echo esc_html( ah_field( 'tr_subtitle', 'Mounjaro and Wegovy prescribed by UK-registered independent prescribers. Delivered discreetly to your door within 48 hours.' ) ); ?>
+    </p>
+    <div class="flex flex-wrap items-center justify-center gap-6 text-sm text-gray-600">
+      <?php foreach ( array( 'GPhC Regulated', 'We Verify Identity', '100% Confidential', '48h Delivery' ) as $t ) : ?>
+      <div class="flex items-center gap-2">
+        <svg class="w-4 h-4 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+        <span class="font-medium"><?php echo esc_html( $t ); ?></span>
+      </div>
+      <?php endforeach; ?>
+    </div>
+  </div>
+</section>
+
+<!-- Product Cards -->
+<section class="py-14 md:py-16" style="background: #f7f4f9;">
+  <div class="ah-container-wide">
+    <div class="text-center mb-12 section-header">
+      <div class="flex items-center justify-center gap-3 mb-4">
+        <div class="w-1 h-8 bg-purple-600 rounded-full"></div>
+        <p class="text-purple-600 text-xs md:text-sm font-bold uppercase tracking-wider">Choose Your Treatment</p>
+      </div>
+      <h2 class="text-3xl md:text-4xl lg:text-5xl text-gray-800 font-serif leading-[1.1] mb-4">Which treatment is right for you?</h2>
+      <p class="text-base md:text-lg text-gray-700 max-w-2xl mx-auto">Both are clinically proven and prescribed by UK-registered doctors.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto" data-stagger>
+      <!-- Mounjaro Card -->
+      <div class="tr-treatment-card" data-reveal style="--stagger-index:0">
+        <div class="relative">
+          <span class="absolute top-4 left-4 bg-purple-600 text-white text-xs font-bold px-3 py-1 rounded-full">Most Popular</span>
+          <?php $mj_img = ah_field( 'tr_mounjaro_image', '' ); ?>
+          <?php if ( $mj_img ) : echo wp_get_attachment_image( $mj_img, 'treatment-card', false, array( 'class' => 'w-full h-56 object-cover' ) ); else : ?>
+          <img src="https://c.animaapp.com/mkl3lxzpWoqisd/img/mounjaro.jpg" alt="Mounjaro" class="w-full h-56 object-cover" />
+          <?php endif; ?>
+        </div>
+        <div class="p-8">
+          <h3 class="text-3xl font-serif text-gray-900 mb-2">Mounjaro</h3>
+          <p class="text-purple-600 font-bold text-lg mb-3">22.5% average weight loss</p>
+          <p class="text-gray-600 text-[15px] leading-relaxed mb-6"><?php echo esc_html( ah_field( 'tr_mounjaro_desc', 'Dual-action GLP-1 and GIP receptor agonist. The most effective weight loss treatment available with up to 22.5% body weight reduction.' ) ); ?></p>
+          <div class="flex gap-3">
+            <a href="<?php echo esc_url( ah_booking_url() ); ?>" class="flex-1 text-center bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 rounded-xl transition-all">Start Journey</a>
+            <a href="<?php echo esc_url( get_permalink( get_page_by_path( 'mounjaro' ) ) ); ?>" class="flex-1 text-center border-2 border-gray-200 hover:border-purple-300 text-gray-700 font-semibold py-3 rounded-xl transition-all">Learn More</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Wegovy Card -->
+      <div class="tr-treatment-card" data-reveal style="--stagger-index:1">
+        <div class="relative">
+          <span class="absolute top-4 left-4 bg-emerald-500 text-white text-xs font-bold px-3 py-1 rounded-full">Proven Results</span>
+          <?php $wg_img = ah_field( 'tr_wegovy_image', '' ); ?>
+          <?php if ( $wg_img ) : echo wp_get_attachment_image( $wg_img, 'treatment-card', false, array( 'class' => 'w-full h-56 object-cover' ) ); else : ?>
+          <img src="https://c.animaapp.com/mkl3lxzpWoqisd/img/wegovy-%281%29.jpg" alt="Wegovy" class="w-full h-56 object-cover" />
+          <?php endif; ?>
+        </div>
+        <div class="p-8">
+          <h3 class="text-3xl font-serif text-gray-900 mb-2">Wegovy</h3>
+          <p class="text-purple-600 font-bold text-lg mb-3">20.7% average weight loss</p>
+          <p class="text-gray-600 text-[15px] leading-relaxed mb-6"><?php echo esc_html( ah_field( 'tr_wegovy_desc', 'GLP-1 receptor agonist with proven cardiovascular benefits. Up to 20.7% body weight reduction and 20% reduced cardiovascular risk.' ) ); ?></p>
+          <div class="flex gap-3">
+            <a href="<?php echo esc_url( ah_booking_url() ); ?>" class="flex-1 text-center bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 rounded-xl transition-all">Start Journey</a>
+            <a href="<?php echo esc_url( get_permalink( get_page_by_path( 'wegovy' ) ) ); ?>" class="flex-1 text-center border-2 border-gray-200 hover:border-purple-300 text-gray-700 font-semibold py-3 rounded-xl transition-all">Learn More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Comparison Table -->
+<section class="py-14 md:py-16" style="background: #fdf8f3;">
+  <div class="ah-container-wide">
+    <div class="text-center mb-12 section-header">
+      <div class="flex items-center justify-center gap-3 mb-4">
+        <div class="w-1 h-8 bg-purple-600 rounded-full"></div>
+        <p class="text-purple-600 text-xs md:text-sm font-bold uppercase tracking-wider">Compare Treatments</p>
+      </div>
+      <h2 class="text-3xl md:text-4xl font-serif text-gray-900 mb-4">Find your perfect match</h2>
+    </div>
+    <div class="max-w-4xl mx-auto bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm" data-reveal>
+      <table class="tr-comparison-table">
+        <thead>
+          <tr><th></th><th>Mounjaro</th><th>Wegovy</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="font-semibold text-gray-900">Active Ingredient</td><td>Tirzepatide</td><td>Semaglutide</td></tr>
+          <tr><td class="font-semibold text-gray-900">Weight Loss</td><td class="text-purple-700 font-bold">Up to 22.5%</td><td class="text-purple-700 font-bold">Up to 20.7%</td></tr>
+          <tr><td class="font-semibold text-gray-900">Starting Dose</td><td>2.5mg</td><td>0.25mg</td></tr>
+          <tr><td class="font-semibold text-gray-900">Dosing Plan</td><td>20 weeks to full dose</td><td>16 weeks to full dose</td></tr>
+          <tr><td class="font-semibold text-gray-900">Delivery</td><td>Within 48 hours</td><td>Within 48 hours</td></tr>
+          <tr><td class="font-semibold text-gray-900">Side Effects</td><td>Nausea, diarrhea, reduced appetite</td><td>Nausea, diarrhea, reduced appetite</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- How It Works -->
+<?php get_template_part( 'template-parts/section', 'how-it-works' ); ?>
+
+<!-- Dark CTA -->
+<section class="relative py-20 md:py-28 overflow-hidden" style="background: #0f1117;">
+  <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+    <div class="w-[600px] h-[600px] rounded-full opacity-[0.07]" style="background: radial-gradient(circle, #9b8fce 0%, transparent 70%);"></div>
+  </div>
+  <div class="max-w-4xl mx-auto px-6 text-center relative z-10" data-reveal>
+    <h2 class="text-4xl md:text-5xl lg:text-6xl font-serif text-white leading-[1.05] mb-5">
+      Ready to start your<br><em class="not-italic" style="color: #a89dd6;">weight loss journey?</em>
+    </h2>
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
+      <a href="<?php echo esc_url( ah_booking_url() ); ?>" class="inline-flex items-center gap-3 bg-white hover:bg-gray-100 text-gray-900 text-[15px] font-semibold px-10 py-4 rounded-xl transition-all hover-lift shadow-xl">Start Free Assessment</a>
+      <a href="<?php echo esc_url( get_permalink( get_page_by_path( 'contact' ) ) ); ?>" class="inline-flex items-center gap-3 border-2 border-white/20 hover:border-white/40 text-white text-[15px] font-semibold px-10 py-4 rounded-xl transition-all">Speak to Our Team</a>
+    </div>
+  </div>
+</section>
+
+<?php get_footer(); ?>

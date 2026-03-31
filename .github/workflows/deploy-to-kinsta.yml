@@ -1,0 +1,45 @@
+name: Deploy AT Health Theme to Kinsta
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'at-health-theme/**'
+
+jobs:
+  deploy:
+    name: Deploy Theme
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deploy theme via SCP
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.KINSTA_SSH_HOST }}
+          username: ${{ secrets.KINSTA_SSH_USER }}
+          password: ${{ secrets.KINSTA_SSH_PASSWORD }}
+          port: ${{ secrets.KINSTA_SSH_PORT }}
+          source: "at-health-theme/"
+          target: "~/public/wp-content/themes/"
+          overwrite: true
+
+      - name: Verify deployment
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.KINSTA_SSH_HOST }}
+          username: ${{ secrets.KINSTA_SSH_USER }}
+          password: ${{ secrets.KINSTA_SSH_PASSWORD }}
+          port: ${{ secrets.KINSTA_SSH_PORT }}
+          script: |
+            echo "=== Deployment Verification ==="
+            echo "Theme directory:"
+            ls -la ~/public/wp-content/themes/at-health-theme/
+            echo ""
+            echo "Style.css header:"
+            head -5 ~/public/wp-content/themes/at-health-theme/style.css
+            echo ""
+            echo "=== Deployment Complete ==="
