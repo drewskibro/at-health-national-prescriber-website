@@ -1,0 +1,46 @@
+/* ═══════════════════════════════════════════════
+   AT Health — About Page Styles
+   Prefix: ab-
+   ═══════════════════════════════════════════════ */
+
+.ab-hero {
+    background: var(--ah-cream);
+}
+
+.ab-value-card {
+    background: #fff;
+    border-radius: 24px;
+    border: 1px solid var(--ah-gray-200);
+    padding: 32px;
+    transition: all 0.3s ease;
+}
+
+.ab-value-card:hover {
+    border-color: var(--ah-purple-300);
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
+}
+
+.ab-team-card {
+    background: #fff;
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid var(--ah-gray-200);
+    transition: all 0.3s ease;
+}
+
+.ab-team-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.08);
+}
+
+.ab-stat {
+    text-align: center;
+}
+
+.ab-stat-number {
+    font-family: var(--ah-font-serif);
+    font-size: 3rem;
+    line-height: 1;
+    color: var(--ah-purple-700);
+    margin-bottom: 8px;
+}

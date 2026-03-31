@@ -1,0 +1,58 @@
+/* ═══════════════════════════════════════════════
+   AT Health — Switching Providers Page Styles
+   Prefix: sw-
+   ═══════════════════════════════════════════════ */
+
+.sw-hero {
+    background: var(--ah-cream);
+}
+
+.sw-step-card {
+    background: #fff;
+    border-radius: 24px;
+    border: 1px solid var(--ah-gray-200);
+    padding: 32px;
+    transition: all 0.3s ease;
+}
+
+.sw-step-card:hover {
+    border-color: var(--ah-purple-300);
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
+    transform: translateY(-2px);
+}
+
+.sw-comparison-card {
+    background: #fff;
+    border-radius: 24px;
+    border: 1px solid var(--ah-gray-200);
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
+}
+
+.sw-comparison-card.featured {
+    border-color: var(--ah-purple-600);
+    box-shadow: 0 20px 25px -5px rgba(142, 136, 208, 0.15);
+}
+
+.sw-comparison-card.featured::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--ah-purple-600);
+}
+
+.sw-benefit-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--ah-gray-100);
+}
+
+.sw-benefit-item:last-child {
+    border-bottom: none;
+}

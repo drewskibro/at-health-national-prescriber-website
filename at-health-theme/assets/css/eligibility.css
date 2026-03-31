@@ -1,0 +1,79 @@
+/* ═══════════════════════════════════════════════
+   AT Health — Eligibility Page Styles
+   Prefix: el-
+   ═══════════════════════════════════════════════ */
+
+.el-hero {
+    background: var(--ah-cream);
+}
+
+.el-form-card {
+    background: #fff;
+    border-radius: 28px;
+    border: 1px solid var(--ah-gray-200);
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
+    padding: 40px;
+}
+
+.el-step-indicator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 32px;
+}
+
+.el-step-dot {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.el-step-dot.active {
+    background: var(--ah-purple-600);
+    color: #fff;
+}
+
+.el-step-dot.completed {
+    background: var(--ah-emerald-400);
+    color: #fff;
+}
+
+.el-step-dot.inactive {
+    background: var(--ah-gray-100);
+    color: var(--ah-gray-400);
+}
+
+.el-step-line {
+    flex: 1;
+    height: 2px;
+    background: var(--ah-gray-200);
+    transition: background 0.3s ease;
+}
+
+.el-step-line.active {
+    background: var(--ah-purple-600);
+}
+
+.el-option-card {
+    background: #fff;
+    border: 2px solid var(--ah-gray-200);
+    border-radius: 16px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.el-option-card:hover {
+    border-color: var(--ah-purple-300);
+}
+
+.el-option-card.selected {
+    border-color: var(--ah-purple-600);
+    background: var(--ah-purple-50);
+}

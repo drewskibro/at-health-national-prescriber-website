@@ -1,0 +1,85 @@
+<?php
+/**
+ * Template Part: Hero Section
+ * Used on the homepage.
+ */
+
+$hero_eyebrow   = ah_field( 'hero_eyebrow', 'Clinically Proven Weight Loss' );
+$hero_title     = ah_field( 'hero_title', 'Transform Your<br>Life With Medical<br><span style="color: #6366f1;">Weight Loss</span>' );
+$hero_subtitle  = ah_field( 'hero_subtitle', 'Clinically-proven prescription treatments that work when diets have failed. Lose up to 26% body weight with expert medical support every step of the way.' );
+$hero_cta_text  = ah_field( 'hero_cta_text', 'Start Your Journey' );
+$hero_cta_url   = ah_field( 'hero_cta_url', '' );
+if ( $hero_cta_url === null || $hero_cta_url === '' ) {
+    $hero_cta_url = ah_booking_url();
+}
+$hero_image     = ah_field( 'hero_image', '' );
+$hero_image_alt = ah_field( 'hero_image_alt', 'Woman in kitchen feeling confident and healthy' );
+?>
+
+<!-- Premium Hero Section 2025 -->
+<section class="relative w-full overflow-hidden" style="background: #fdf8f3;">
+  <div class="max-w-[1920px] mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-2 min-h-0">
+      <!-- Left Column: Content -->
+      <div class="flex flex-col justify-center order-2 lg:order-1 px-6 md:px-12 lg:px-20 xl:px-28 py-12 lg:py-16">
+        <!-- Eyebrow -->
+        <div class="mb-4 opacity-0 animate-fade-in-up delay-100" style="animation-fill-mode: forwards;">
+          <p class="text-gray-400 text-[11px] font-bold uppercase tracking-[0.25em]">
+            <?php echo esc_html( $hero_eyebrow ); ?>
+          </p>
+        </div>
+
+        <!-- Headline -->
+        <h1
+          class="text-[2.75rem] sm:text-[3.25rem] md:text-[3.75rem] lg:text-[4.25rem] xl:text-[5rem] 2xl:text-[5.5rem] leading-[1.02] tracking-[-0.035em] mb-5 opacity-0 animate-fade-in-up delay-200"
+          style="animation-fill-mode: forwards;"
+        >
+          <?php echo wp_kses_post( $hero_title ); ?>
+        </h1>
+
+        <!-- Subheadline -->
+        <p
+          class="text-[15px] md:text-[17px] text-gray-500 leading-[1.7] mb-8 max-w-[520px] opacity-0 animate-fade-in-up delay-300"
+          style="animation-fill-mode: forwards;"
+        >
+          <?php echo esc_html( $hero_subtitle ); ?>
+        </p>
+
+        <!-- CTA -->
+        <div
+          class="flex items-center gap-5 opacity-0 animate-fade-in-up delay-400"
+          style="animation-fill-mode: forwards;"
+        >
+          <a
+            href="<?php echo esc_url( $hero_cta_url ); ?>"
+            class="inline-flex items-center justify-center gap-2.5 bg-gray-900 hover:bg-gray-800 text-white text-[15px] font-semibold px-9 py-4 rounded-lg transition-all hover-lift"
+          >
+            <?php echo esc_html( $hero_cta_text ); ?>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+          <span class="text-gray-400 text-xs font-medium tracking-wide uppercase hidden sm:inline">GPhC Regulated</span>
+        </div>
+      </div>
+
+      <!-- Right Column: Hero image -->
+      <div class="order-1 lg:order-2 opacity-0 animate-fade-in-up delay-300" style="animation-fill-mode: forwards;">
+        <div class="relative w-full h-[340px] sm:h-[420px] lg:h-full lg:min-h-[520px]">
+          <?php if ( $hero_image !== null && $hero_image !== '' ) : ?>
+            <?php echo wp_get_attachment_image( $hero_image, 'full', false, array(
+              'class' => 'absolute inset-0 w-full h-full object-cover object-[15%]',
+              'alt'   => esc_attr( $hero_image_alt ),
+            ) ); ?>
+          <?php else : ?>
+            <img
+              src="https://c.animaapp.com/mkl3lxzpWoqisd/img/uploaded-asset-1774866928466-0.jpeg"
+              alt="<?php echo esc_attr( $hero_image_alt ); ?>"
+              class="absolute inset-0 w-full h-full object-cover object-[15%]"
+            />
+          <?php endif; ?>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

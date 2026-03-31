@@ -1,0 +1,82 @@
+/* ═══════════════════════════════════════════════
+   AT Health — Home Page Styles
+   Prefix: hp-
+   ═══════════════════════════════════════════════ */
+
+/* Calculator section */
+.hp-calc-card {
+    background: #fff;
+    border-radius: 28px;
+    border: 1px solid rgba(229, 231, 235, 0.8);
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
+}
+
+.calc-unit-btn.active-unit {
+    background: var(--ah-purple-600);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(142, 136, 208, 0.3);
+}
+
+.calc-unit-btn:not(.active-unit):hover {
+    color: var(--ah-gray-700);
+}
+
+/* Treatment cards */
+.hp-treatment-card {
+    background: #fff;
+    border-radius: 24px;
+    border: 1px solid var(--ah-gray-200);
+    overflow: hidden;
+    transition: all 0.4s ease;
+}
+
+.hp-treatment-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.08);
+    border-color: var(--ah-purple-300);
+}
+
+/* Stats section */
+.hp-stat-card {
+    text-align: center;
+    padding: 32px 24px;
+}
+
+.hp-stat-number {
+    font-family: var(--ah-font-serif);
+    font-size: 3rem;
+    line-height: 1;
+    color: var(--ah-gray-900);
+    margin-bottom: 8px;
+}
+
+/* Testimonial cards */
+.hp-testimonial {
+    background: #fff;
+    border-radius: 24px;
+    border: 1px solid var(--ah-gray-200);
+    padding: 32px;
+    transition: all 0.3s ease;
+}
+
+.hp-testimonial:hover {
+    border-color: var(--ah-purple-300);
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
+}
+
+/* Journey timeline */
+.hp-journey-line {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--ah-purple-200);
+    transform: translateX(-50%);
+}
+
+@media (max-width: 767px) {
+    .hp-journey-line {
+        left: 24px;
+    }
+}
