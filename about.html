@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - AT Health</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['DM Serif Display', 'serif'],
+            sans: ['Inter', 'sans-serif']
+          },
+          colors: {
+            teal: {
+              400: '#a89dd6',
+              500: '#9b8fce',
+              600: '#8e88d0',
+              700: '#7d76ba',
+            },
+            purple: {
+              400: '#a89dd6',
+              500: '#9b8fce',
+              600: '#8e88d0',
+              700: '#7d76ba',
+            }
+          },
+          backgroundImage: {
+            'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3 {
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
+    }
+
+    .hover-lift {
+      transition: all 0.3s ease;
+    }
+
+    .hover-lift:hover {
+      transform: translateY(-2px);
+    }
+
+    /* === SCROLL REVEAL SYSTEM === */
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    [data-reveal="left"] {
+      opacity: 0;
+      transform: translateX(-40px);
+    }
+    [data-reveal="right"] {
+      opacity: 0;
+      transform: translateX(40px);
+    }
+    [data-reveal="scale"] {
+      opacity: 0;
+      transform: scale(0.92);
+    }
+    [data-reveal].revealed {
+      opacity: 1 !important;
+      transform: translateY(0) translateX(0) scale(1) !important;
+    }
+    [data-stagger] > [data-reveal] {
+      transition-delay: calc(var(--stagger-index, 0) * 120ms);
+    }
+  </style>
+</head>
+<body class="text-gray-900" style="background: #fdf8f3;">
+
+  <!-- Top Banner -->
+  <div style="background: #0f1117;" class="py-3">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <p class="text-white text-sm font-medium">Switch to Wegovy and save up to 27% <a href="switching.html" class="underline ml-2" style="color: #a89dd6;">Check eligibility</a></p>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="bg-white border-b border-gray-100 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex items-center justify-between h-20">
+        <a href="index.html">
+          <img src="https://c.animaapp.com/mkl3lxzpWoqisd/img/uploaded-image-1768824907136-0.png" alt="AT Health" class="h-12" />
+        </a>
+        <div class="hidden lg:flex items-center gap-8">
+          <div class="relative group">
+            <a href="treatments.html" class="text-gray-700 text-sm font-medium hover:text-purple-600 flex items-center gap-1">
+              Treatments
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </a>
+            <div class="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+              <a href="mounjaro.html" class="block px-4 py-3 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-600 rounded-t-lg transition-colors">Mounjaro</a>
+              <a href="wegovy.html" class="block px-4 py-3 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-600 transition-colors">Wegovy</a>
+              <a href="treatments.html" class="block px-4 py-3 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-600 rounded-b-lg transition-colors">All Treatments</a>
+            </div>
+          </div>
+          <a href="switching.html" class="text-gray-700 text-sm font-medium hover:text-purple-600">Switching Providers</a>
+          <a href="eligibility.html" class="text-gray-700 text-sm font-medium hover:text-purple-600">Eligibility</a>
+          <div class="relative group">
+            <a href="about.html" class="text-purple-600 text-sm font-medium flex items-center gap-1">
+              About
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </a>
+            <div class="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+              <a href="about.html" class="block px-4 py-3 text-sm text-purple-600 bg-purple-50 hover:bg-purple-100 rounded-t-lg transition-colors font-medium">About Us</a>
+              <a href="customer-care.html" class="block px-4 py-3 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-600 rounded-b-lg transition-colors">Customer Care</a>
+            </div>
+          </div>
+          <a href="health-hub.html" class="text-gray-700 text-sm font-medium hover:text-purple-600">Resources</a>
+          <a href="contact.html" class="text-gray-700 text-sm font-medium hover:text-purple-600">Contact</a>
+        </div>
+        <a href="eligibility.html" class="bg-purple-600 text-white text-sm font-medium px-6 py-3 rounded-lg hover:bg-purple-700 transition-colors inline-block">
+          Start Journey &rarr;
+        </a>
+
+        <!-- Mobile Menu Button -->
+        <button class="lg:hidden flex items-center justify-center w-10 h-10 text-gray-600 hover:text-purple-600 transition-colors" id="menuToggle">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 opacity-0 pointer-events-none transition-opacity duration-300" id="mobileMenuOverlay"></div>
+
+  <!-- Mobile Menu -->
+  <div class="fixed top-0 right-0 bottom-0 w-[85%] max-w-[400px] bg-white/95 backdrop-blur-xl shadow-2xl z-50 transform translate-x-full transition-transform duration-300 ease-out" id="mobileMenu">
+    <div class="flex items-center justify-between p-6 border-b border-gray-200">
+      <img src="https://c.animaapp.com/mkl3lxzpWoqisd/img/uploaded-image-1768824907136-0.png" alt="AT Health" class="h-10" />
+      <button class="flex items-center justify-center w-10 h-10 text-gray-600 hover:text-purple-600 hover:bg-purple-50 rounded-full transition-all" id="menuClose">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+      </button>
+    </div>
+    <div class="flex flex-col h-[calc(100%-80px)] overflow-y-auto">
+      <nav class="flex-1 p-6 space-y-2">
+        <a class="group flex items-center px-4 py-4 rounded-xl hover:bg-purple-50 transition-all" href="treatments.html"><span class="text-gray-700 text-base font-semibold group-hover:text-purple-600 transition-colors">Treatments</span></a>
+        <a class="group flex items-center px-4 py-4 rounded-xl hover:bg-purple-50 transition-all" href="switching.html"><span class="text-gray-700 text-base font-semibold group-hover:text-purple-600 transition-colors">Switching Providers</span></a>
+        <a class="group flex items-center px-4 py-4 rounded-xl hover:bg-purple-50 transition-all" href="eligibility.html"><span class="text-gray-700 text-base font-semibold group-hover:text-purple-600 transition-colors">Eligibility</span></a>
+        <a class="group flex items-center px-4 py-4 rounded-xl bg-purple-50" href="about.html"><span class="text-purple-600 text-base font-semibold">About Us</span></a>
+        <a class="group flex items-center px-4 py-4 rounded-xl hover:bg-purple-50 transition-all" href="health-hub.html"><span class="text-gray-700 text-base font-semibold group-hover:text-purple-600 transition-colors">Resources</span></a>
+        <a class="group flex items-center px-4 py-4 rounded-xl hover:bg-purple-50 transition-all" href="contact.html"><span class="text-gray-700 text-base font-semibold group-hover:text-purple-600 transition-colors">Contact</span></a>
+      </nav>
+      <div class="p-6 border-t border-gray-200 space-y-4">
+        <a href="eligibility.html" class="w-full flex items-center justify-center gap-3 bg-purple-600 hover:bg-purple-700 text-white text-base font-semibold px-6 py-4 rounded-xl shadow-lg transition-all">Start Journey</a>
+        <p class="text-center text-gray-500 text-xs pt-2">&copy; 2026 AT Health</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const menuClose = document.getElementById('menuClose');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+    function openMenu() { mobileMenu.classList.remove('translate-x-full'); mobileMenuOverlay.classList.remove('opacity-0','pointer-events-none'); document.body.style.overflow='hidden'; }
+    function closeMenu() { mobileMenu.classList.add('translate-x-full'); mobileMenuOverlay.classList.add('opacity-0','pointer-events-none'); document.body.style.overflow=''; }
+    if(menuToggle) menuToggle.addEventListener('click', openMenu);
+    if(menuClose) menuClose.addEventListener('click', closeMenu);
+    if(mobileMenuOverlay) mobileMenuOverlay.addEventListener('click', closeMenu);
+    document.querySelectorAll('#mobileMenu a').forEach(l => l.addEventListener('click', closeMenu));
+    document.addEventListener('keydown', e => { if(e.key==='Escape') closeMenu(); });
+  </script>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- HERO — Centred editorial masthead (unique to About) -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <section class="relative overflow-hidden" style="background: #0f1117;">
+    <!-- Ambient glow -->
+    <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+      <div class="w-[700px] h-[700px] rounded-full opacity-[0.06]" style="background: radial-gradient(circle, #9b8fce 0%, transparent 70%);"></div>
+    </div>
+
+    <div class="max-w-5xl mx-auto px-6 pt-20 pb-24 md:pt-28 md:pb-32 text-center relative z-10">
+      <!-- Eyebrow -->
+      <p class="text-[11px] font-bold uppercase tracking-[0.28em] text-gray-500 mb-6" data-reveal>Our Story</p>
+
+      <!-- Headline -->
+      <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif text-white leading-[1.05] tracking-[-0.02em] mb-6" data-reveal>
+        The People Behind<br><em class="not-italic" style="color: #a89dd6;">Your Transformation</em>
+      </h1>
+
+      <!-- Subline -->
+      <p class="text-base md:text-lg text-gray-400 leading-relaxed max-w-2xl mx-auto mb-12" data-reveal>
+        Since 2021, AT Health has helped over 10,000 people across the UK lose weight and regain their confidence &mdash; all from home, with expert medical support every step of the way.
+      </p>
+
+      <!-- Stat row -->
+      <div class="flex flex-wrap items-center justify-center gap-x-12 gap-y-6 border-t border-white/[0.07] pt-10" data-stagger>
+        <div class="text-center" data-reveal style="--stagger-index:0">
+          <div class="text-3xl md:text-4xl font-serif font-bold text-white mb-1">10,000+</div>
+          <p class="text-gray-500 text-xs font-medium uppercase tracking-wider">Lives Transformed</p>
+        </div>
+        <div class="text-center" data-reveal style="--stagger-index:1">
+          <div class="text-3xl md:text-4xl font-serif font-bold text-white mb-1">48h</div>
+          <p class="text-gray-500 text-xs font-medium uppercase tracking-wider">Delivery Time</p>
+        </div>
+        <div class="text-center" data-reveal style="--stagger-index:2">
+          <div class="text-3xl md:text-4xl font-serif font-bold text-white mb-1">4.9<span class="text-2xl text-amber-400">&#9733;</span></div>
+          <p class="text-gray-500 text-xs font-medium uppercase tracking-wider">Patient Rating</p>
+        </div>
+        <div class="text-center" data-reveal style="--stagger-index:3">
+          <div class="text-3xl md:text-4xl font-serif font-bold text-white mb-1">2021</div>
+          <p class="text-gray-500 text-xs font-medium uppercase tracking-wider">Established</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- OUR STORY — split image + text on lavender -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="relative py-20 md:py-28 overflow-hidden" style="background: #f7f4f9;">
+    <div class="max-w-[1400px] mx-auto px-6 md:px-[60px]">
+      <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+
+        <!-- Left: Image -->
+        <div class="relative" data-reveal="left">
+          <div class="relative rounded-[32px] overflow-hidden shadow-2xl aspect-[4/5]">
+            <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=1200&h=1600&fit=crop" alt="AT Health medical professional" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+
+            <!-- Floating badge -->
+            <div class="absolute bottom-8 left-8 right-8 bg-white/95 backdrop-blur-xl p-6 rounded-2xl shadow-xl border border-white/50">
+              <div class="flex items-center gap-5">
+                <div class="w-14 h-14 bg-purple-600 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg text-white">
+                  <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                </div>
+                <div>
+                  <p class="font-serif text-xl font-bold text-gray-900 mb-1">Patient-First Approach</p>
+                  <p class="text-sm text-gray-600">Safety and care at the heart of everything we do</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Text -->
+        <div data-reveal="right">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-1 h-8 bg-purple-600 rounded-full"></div>
+            <p class="text-purple-600 text-xs md:text-sm font-bold uppercase tracking-wider">Why We Exist</p>
+          </div>
+
+          <h2 class="text-4xl md:text-5xl font-serif text-gray-900 mb-8 leading-tight">Our Story</h2>
+
+          <div class="space-y-8 text-gray-700 leading-relaxed">
+            <p class="text-xl md:text-2xl font-medium text-gray-900 border-l-4 border-purple-600 pl-8">
+              AT Health was founded in 2021 with one clear mission &mdash; to make prescription weight loss treatments accessible, affordable, and effective for everyone.
+            </p>
+
+            <div class="grid gap-8">
+              <div class="flex gap-5">
+                <div class="w-11 h-11 rounded-full bg-purple-50 flex items-center justify-center flex-shrink-0 text-purple-600 font-bold text-base">1</div>
+                <div>
+                  <h3 class="font-bold text-lg text-gray-900 mb-2 font-sans">Experienced Medical Roots</h3>
+                  <p class="text-base">Operated by Prescription Point Limited, our team brings over a decade of experience in the medical sector. We&#39;ve grown from a simple idea into a trusted service supporting over 10,000 patients across the UK.</p>
+                </div>
+              </div>
+              <div class="flex gap-5">
+                <div class="w-11 h-11 rounded-full bg-purple-50 flex items-center justify-center flex-shrink-0 text-purple-600 font-bold text-base">2</div>
+                <div>
+                  <h3 class="font-bold text-lg text-gray-900 mb-2 font-sans">Solving the Access Problem</h3>
+                  <p class="text-base">We saw that traditional diets often fail, while effective GLP-1 medications were hard to access. We built AT Health to remove the barriers of cost and complexity, offering a seamless path to clinically proven treatment.</p>
+                </div>
+              </div>
+              <div class="flex gap-5">
+                <div class="w-11 h-11 rounded-full bg-purple-50 flex items-center justify-center flex-shrink-0 text-purple-600 font-bold text-base">3</div>
+                <div>
+                  <h3 class="font-bold text-lg text-gray-900 mb-2 font-sans">No Compromise on Quality</h3>
+                  <p class="text-base">Our approach is simple: expert medical guidance, genuine UK-licensed medication, fast delivery, and real ongoing support &mdash; all at prices that won&#39;t break the bank.</p>
+                </div>
+              </div>
+            </div>
+
+            <p class="text-lg font-medium text-gray-800 bg-white p-8 rounded-2xl border border-gray-200/80 shadow-sm">
+              We&#39;re not here to sell you a quick fix. We&#39;re here to help you achieve lasting results with safe, proven treatments and proper medical oversight.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- WHAT MAKES US DIFFERENT — cream bg          -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="relative py-20 overflow-hidden" style="background: #fdf8f3;">
+    <div class="max-w-[1400px] mx-auto px-6 md:px-[60px]">
+      <div class="text-center mb-14" data-reveal>
+        <div class="flex items-center justify-center gap-3 mb-4">
+          <div class="w-1 h-8 bg-purple-600 rounded-full"></div>
+          <p class="text-purple-600 text-xs md:text-sm font-bold uppercase tracking-wider">How We&#39;re Different</p>
+        </div>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-serif text-gray-900">Why Choose AT Health</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8" data-stagger>
+        <!-- Card 1 -->
+        <div class="bg-white rounded-2xl p-10 shadow-sm border border-gray-200/80 hover:shadow-lg hover:-translate-y-1 transition-all duration-500" data-reveal style="--stagger-index:0">
+          <div class="text-5xl font-serif font-bold text-purple-100 mb-5">01</div>
+          <h3 class="text-2xl font-serif text-gray-900 mb-4">Expert Medical Team</h3>
+          <p class="text-gray-600 leading-relaxed">Every prescription is reviewed by UK-registered Pharmacist Independent Prescribers regulated by the General Pharmaceutical Council. Real clinicians who genuinely care about your safety and success &mdash; not algorithms, not chatbots.</p>
+        </div>
+        <!-- Card 2 -->
+        <div class="bg-white rounded-2xl p-10 shadow-sm border border-gray-200/80 hover:shadow-lg hover:-translate-y-1 transition-all duration-500" data-reveal style="--stagger-index:1">
+          <div class="text-5xl font-serif font-bold text-purple-100 mb-5">02</div>
+          <h3 class="text-2xl font-serif text-gray-900 mb-4">Fast &amp; Discreet Service</h3>
+          <p class="text-gray-600 leading-relaxed">Next-day delivery on all medication. Temperature-controlled packaging. Completely confidential service. No awkward appointments, no waiting rooms, no judgement. Just fast, professional care delivered to your door.</p>
+        </div>
+        <!-- Card 3 -->
+        <div class="bg-white rounded-2xl p-10 shadow-sm border border-gray-200/80 hover:shadow-lg hover:-translate-y-1 transition-all duration-500" data-reveal style="--stagger-index:2">
+          <div class="text-5xl font-serif font-bold text-purple-100 mb-5">03</div>
+          <h3 class="text-2xl font-serif text-gray-900 mb-4">Genuine UK Medication</h3>
+          <p class="text-gray-600 leading-relaxed">We only supply authentic, UK-licensed medication from registered pharmacies. No grey-market alternatives, no counterfeit products. Every treatment is exactly what it says on the label, dispensed by Care Quality Pharmacy (GPhC: 9012435).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- OUR PRESCRIBERS — lavender bg               -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="relative py-20 md:py-28" style="background: #f7f4f9;">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <div class="text-center mb-14" data-reveal>
+        <div class="flex items-center justify-center gap-3 mb-4">
+          <div class="w-1 h-8 bg-purple-600 rounded-full"></div>
+          <p class="text-purple-600 text-xs md:text-sm font-bold uppercase tracking-wider">Our Prescribers</p>
+        </div>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-serif text-gray-900 mb-5">Meet the Clinicians Who Review Your Prescription</h2>
+        <p class="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">Every prescription is reviewed by experienced, UK-registered Pharmacist Independent Prescribers who genuinely care about your safety and success.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8 lg:gap-12" data-stagger>
+        <!-- Prescriber 1 -->
+        <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-200/80 flex flex-col md:flex-row gap-8 items-center md:items-start hover:shadow-lg transition-all" data-reveal style="--stagger-index:0">
+          <div class="w-28 h-28 flex-shrink-0 rounded-full overflow-hidden border-4 border-purple-50 shadow-md">
+            <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&h=400&fit=crop" alt="Huzaifa Hassanali" class="w-full h-full object-cover" />
+          </div>
+          <div class="flex-grow text-center md:text-left">
+            <h3 class="text-2xl font-serif text-gray-900 mb-1">Huzaifa Hassanali</h3>
+            <p class="text-purple-600 font-medium mb-2">Pharmacist Independent Prescriber</p>
+            <p class="text-sm text-gray-500 mb-4 bg-purple-50 inline-block px-3 py-1 rounded-full">GPhC No.: 2070649</p>
+            <blockquote class="text-gray-600 italic mb-6 relative">
+              <span class="text-4xl text-purple-100 absolute -top-4 -left-2">&ldquo;</span>
+              <span class="relative z-10">My priority is making sure you get the right medication at the right dose. I review every assessment carefully and only prescribe when I&#39;m confident it&#39;s safe and suitable for you.</span>
+            </blockquote>
+            <a href="https://www.pharmacyregulation.org/registers/pharmacist/2070649" target="_blank" class="inline-flex items-center gap-2 text-sm font-bold text-purple-600 hover:text-purple-700 transition-colors group">
+              Verify Registration
+              <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Prescriber 2 -->
+        <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-200/80 flex flex-col md:flex-row gap-8 items-center md:items-start hover:shadow-lg transition-all" data-reveal style="--stagger-index:1">
+          <div class="w-28 h-28 flex-shrink-0 rounded-full overflow-hidden border-4 border-purple-50 shadow-md">
+            <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&h=400&fit=crop" alt="Usman Tahir" class="w-full h-full object-cover" />
+          </div>
+          <div class="flex-grow text-center md:text-left">
+            <h3 class="text-2xl font-serif text-gray-900 mb-1">Usman Tahir</h3>
+            <p class="text-purple-600 font-medium mb-2">Pharmacist Independent Prescriber</p>
+            <p class="text-sm text-gray-500 mb-4 bg-purple-50 inline-block px-3 py-1 rounded-full">GPhC No.: 2071068</p>
+            <blockquote class="text-gray-600 italic mb-6 relative">
+              <span class="text-4xl text-purple-100 absolute -top-4 -left-2">&ldquo;</span>
+              <span class="relative z-10">Weight loss is a personal journey, and everyone&#39;s situation is different. I&#39;m here to provide expert guidance and support you safely towards your goals.</span>
+            </blockquote>
+            <a href="https://www.pharmacyregulation.org/registers/pharmacist/2071068" target="_blank" class="inline-flex items-center gap-2 text-sm font-bold text-purple-600 hover:text-purple-700 transition-colors group">
+              Verify Registration
+              <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- TESTIMONIALS — cream bg                    -->
+  <!-- ══════════════════════════════════════════ -->
+  <section class="relative py-20 overflow-hidden" style="background: #fdf8f3;">
+    <div class="max-w-[1400px] mx-auto px-6 md:px-[60px]">
+      <div class="text-center mb-14" data-reveal>
+        <div class="flex items-center justify-center gap-3 mb-4">
+          <div class="w-1 h-8 bg-purple-600 rounded-full"></div>
+          <p class="text-purple-600 text-xs md:text-sm font-bold uppercase tracking-wider">What People Say</p>
+        </div>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-serif text-gray-900">Why People Choose AT Health</h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6" data-stagger>
+        <!-- Card 1 -->
+        <div class="group relative bg-white rounded-[2rem] p-8 shadow-sm border border-gray-200/80 hover:border-purple-200 hover:shadow-lg transition-all duration-500 hover:-translate-y-2 flex flex-col h-full" data-reveal style="--stagger-index:0">
+          <div class="absolute top-6 right-8 text-8xl font-serif text-purple-50 opacity-60 leading-none select-none">&ldquo;</div>
+          <div class="flex gap-1 mb-6 text-amber-400 relative z-10">
+            <span class="text-lg">&#9733;</span><span class="text-lg">&#9733;</span><span class="text-lg">&#9733;</span><span class="text-lg">&#9733;</span><span class="text-lg">&#9733;</span>
+          </div>
+          <blockquote class="relative z-10 mb-8 flex-grow">
+            <p class="text-xl font-serif text-gray-900 leading-tight">&ldquo;I no longer struggle with weight loss. It&#39;s changed my entire relationship with food.&rdquo;</p>
+          </blockquote>
+          <div class="flex items-center justify-between mt-auto pt-6 border-t border-gray-100 relative z-10">
+            <div>
+              <div class="font-bold text-gray-900 text-sm uppercase tracking-wide mb-1">Sophie Chaudhry</div>
+              <div class="flex items-center gap-1.5 text-xs text-purple-600 font-bold bg-purple-50 px-2 py-1 rounded-md inline-flex">
+                <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                Verified Patient
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="group relative bg-white rounded-[2rem] p-8 shadow-sm border border-gray-200/80 hover:border-purple-200 hover:shadow-lg transition-all duration-500 hover:-translate-y-2 flex flex-col h-full" data-reveal style="--stagger-index:1">
+          <div class="absolute top-6 right-8 text-8xl font-serif text-purple-50 opacity-60 leading-none select-none">&ldquo;</div>
+          <div class="flex gap-1 mb-6 text-amber-400 relative z-10">
+            <span class="text-lg">&#9733;</span><span class="text-lg">&#9733;</span><span class="text-lg">&#9733;</span><span class="text-lg">&#9733;</span><span class="text-lg">&#9733;</span>
+          </div>
+          <blockquote class="relative z-10 mb-8 flex-grow">
+            <p class="text-xl font-serif text-gray-900 leading-tight">&ldquo;I have so far lost 3 stone (19kg). The support has been incredible.&rdquo;</p>
+          </blockquote>
+          <div class="flex items-center justify-between mt-auto pt-6 border-t border-gray-100 relative z-10">
+            <div>
+              <div class="font-bold text-gray-900 text-sm uppercase tracking-wide mb-1">Stephen Matthews</div>
+              <div class="flex items-center gap-1.5 text-xs text-purple-600 font-bold bg-purple-50 px-2 py-1 rounded-md inline-flex">
+                <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                Verified Patient
+              </div>
+            </div>
+            <div class="bg-purple-600 text-white text-[10px] font-bold px-3 py-1 rounded-full shadow-md">Lost 19kg</div>
+          </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="group relative bg-white rounded-[2rem] p-8 shadow-sm border border-gray-200/80 hover:border-purple-200 hover:shadow-lg transition-all duration-500 hover:-translate-y-2 flex flex-col h-full" data-reveal style="--stagger-index:2">
+          <div class="absolute top-6 right-8 text-8xl font-serif text-purple-50 opacity-60 leading-none select-none">&ldquo;</div>
+          <div class="flex gap-1 mb-6 text-amber-400 relative z-10">
+            <span class="text-lg">&#9733;</span><span class="text-lg">&#9733;</span><span class="text-lg">&#9733;</span><span class="text-lg">&#9733;</span><span class="text-lg">&#9733;</span>
+          </div>
+          <blockquote class="relative z-10 mb-8 flex-grow">
+            <p class="text-xl font-serif text-gray-900 leading-tight">&ldquo;I&#39;ve got my life back. I feel confident, energetic, and happy again.&rdquo;</p>
+          </blockquote>
+          <div class="flex items-center justify-between mt-auto pt-6 border-t border-gray-100 relative z-10">
+            <div>
+              <div class="font-bold text-gray-900 text-sm uppercase tracking-wide mb-1">Marie Clayton</div>
+              <div class="flex items-center gap-1.5 text-xs text-purple-600 font-bold bg-purple-50 px-2 py-1 rounded-md inline-flex">
+                <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                Verified Patient
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Card 4 -->
+        <div class="group relative bg-white rounded-[2rem] p-8 shadow-sm border border-gray-200/80 hover:border-purple-200 hover:shadow-lg transition-all duration-500 hover:-translate-y-2 flex flex-col h-full" data-reveal style="--stagger-index:3">
+          <div class="absolute top-6 right-8 text-8xl font-serif text-purple-50 opacity-60 leading-none select-none">&ldquo;</div>
+          <div class="flex gap-1 mb-6 text-amber-400 relative z-10">
+            <span class="text-lg">&#9733;</span><span class="text-lg">&#9733;</span><span class="text-lg">&#9733;</span><span class="text-lg">&#9733;</span><span class="text-lg">&#9733;</span>
+          </div>
+          <blockquote class="relative z-10 mb-8 flex-grow">
+            <p class="text-xl font-serif text-gray-900 leading-tight">&ldquo;I have lost almost 11kg and feel incredible. The best decision I&#39;ve made.&rdquo;</p>
+          </blockquote>
+          <div class="flex items-center justify-between mt-auto pt-6 border-t border-gray-100 relative z-10">
+            <div>
+              <div class="font-bold text-gray-900 text-sm uppercase tracking-wide mb-1">Tanta Stefanescu</div>
+              <div class="flex items-center gap-1.5 text-xs text-purple-600 font-bold bg-purple-50 px-2 py-1 rounded-md inline-flex">
+                <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                Verified Patient
+              </div>
+            </div>
+            <div class="bg-purple-600 text-white text-[10px] font-bold px-3 py-1 rounded-full shadow-md">Lost 11kg</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- OUR PROMISE — dark editorial (brand purple) -->
+  <!-- ══════════════════════════════════════════ -->
+  <section class="relative py-20 overflow-hidden" style="background: linear-gradient(135deg, #2d1f6e 0%, #3a2878 100%);">
+    <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+      <div class="w-[600px] h-[600px] rounded-full opacity-[0.12]" style="background: radial-gradient(circle, #9b8fce 0%, transparent 70%);"></div>
+    </div>
+    <div class="max-w-[1000px] mx-auto px-6 relative z-10">
+      <div class="text-center mb-14" data-reveal>
+        <h2 class="text-3xl md:text-5xl font-serif font-bold text-white mb-4">Our Promise to You</h2>
+        <div class="w-20 h-1 bg-white/20 mx-auto rounded-full"></div>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-x-16 gap-y-10" data-stagger>
+        <div class="flex gap-5 group" data-reveal style="--stagger-index:0">
+          <div class="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center flex-shrink-0 group-hover:bg-white/20 transition-colors border border-white/10">
+            <svg class="w-6 h-6 text-purple-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+          </div>
+          <div>
+            <h3 class="font-sans font-bold text-lg mb-1 text-white">Safety First</h3>
+            <p class="text-white/70 leading-relaxed">We only prescribe when it&#39;s genuinely safe and suitable for you.</p>
+          </div>
+        </div>
+        <div class="flex gap-5 group" data-reveal style="--stagger-index:1">
+          <div class="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center flex-shrink-0 group-hover:bg-white/20 transition-colors border border-white/10">
+            <svg class="w-6 h-6 text-purple-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <div>
+            <h3 class="font-sans font-bold text-lg mb-1 text-white">Authentic Medication</h3>
+            <p class="text-white/70 leading-relaxed">We use authentic UK-licensed medication (never grey-market or counterfeit).</p>
+          </div>
+        </div>
+        <div class="flex gap-5 group" data-reveal style="--stagger-index:2">
+          <div class="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center flex-shrink-0 group-hover:bg-white/20 transition-colors border border-white/10">
+            <svg class="w-6 h-6 text-purple-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <div>
+            <h3 class="font-sans font-bold text-lg mb-1 text-white">Total Transparency</h3>
+            <p class="text-white/70 leading-relaxed">We&#39;re transparent about side effects and realistic expectations.</p>
+          </div>
+        </div>
+        <div class="flex gap-5 group" data-reveal style="--stagger-index:3">
+          <div class="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center flex-shrink-0 group-hover:bg-white/20 transition-colors border border-white/10">
+            <svg class="w-6 h-6 text-purple-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <div>
+            <h3 class="font-sans font-bold text-lg mb-1 text-white">Fast Delivery</h3>
+            <p class="text-white/70 leading-relaxed">We deliver fast &mdash; medication arrives within 48 hours.</p>
+          </div>
+        </div>
+        <div class="flex gap-5 group" data-reveal style="--stagger-index:4">
+          <div class="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center flex-shrink-0 group-hover:bg-white/20 transition-colors border border-white/10">
+            <svg class="w-6 h-6 text-purple-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+          </div>
+          <div>
+            <h3 class="font-sans font-bold text-lg mb-1 text-white">Complete Privacy</h3>
+            <p class="text-white/70 leading-relaxed">We protect your privacy and confidentiality completely.</p>
+          </div>
+        </div>
+        <div class="flex gap-5 group" data-reveal style="--stagger-index:5">
+          <div class="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center flex-shrink-0 group-hover:bg-white/20 transition-colors border border-white/10">
+            <svg class="w-6 h-6 text-purple-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/></svg>
+          </div>
+          <div>
+            <h3 class="font-sans font-bold text-lg mb-1 text-white">Clear Pricing</h3>
+            <p class="text-white/70 leading-relaxed">We provide clear pricing with no hidden fees or unclear subscriptions.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- PHARMACY REGISTRATION — cream bg           -->
+  <!-- ══════════════════════════════════════════ -->
+  <section class="relative py-20" style="background: #fdf8f3;">
+    <div class="max-w-[1000px] mx-auto px-6">
+      <div class="bg-white rounded-2xl p-10 shadow-sm border border-gray-200/80" data-reveal>
+        <div class="flex flex-col md:flex-row gap-10 items-start">
+          <div class="flex-shrink-0">
+            <div class="w-20 h-20 bg-purple-50 rounded-2xl flex items-center justify-center">
+              <svg class="w-10 h-10 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+            </div>
+          </div>
+          <div class="flex-grow">
+            <h2 class="text-3xl font-serif text-gray-900 mb-4">Verified &amp; Regulated</h2>
+            <p class="text-gray-600 mb-8 leading-relaxed">AT Health prescriptions are dispensed by Care Quality Pharmacy, a UK-registered pharmacy premises owned by Prescription Point Ltd.</p>
+
+            <div class="grid md:grid-cols-2 gap-x-12 gap-y-8 mb-10">
+              <div class="relative pl-4 border-l-2 border-purple-200">
+                <p class="text-xs text-gray-500 uppercase tracking-wide font-bold mb-1">GPhC Premises Number</p>
+                <p class="text-3xl font-bold text-purple-600">9012435</p>
+              </div>
+              <div class="relative pl-4 border-l-2 border-purple-200">
+                <p class="text-xs text-gray-500 uppercase tracking-wide font-bold mb-1">Superintendent Pharmacist</p>
+                <p class="text-lg font-semibold text-gray-900">Ms. Simona Pantaziu</p>
+                <p class="text-sm text-gray-500">GPhC: 2081354</p>
+              </div>
+              <div class="relative pl-4 border-l-2 border-purple-200">
+                <p class="text-xs text-gray-500 uppercase tracking-wide font-bold mb-1">Company Registration</p>
+                <p class="text-lg font-semibold text-gray-900">08563110</p>
+              </div>
+              <div class="relative pl-4 border-l-2 border-purple-200">
+                <p class="text-xs text-gray-500 uppercase tracking-wide font-bold mb-1">Address</p>
+                <p class="text-lg font-semibold text-gray-900">Unit SF1, Little Heath Industrial Estate, Coventry, CV6 7NB</p>
+              </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a href="https://www.pharmacyregulation.org/registers/pharmacy/name/CARE%20QUALITY*#registers-search" target="_blank" class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-purple-600 text-white font-semibold rounded-xl hover:bg-purple-700 transition-all shadow-md hover:shadow-lg">
+                Verify Pharmacy Registration
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              </a>
+              <a href="https://www.pharmacyregulation.org/registers/pharmacist/2081354" target="_blank" class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white border-2 border-gray-200 text-gray-700 font-semibold rounded-xl hover:border-purple-600 hover:text-purple-600 transition-colors">
+                Verify Superintendent
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- CLINICS & COMPLAINTS — lavender bg         -->
+  <!-- ══════════════════════════════════════════ -->
+  <section class="relative py-20" style="background: #f7f4f9;">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <div class="grid md:grid-cols-2 gap-8" data-stagger>
+        <!-- Clinics -->
+        <div class="group bg-white rounded-2xl p-10 shadow-sm border border-gray-200/80 hover:shadow-lg transition-all duration-500 hover:-translate-y-1" data-reveal style="--stagger-index:0">
+          <div class="w-14 h-14 bg-purple-50 rounded-2xl flex items-center justify-center mb-6 text-purple-600">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+          </div>
+          <h3 class="text-3xl font-serif text-gray-900 mb-4">We&#39;re Not Just Online</h3>
+          <p class="text-gray-600 mb-8 leading-relaxed text-lg">Face-to-face clinics are available at our head office in Coventry for those who prefer in-person consultations, travel vaccines, and private appointments.</p>
+          <a href="#" class="inline-flex items-center gap-2 text-white bg-purple-600 px-6 py-3 rounded-xl font-semibold hover:bg-purple-700 transition-all shadow-md hover:shadow-lg group-hover:gap-3">
+            View Clinics
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+        </div>
+        <!-- Complaints -->
+        <div class="group bg-white rounded-2xl p-10 shadow-sm border border-gray-200/80 hover:shadow-lg transition-all duration-500 hover:-translate-y-1" data-reveal style="--stagger-index:1">
+          <div class="w-14 h-14 bg-gray-100 rounded-2xl flex items-center justify-center mb-6 text-gray-600">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
+          </div>
+          <h3 class="text-3xl font-serif text-gray-900 mb-4">Complaints &amp; Feedback</h3>
+          <p class="text-gray-600 mb-8 leading-relaxed text-lg">We aim to deliver exceptional care every time. If we fall below our high standards, simply contact us with the heading &ldquo;Complaint&rdquo; and we&#39;ll respond promptly to put things right.</p>
+          <a href="contact.html" class="inline-flex items-center gap-2 text-gray-900 bg-gray-100 px-6 py-3 rounded-xl font-semibold hover:bg-gray-200 transition-all group-hover:gap-3">
+            Contact Us
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- FINAL CTA — dark editorial                 -->
+  <!-- ══════════════════════════════════════════ -->
+  <section class="relative py-20 md:py-28 overflow-hidden" style="background: #0f1117;">
+    <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+      <div class="w-[600px] h-[600px] rounded-full opacity-[0.07]" style="background: radial-gradient(circle, #9b8fce 0%, transparent 70%);"></div>
+    </div>
+    <div class="max-w-4xl mx-auto px-6 text-center relative z-10" data-reveal>
+      <p class="text-[11px] font-bold uppercase tracking-[0.28em] text-gray-500 mb-6">Your Transformation Awaits</p>
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-serif text-white leading-[1.05] mb-5 tracking-[-0.02em]">
+        Ready to start<br><em class="not-italic" style="color: #a89dd6;">your journey?</em>
+      </h2>
+      <p class="text-base md:text-lg text-gray-400 leading-relaxed mb-10 max-w-xl mx-auto">
+        Join over 10,000 people who have transformed their lives with clinically proven, medically supervised weight loss.
+      </p>
+      <a href="eligibility.html" class="inline-flex items-center gap-3 bg-white hover:bg-gray-100 text-gray-900 text-[15px] font-semibold px-10 py-4 rounded-xl transition-all hover-lift shadow-xl mb-10">
+        Start Your Journey
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+      </a>
+      <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 border-t border-white/[0.07] pt-8">
+        <div class="flex items-center gap-2 text-gray-400 text-sm">
+          <svg class="w-4 h-4 text-emerald-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+          GPhC Regulated
+        </div>
+        <div class="flex items-center gap-2 text-gray-400 text-sm">
+          <svg class="w-4 h-4 text-emerald-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+          Cancel Anytime
+        </div>
+        <div class="flex items-center gap-2 text-gray-400 text-sm">
+          <svg class="w-4 h-4 text-emerald-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+          Discreet Delivery
+        </div>
+        <div class="flex items-center gap-2 text-gray-400 text-sm">
+          <svg class="w-4 h-4 text-emerald-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+          Same-Day Approval
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SCROLL REVEAL SYSTEM ═══ -->
+  <script>
+    (function() {
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+      document.querySelectorAll('[data-reveal]').forEach(el => revealObserver.observe(el));
+      document.querySelectorAll('[data-stagger]').forEach(container => {
+        const children = container.querySelectorAll('[data-reveal]');
+        children.forEach((child, i) => child.style.setProperty('--stagger-index', i));
+      });
+    })();
+  </script>
+
+  <!-- ═══ PREMIUM FOOTER ═══ -->
+  <footer class="bg-[#0f1117] text-white font-sans antialiased">
+    <div class="max-w-[1400px] mx-auto px-6 md:px-[60px] pt-16 pb-12">
+      <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 mb-14 pb-10 border-b border-white/[0.06]">
+        <div class="flex items-center gap-5">
+          <a href="index.html" class="block">
+            <img src="https://c.animaapp.com/mkl3lxzpWoqisd/img/uploaded-image-1768824907136-0.png" alt="AT Health" class="h-11 brightness-0 invert opacity-90" />
+          </a>
+          <div class="hidden sm:block w-px h-8 bg-white/10"></div>
+          <p class="hidden sm:block text-gray-500 text-sm font-medium">Medical Weight Loss, Delivered</p>
+        </div>
+        <a href="eligibility.html" class="inline-flex items-center gap-2 bg-purple-600 hover:bg-purple-500 text-white text-sm font-semibold px-7 py-3 rounded-lg transition-all">
+          Start Your Journey
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-10 lg:gap-8 mb-14">
+        <div>
+          <h3 class="text-[11px] font-bold text-gray-400 uppercase tracking-[0.18em] mb-5">Treatments</h3>
+          <ul class="space-y-3.5">
+            <li><a href="mounjaro.html" class="text-[15px] text-gray-300 hover:text-white transition-colors">Mounjaro</a></li>
+            <li><a href="wegovy.html" class="text-[15px] text-gray-300 hover:text-white transition-colors">Wegovy</a></li>
+            <li><a href="treatments.html" class="text-[15px] text-gray-300 hover:text-white transition-colors">All Treatments</a></li>
+            <li><a href="eligibility.html" class="text-[15px] text-gray-300 hover:text-white transition-colors">Check Eligibility</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-[11px] font-bold text-gray-400 uppercase tracking-[0.18em] mb-5">Support</h3>
+          <ul class="space-y-3.5">
+            <li><a href="switching.html" class="text-[15px] text-gray-300 hover:text-white transition-colors">Switching Providers</a></li>
+            <li><a href="customer-care.html" class="text-[15px] text-gray-300 hover:text-white transition-colors">Customer Care</a></li>
+            <li><a href="contact.html" class="text-[15px] text-gray-300 hover:text-white transition-colors">Contact Us</a></li>
+            <li><a href="reorder.html" class="text-[15px] text-gray-300 hover:text-white transition-colors">Reorder</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-[11px] font-bold text-gray-400 uppercase tracking-[0.18em] mb-5">Learn</h3>
+          <ul class="space-y-3.5">
+            <li><a href="health-hub.html" class="text-[15px] text-gray-300 hover:text-white transition-colors">Health Hub</a></li>
+            <li><a href="about.html" class="text-[15px] text-gray-300 hover:text-white transition-colors">About Us</a></li>
+            <li><a href="#" class="text-[15px] text-gray-300 hover:text-white transition-colors">FAQs</a></li>
+          </ul>
+        </div>
+        <div class="col-span-2 sm:col-span-3 lg:col-span-2">
+          <h3 class="text-[11px] font-bold text-gray-400 uppercase tracking-[0.18em] mb-5">Get In Touch</h3>
+          <div class="space-y-4">
+            <a href="tel:01613362548" class="flex items-center gap-3 group">
+              <div class="w-9 h-9 rounded-lg bg-white/[0.05] border border-white/[0.06] flex items-center justify-center flex-shrink-0 group-hover:bg-purple-600/20 group-hover:border-purple-500/30 transition-all">
+                <svg class="w-4 h-4 text-gray-400 group-hover:text-purple-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+              </div>
+              <div>
+                <p class="text-white text-sm font-medium group-hover:text-purple-300 transition-colors">0161 336 2548</p>
+                <p class="text-[11px] text-gray-500">Mon&ndash;Fri, 9am&ndash;6pm</p>
+              </div>
+            </a>
+            <a href="mailto:ahmed@at-health.co.uk" class="flex items-center gap-3 group">
+              <div class="w-9 h-9 rounded-lg bg-white/[0.05] border border-white/[0.06] flex items-center justify-center flex-shrink-0 group-hover:bg-purple-600/20 group-hover:border-purple-500/30 transition-all">
+                <svg class="w-4 h-4 text-gray-400 group-hover:text-purple-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              </div>
+              <div>
+                <p class="text-white text-sm font-medium group-hover:text-purple-300 transition-colors">ahmed@at-health.co.uk</p>
+                <p class="text-[11px] text-gray-500">Reply within 4 hours</p>
+              </div>
+            </a>
+          </div>
+          <form class="mt-6 flex gap-2">
+            <input type="email" placeholder="Your email" class="flex-1 min-w-0 bg-white/[0.04] border border-white/[0.08] text-white text-sm px-4 py-2.5 rounded-lg focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/20 transition-all placeholder-gray-600" />
+            <button type="submit" class="flex-shrink-0 bg-white/[0.08] hover:bg-purple-600 border border-white/[0.08] hover:border-purple-500 text-gray-300 hover:text-white text-sm font-semibold px-5 py-2.5 rounded-lg transition-all">Subscribe</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-x-8 gap-y-4 py-8 border-t border-b border-white/[0.06]">
+        <div class="flex items-center gap-2.5">
+          <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          <span class="text-sm text-gray-300 font-medium">GPhC &amp; MHRA Regulated</span>
+        </div>
+        <div class="flex items-center gap-2.5">
+          <div class="flex gap-0.5">
+            <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          </div>
+          <span class="text-sm text-gray-300 font-medium">4.9/5 from 10,000+ patients</span>
+        </div>
+        <div class="flex items-center gap-2.5">
+          <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+          <span class="text-sm text-gray-300 font-medium">256-bit SSL Encrypted</span>
+        </div>
+        <div class="flex items-center gap-2.5">
+          <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+          <span class="text-sm text-gray-300 font-medium">Tracked 48h Delivery</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-[1400px] mx-auto px-6 md:px-[60px] py-6">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+        <p class="text-gray-500 text-xs">&copy; 2026 AT Health Ltd. All rights reserved. Company registered in England &amp; Wales.</p>
+        <div class="flex flex-wrap justify-center gap-5 text-xs text-gray-500">
+          <a href="terms.html" class="hover:text-gray-300 transition-colors">Terms</a>
+          <a href="#" class="hover:text-gray-300 transition-colors">Privacy</a>
+          <a href="#" class="hover:text-gray-300 transition-colors">Cookies</a>
+          <a href="#" class="hover:text-gray-300 transition-colors">Accessibility</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

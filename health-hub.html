@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Health Hub - Expert Insights | AT Health</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['DM Serif Display', 'serif'],
+            sans: ['Inter', 'sans-serif']
+          },
+          colors: {
+            purple: {
+              400: '#a89dd6',
+              500: '#9b8fce',
+              600: '#8e88d0',
+              700: '#7d76ba',
+            }
+          },
+          backgroundImage: {
+            'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+          }
+        }
+      }
+    };
+  </script>
+  
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    h1, h2, h3 {
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
+    }
+    
+    .hover-lift {
+      transition: all 0.3s ease;
+    }
+    
+    .hover-lift:hover {
+      transform: translateY(-4px);
+    }
+    
+    @keyframes fade-in-up {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .animate-fade-in-up {
+      animation: fade-in-up 0.6s ease-out forwards;
+    }
+
+    @keyframes line-grow {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    .animate-line-grow {
+      animation: line-grow 0.8s ease-out forwards;
+    }
+
+    .delay-100 { animation-delay: 0.1s; }
+    .delay-200 { animation-delay: 0.2s; }
+    .delay-300 { animation-delay: 0.3s; }
+    .delay-400 { animation-delay: 0.4s; }
+    .delay-500 { animation-delay: 0.5s; }
+
+    /* === SCROLL REVEAL SYSTEM === */
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    [data-reveal="left"] { opacity: 0; transform: translateX(-40px); }
+    [data-reveal="right"] { opacity: 0; transform: translateX(40px); }
+    [data-reveal="scale"] { opacity: 0; transform: scale(0.92); }
+    [data-reveal].revealed {
+      opacity: 1 !important;
+      transform: translateY(0) translateX(0) scale(1) !important;
+    }
+    [data-stagger] > [data-reveal] {
+      transition-delay: calc(var(--stagger-index, 0) * 120ms);
+    }
+  </style>
+</head>
+<body class="text-gray-900" style="background: #fdf8f3;">
+  
+  <!-- Top Banner -->
+  <div style="background: #0f1117;" class="py-3">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <p class="text-white text-sm font-medium">Switch to Wegovy and save up to 27% <a href="switching.html" class="underline ml-2" style="color: #c4b7ff;">Check eligibility</a></p>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="bg-white border-b border-gray-100 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex items-center justify-between h-20">
+        <a href="index.html">
+          <img src="https://c.animaapp.com/mkl3lxzpWoqisd/img/uploaded-image-1768824907136-0.png" alt="AT Health" class="h-12" />
+        </a>
+
+        <!-- Desktop Navigation -->
+        <div class="hidden lg:flex items-center gap-8">
+          <div class="relative group">
+            <a href="treatments.html" class="text-gray-700 text-sm font-medium hover:text-purple-600 flex items-center gap-1">
+              Treatments
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </a>
+            <div class="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+              <a href="mounjaro.html" class="block px-4 py-3 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-600 rounded-t-lg transition-colors">Mounjaro</a>
+              <a href="wegovy.html" class="block px-4 py-3 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-600 transition-colors">Wegovy</a>
+              <a href="treatments.html" class="block px-4 py-3 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-600 rounded-b-lg transition-colors">All Treatments</a>
+            </div>
+          </div>
+          <a href="switching.html" class="text-gray-700 text-sm font-medium hover:text-purple-600">Switching Providers</a>
+          <a href="eligibility.html" class="text-gray-700 text-sm font-medium hover:text-purple-600">Eligibility</a>
+          <div class="relative group">
+            <a href="about.html" class="text-gray-700 text-sm font-medium hover:text-purple-600 flex items-center gap-1">
+              About
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </a>
+            <div class="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+              <a href="about.html" class="block px-4 py-3 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-600 rounded-t-lg transition-colors">About Us</a>
+              <a href="customer-care.html" class="block px-4 py-3 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-600 rounded-b-lg transition-colors">Customer Care</a>
+            </div>
+          </div>
+          <a href="health-hub.html" class="text-purple-600 text-sm font-medium">Resources</a>
+          <a href="contact.html" class="text-gray-700 text-sm font-medium hover:text-purple-600">Contact</a>
+        </div>
+
+        <div class="flex items-center gap-4">
+          <a href="eligibility.html" class="hidden sm:inline-block bg-purple-600 text-white text-sm font-medium px-6 py-3 rounded-lg hover:bg-purple-700 transition-colors">
+            Start Journey &rarr;
+          </a>
+
+          <!-- Mobile Menu Button -->
+          <button class="lg:hidden flex items-center justify-center w-10 h-10 text-gray-600 hover:text-purple-600 transition-colors" id="menuToggle">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 opacity-0 pointer-events-none transition-opacity duration-300" id="mobileMenuOverlay"></div>
+
+  <!-- Mobile Menu -->
+  <div class="fixed top-0 right-0 bottom-0 w-[85%] max-w-[400px] bg-white/95 backdrop-blur-xl shadow-2xl z-50 transform translate-x-full transition-transform duration-300 ease-out" id="mobileMenu">
+    <div class="flex items-center justify-between p-6 border-b border-gray-200">
+      <img src="https://c.animaapp.com/mkl3lxzpWoqisd/img/uploaded-image-1768824907136-0.png" alt="AT Health" class="h-10" />
+      <button class="flex items-center justify-center w-10 h-10 text-gray-600 hover:text-purple-600 hover:bg-purple-50 rounded-full transition-all" id="menuClose">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+      </button>
+    </div>
+    <div class="flex flex-col h-[calc(100%-80px)] overflow-y-auto">
+      <nav class="flex-1 p-6 space-y-2">
+        <div class="mobile-nav-item">
+          <button class="w-full flex items-center justify-between px-4 py-4 rounded-xl hover:bg-purple-50 transition-all group" onclick="toggleMobileSubmenu('mobile-treatments')">
+            <span class="text-gray-700 text-base font-semibold group-hover:text-purple-600 transition-colors">Treatments</span>
+            <svg class="w-4 h-4 text-gray-400 transition-transform duration-300" id="mobile-treatments-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="mobile-treatments" class="hidden pl-4 space-y-1">
+            <a href="mounjaro.html" class="block px-4 py-3 rounded-xl hover:bg-purple-50 text-gray-600 hover:text-purple-600 text-sm font-medium">Mounjaro</a>
+            <a href="wegovy.html" class="block px-4 py-3 rounded-xl hover:bg-purple-50 text-gray-600 hover:text-purple-600 text-sm font-medium">Wegovy</a>
+            <a href="treatments.html" class="block px-4 py-3 rounded-xl hover:bg-purple-50 text-gray-600 hover:text-purple-600 text-sm font-medium">All Treatments</a>
+          </div>
+        </div>
+        <a class="group flex items-center px-4 py-4 rounded-xl hover:bg-purple-50 transition-all" href="switching.html">
+          <span class="text-gray-700 text-base font-semibold group-hover:text-purple-600 transition-colors">Switching Providers</span>
+        </a>
+        <a class="group flex items-center px-4 py-4 rounded-xl hover:bg-purple-50 transition-all" href="eligibility.html">
+          <span class="text-gray-700 text-base font-semibold group-hover:text-purple-600 transition-colors">Eligibility</span>
+        </a>
+        <div class="mobile-nav-item">
+          <button class="w-full flex items-center justify-between px-4 py-4 rounded-xl hover:bg-purple-50 transition-all group" onclick="toggleMobileSubmenu('mobile-about')">
+            <span class="text-gray-700 text-base font-semibold group-hover:text-purple-600 transition-colors">About</span>
+            <svg class="w-4 h-4 text-gray-400 transition-transform duration-300" id="mobile-about-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="mobile-about" class="hidden pl-4 space-y-1">
+            <a href="about.html" class="block px-4 py-3 rounded-xl hover:bg-purple-50 text-gray-600 hover:text-purple-600 text-sm font-medium">About Us</a>
+            <a href="customer-care.html" class="block px-4 py-3 rounded-xl hover:bg-purple-50 text-gray-600 hover:text-purple-600 text-sm font-medium">Customer Care</a>
+          </div>
+        </div>
+        <a class="group flex items-center px-4 py-4 rounded-xl bg-purple-50" href="health-hub.html">
+          <span class="text-purple-600 text-base font-semibold">Resources</span>
+        </a>
+        <a class="group flex items-center px-4 py-4 rounded-xl hover:bg-purple-50 transition-all" href="contact.html">
+          <span class="text-gray-700 text-base font-semibold group-hover:text-purple-600 transition-colors">Contact</span>
+        </a>
+      </nav>
+      <div class="p-6 border-t border-gray-200 space-y-4">
+        <a href="eligibility.html" class="w-full flex items-center justify-center gap-3 bg-purple-600 hover:bg-purple-700 text-white text-base font-semibold px-6 py-4 rounded-xl shadow-lg transition-all">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+          Start Journey
+        </a>
+        <a class="w-full flex items-center justify-center gap-3 text-purple-600 text-base font-semibold px-6 py-4 rounded-xl border-2 border-purple-600 hover:bg-purple-50 transition-all" href="tel:01613362548">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+          Call 0161 336 2548
+        </a>
+        <p class="text-center text-gray-500 text-xs pt-2">&copy; 2026 AT Health</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO SECTION -->
+  <section class="relative py-20 md:py-24 overflow-hidden" style="background: #fdf8f3;">
+    <div class="max-w-4xl mx-auto px-6 relative z-10 text-center">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-gray-200/80 shadow-sm mb-6 animate-fade-in-up">
+        <span class="w-2 h-2 rounded-full bg-purple-600"></span>
+        <span class="text-sm font-semibold text-purple-700 tracking-wide uppercase">Health Hub</span>
+      </div>
+      
+      <h1 class="text-5xl md:text-6xl lg:text-7xl font-serif text-gray-900 mb-6 leading-tight animate-fade-in-up delay-100">
+        Expert insights on weight loss, heart health, and <span class="text-purple-600">living your healthiest life</span>
+      </h1>
+      
+      <!-- Filter Buttons -->
+      <div class="flex flex-wrap justify-center gap-3 mt-10 animate-fade-in-up delay-200">
+        <button class="px-6 py-2.5 rounded-full bg-purple-600 text-white font-medium text-sm shadow-lg hover:bg-purple-700 transition-all hover:-translate-y-0.5">All Articles</button>
+        <button class="px-6 py-2.5 rounded-full bg-white text-gray-600 border border-gray-200/80 font-medium text-sm hover:border-purple-600 hover:text-purple-600 transition-all hover:-translate-y-0.5">Heart Health</button>
+        <button class="px-6 py-2.5 rounded-full bg-white text-gray-600 border border-gray-200/80 font-medium text-sm hover:border-purple-600 hover:text-purple-600 transition-all hover:-translate-y-0.5">Weight Loss</button>
+        <button class="px-6 py-2.5 rounded-full bg-white text-gray-600 border border-gray-200/80 font-medium text-sm hover:border-purple-600 hover:text-purple-600 transition-all hover:-translate-y-0.5">Diabetes Prevention</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED ARTICLE -->
+  <section class="py-12 md:py-20" style="background: #f7f4f9;">
+    <div class="max-w-[1400px] mx-auto px-6 md:px-[60px]">
+      <div class="bg-white rounded-[32px] p-8 md:p-12 shadow-lg border border-gray-200/80 overflow-hidden hover:shadow-xl transition-all duration-500 group" data-reveal>
+        <div class="grid lg:grid-cols-5 gap-12 items-center">
+          
+          <!-- Content -->
+          <div class="lg:col-span-3 order-2 lg:order-1">
+            <div class="flex items-center gap-3 mb-6">
+              <span class="px-3 py-1 bg-purple-50 text-purple-700 text-xs font-bold uppercase tracking-wider rounded-full">Heart Health</span>
+              <span class="text-gray-400 text-sm">8 min read</span>
+            </div>
+            
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-serif text-gray-900 mb-6 leading-tight group-hover:text-purple-700 transition-colors">
+              The Hidden Heart Risk Nobody Talks About: Why Obesity Is More Dangerous Than You Think
+            </h2>
+            
+            <p class="text-lg text-gray-600 leading-relaxed mb-8">
+              If you&#39;re carrying extra weight, your heart is working overtime every single day. Recent breakthrough research reveals that medical weight loss with Mounjaro doesn&#39;t just help you lose weight — it fundamentally changes your cardiovascular risk profile. New clinical trials show a 38% reduction in heart failure events and a 16% lower death rate from any cause.
+            </p>
+            
+            <div class="flex items-center justify-between border-t border-gray-100 pt-6">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-gray-100 overflow-hidden">
+                  <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=100&h=100&fit=crop" alt="Author" class="w-full h-full object-cover" />
+                </div>
+                <div class="text-sm">
+                  <p class="font-bold text-gray-900">Dr. Sarah Jenkins</p>
+                  <p class="text-gray-500">Updated November 2024</p>
+                </div>
+              </div>
+              
+              <button class="hidden md:flex items-center gap-2 text-purple-600 font-bold hover:text-purple-700 transition-colors group/btn">
+                Read Full Article
+                <svg class="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+              </button>
+            </div>
+          </div>
+          
+          <!-- Image -->
+          <div class="lg:col-span-2 order-1 lg:order-2 h-full min-h-[300px] lg:min-h-[400px] relative rounded-2xl overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=800&h=1000&fit=crop" alt="Heart health research" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IMPACT STATS -->
+  <section class="py-20" style="background: #fdf8f3;">
+    <div class="max-w-[1400px] mx-auto px-6 md:px-[60px]">
+      <div class="text-center mb-16 section-header" data-reveal>
+        <div class="flex items-center justify-center gap-4 mb-6">
+          <div class="w-1 h-12 bg-purple-600 rounded-full"></div>
+          <div class="relative">
+            <p class="text-purple-600 text-sm md:text-base font-bold uppercase tracking-wider">CLINICAL EVIDENCE</p>
+            <div class="animated-line absolute -bottom-2 left-0 h-[2px] bg-purple-600 rounded-full" style="width: 0;"></div>
+          </div>
+        </div>
+        <h2 class="text-4xl md:text-5xl font-serif text-gray-900">The Research That Changes Everything</h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8" data-stagger>
+        <!-- Stat 1 -->
+        <div class="bg-white p-8 rounded-3xl border border-gray-200/80 shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 text-center group" data-reveal style="--stagger-index:0">
+          <div class="text-5xl md:text-6xl font-serif font-bold text-purple-600 mb-4 group-hover:scale-110 transition-transform duration-300 inline-block">38%</div>
+          <h3 class="text-lg font-bold text-gray-900 mb-2">Reduction in Heart Failure Events</h3>
+          <p class="text-sm text-gray-500">Clinical trials, 2024</p>
+        </div>
+
+        <!-- Stat 2 -->
+        <div class="bg-white p-8 rounded-3xl border border-gray-200/80 shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 text-center group" data-reveal style="--stagger-index:1">
+          <div class="text-5xl md:text-6xl font-serif font-bold text-purple-600 mb-4 group-hover:scale-110 transition-transform duration-300 inline-block">94%</div>
+          <h3 class="text-lg font-bold text-gray-900 mb-2">Reduced Risk of Type 2 Diabetes</h3>
+          <p class="text-sm text-gray-500">3-year study, SURMOUNT-1</p>
+        </div>
+
+        <!-- Stat 3 -->
+        <div class="bg-white p-8 rounded-3xl border border-gray-200/80 shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 text-center group" data-reveal style="--stagger-index:2">
+          <div class="text-5xl md:text-6xl font-serif font-bold text-purple-600 mb-4 group-hover:scale-110 transition-transform duration-300 inline-block">16%</div>
+          <h3 class="text-lg font-bold text-gray-900 mb-2">Lower Death Rate from Any Cause</h3>
+          <p class="text-sm text-gray-500">vs. other diabetes medications</p>
+        </div>
+
+        <!-- Stat 4 -->
+        <div class="bg-white p-8 rounded-3xl border border-gray-200/80 shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 text-center group" data-reveal style="--stagger-index:3">
+          <div class="text-5xl md:text-6xl font-serif font-bold text-purple-600 mb-4 group-hover:scale-110 transition-transform duration-300 inline-block">2M</div>
+          <h3 class="text-lg font-bold text-gray-900 mb-2">Heart Attacks &amp; Strokes Prevented</h3>
+          <p class="text-sm text-gray-500">Projected over 10 years</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARTICLES GRID -->
+  <section class="py-20" style="background: #f7f4f9;">
+    <div class="max-w-[1400px] mx-auto px-6 md:px-[60px]">
+      <div class="flex items-center justify-between mb-12" data-reveal>
+        <h2 class="text-3xl md:text-4xl font-serif text-gray-900">Latest Articles</h2>
+        <a href="#" class="hidden md:flex items-center gap-2 text-purple-600 font-bold hover:text-purple-700 transition-colors">
+          View All
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" data-stagger>
+        
+        <!-- Article 1 -->
+        <article class="bg-white rounded-[24px] overflow-hidden shadow-sm border border-gray-200/80 hover:shadow-lg transition-all duration-300 hover-lift group cursor-pointer" data-reveal style="--stagger-index:0">
+          <div class="h-64 overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=600&h=400&fit=crop" alt="Heart MRI" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+            <div class="absolute top-4 left-4">
+              <span class="px-3 py-1 bg-white/90 backdrop-blur-sm text-purple-700 text-xs font-bold uppercase tracking-wider rounded-full shadow-sm">Heart Health</span>
+            </div>
+          </div>
+          <div class="p-8">
+            <h3 class="text-xl font-serif font-bold text-gray-900 mb-3 group-hover:text-purple-600 transition-colors">Your Heart Is Drowning in Fat: What MRI Scans Reveal</h3>
+            <p class="text-gray-600 text-sm leading-relaxed mb-4">New imaging research shows exactly what happens to your heart when carrying excess weight. The findings are stark — but reversible.</p>
+            <div class="flex items-center text-xs text-gray-400 font-medium">
+              <span>5 min read</span>
+              <span class="mx-2">&bull;</span>
+              <span>Nov 14, 2024</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Article 2 -->
+        <article class="bg-white rounded-[24px] overflow-hidden shadow-sm border border-gray-200/80 hover:shadow-lg transition-all duration-300 hover-lift group cursor-pointer" data-reveal style="--stagger-index:1">
+          <div class="h-64 overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600&h=400&fit=crop" alt="Healthy food" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+            <div class="absolute top-4 left-4">
+              <span class="px-3 py-1 bg-white/90 backdrop-blur-sm text-purple-700 text-xs font-bold uppercase tracking-wider rounded-full shadow-sm">Weight Loss</span>
+            </div>
+          </div>
+          <div class="p-8">
+            <h3 class="text-xl font-serif font-bold text-gray-900 mb-3 group-hover:text-purple-600 transition-colors">Why Traditional Dieting Won&#39;t Save Your Heart (But This Will)</h3>
+            <p class="text-gray-600 text-sm leading-relaxed mb-4">Calorie counting and exercise aren&#39;t enough when your metabolism is working against you. Here&#39;s what actually works.</p>
+            <div class="flex items-center text-xs text-gray-400 font-medium">
+              <span>6 min read</span>
+              <span class="mx-2">&bull;</span>
+              <span>Nov 12, 2024</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Article 3 -->
+        <article class="bg-white rounded-[24px] overflow-hidden shadow-sm border border-gray-200/80 hover:shadow-lg transition-all duration-300 hover-lift group cursor-pointer" data-reveal style="--stagger-index:2">
+          <div class="h-64 overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&h=400&fit=crop" alt="Doctor consultation" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+            <div class="absolute top-4 left-4">
+              <span class="px-3 py-1 bg-white/90 backdrop-blur-sm text-purple-700 text-xs font-bold uppercase tracking-wider rounded-full shadow-sm">Diabetes Prevention</span>
+            </div>
+          </div>
+          <div class="p-8">
+            <h3 class="text-xl font-serif font-bold text-gray-900 mb-3 group-hover:text-purple-600 transition-colors">The 94% Solution: How to Avoid Type 2 Diabetes</h3>
+            <p class="text-gray-600 text-sm leading-relaxed mb-4">One case of diabetes prevented for every nine patients treated. The science behind this breakthrough is changing prevention forever.</p>
+            <div class="flex items-center text-xs text-gray-400 font-medium">
+              <span>7 min read</span>
+              <span class="mx-2">&bull;</span>
+              <span>Nov 10, 2024</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Article 4 -->
+        <article class="bg-white rounded-[24px] overflow-hidden shadow-sm border border-gray-200/80 hover:shadow-lg transition-all duration-300 hover-lift group cursor-pointer" data-reveal style="--stagger-index:3">
+          <div class="h-64 overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1628348068343-c6a848d2b6dd?w=600&h=400&fit=crop" alt="Doctor listening to heart" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+            <div class="absolute top-4 left-4">
+              <span class="px-3 py-1 bg-white/90 backdrop-blur-sm text-purple-700 text-xs font-bold uppercase tracking-wider rounded-full shadow-sm">Heart Health</span>
+            </div>
+          </div>
+          <div class="p-8">
+            <h3 class="text-xl font-serif font-bold text-gray-900 mb-3 group-hover:text-purple-600 transition-colors">Before Your Next Heart Attack: What You Need to Know About GLP-1s</h3>
+            <p class="text-gray-600 text-sm leading-relaxed mb-4">Cardiovascular protection starts before symptoms appear. Learn how new medications are rewriting the rules of heart disease prevention.</p>
+            <div class="flex items-center text-xs text-gray-400 font-medium">
+              <span>5 min read</span>
+              <span class="mx-2">&bull;</span>
+              <span>Nov 08, 2024</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Article 5 -->
+        <article class="bg-white rounded-[24px] overflow-hidden shadow-sm border border-gray-200/80 hover:shadow-lg transition-all duration-300 hover-lift group cursor-pointer" data-reveal style="--stagger-index:4">
+          <div class="h-64 overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=600&h=400&fit=crop" alt="Sarah portrait" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+            <div class="absolute top-4 left-4">
+              <span class="px-3 py-1 bg-white/90 backdrop-blur-sm text-purple-700 text-xs font-bold uppercase tracking-wider rounded-full shadow-sm">Success Stories</span>
+            </div>
+          </div>
+          <div class="p-8">
+            <h3 class="text-xl font-serif font-bold text-gray-900 mb-3 group-hover:text-purple-600 transition-colors">Real Patients, Real Hearts: How Sarah Avoided Her Father&#39;s Fate</h3>
+            <p class="text-gray-600 text-sm leading-relaxed mb-4">At 42, Sarah had the same risk factors that killed her father at 55. Here&#39;s how she changed her cardiovascular trajectory.</p>
+            <div class="flex items-center text-xs text-gray-400 font-medium">
+              <span>4 min read</span>
+              <span class="mx-2">&bull;</span>
+              <span>Nov 05, 2024</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Article 6 -->
+        <article class="bg-white rounded-[24px] overflow-hidden shadow-sm border border-gray-200/80 hover:shadow-lg transition-all duration-300 hover-lift group cursor-pointer" data-reveal style="--stagger-index:5">
+          <div class="h-64 overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1576091160550-217358c7b819?w=600&h=400&fit=crop" alt="Medical research" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+            <div class="absolute top-4 left-4">
+              <span class="px-3 py-1 bg-white/90 backdrop-blur-sm text-purple-700 text-xs font-bold uppercase tracking-wider rounded-full shadow-sm">Research</span>
+            </div>
+          </div>
+          <div class="p-8">
+            <h3 class="text-xl font-serif font-bold text-gray-900 mb-3 group-hover:text-purple-600 transition-colors">The Weight-Heart Connection Doctors Aren&#39;t Explaining Properly</h3>
+            <p class="text-gray-600 text-sm leading-relaxed mb-4">It&#39;s not just about pounds on a scale. Understanding the metabolic cascade that links obesity to heart failure.</p>
+            <div class="flex items-center text-xs text-gray-400 font-medium">
+              <span>8 min read</span>
+              <span class="mx-2">&bull;</span>
+              <span>Nov 01, 2024</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+      
+      <div class="mt-12 text-center md:hidden">
+        <a href="#" class="inline-flex items-center gap-2 text-purple-600 font-bold hover:text-purple-700 transition-colors">
+          View All Articles
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BANNER -->
+  <section class="py-12" style="background: #fdf8f3;">
+    <div class="max-w-7xl mx-auto px-6" data-reveal>
+      <div class="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-purple-50 flex items-center justify-center text-purple-600">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+          </div>
+          <span class="font-semibold text-gray-900">CQC Registered Pharmacy</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-purple-50 flex items-center justify-center text-purple-600">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+          </div>
+          <span class="font-semibold text-gray-900">UK-Registered Prescribers</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-purple-50 flex items-center justify-center text-purple-600">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          </div>
+          <span class="font-semibold text-gray-900">4.9/5 from 10,000+ Reviews</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA SECTION -->
+  <section class="relative py-20 md:py-28 overflow-hidden" style="background: #0f1117;">
+    <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+      <div class="w-[600px] h-[600px] rounded-full opacity-[0.07]" style="background: radial-gradient(circle, #9b8fce 0%, transparent 70%);"></div>
+    </div>
+    <div class="max-w-4xl mx-auto px-6 text-center relative z-10" data-reveal>
+      <p class="text-[11px] font-bold uppercase tracking-[0.28em] text-gray-500 mb-6">Your Transformation Awaits</p>
+      <h2 class="text-4xl lg:text-5xl text-white font-serif mb-5">Ready to Take Control of Your <em class="not-italic" style="color: #a89dd6;">Heart Health?</em></h2>
+      <p class="text-base md:text-lg text-gray-400 leading-relaxed mb-10 max-w-xl mx-auto">Start your medical weight loss journey with expert prescriber support and genuine UK medication.</p>
+      <a href="eligibility.html" class="inline-flex items-center gap-3 bg-white hover:bg-gray-100 text-gray-900 text-[15px] font-semibold px-10 py-4 rounded-xl transition-all hover-lift shadow-xl mb-10">
+        Start Free Assessment
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+      </a>
+      <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 border-t border-white/[0.07] pt-8">
+        <div class="flex items-center gap-2 text-gray-400 text-sm">
+          <svg class="w-4 h-4 text-emerald-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+          GPhC Regulated
+        </div>
+        <div class="flex items-center gap-2 text-gray-400 text-sm">
+          <svg class="w-4 h-4 text-emerald-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+          Cancel Anytime
+        </div>
+        <div class="flex items-center gap-2 text-gray-400 text-sm">
+          <svg class="w-4 h-4 text-emerald-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+          Discreet Delivery
+        </div>
+        <div class="flex items-center gap-2 text-gray-400 text-sm">
+          <svg class="w-4 h-4 text-emerald-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+          Same-Day Approval
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PREMIUM FOOTER -->
+  <footer class="bg-[#0f1117] text-white font-sans antialiased">
+    <div class="max-w-[1400px] mx-auto px-6 md:px-[60px] pt-16 pb-12">
+      <!-- Top row -->
+      <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 mb-14 pb-10 border-b border-white/[0.06]">
+        <div class="flex items-center gap-5">
+          <a href="index.html" class="block">
+            <img src="https://c.animaapp.com/mkl3lxzpWoqisd/img/uploaded-image-1768824907136-0.png" alt="AT Health" class="h-11 brightness-0 invert opacity-90" />
+          </a>
+          <div class="hidden sm:block w-px h-8 bg-white/10"></div>
+          <p class="hidden sm:block text-gray-500 text-sm font-medium">Medical Weight Loss, Delivered</p>
+        </div>
+        <a href="eligibility.html" class="inline-flex items-center gap-2 bg-purple-600 hover:bg-purple-500 text-white text-sm font-semibold px-7 py-3 rounded-lg transition-all">
+          Start Your Journey
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+      </div>
+
+      <!-- Nav columns -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-10 lg:gap-8 mb-14">
+        <div>
+          <h3 class="text-[11px] font-bold text-gray-400 uppercase tracking-[0.18em] mb-5">Treatments</h3>
+          <ul class="space-y-3.5">
+            <li><a href="mounjaro.html" class="text-[15px] text-gray-300 hover:text-white transition-colors">Mounjaro</a></li>
+            <li><a href="wegovy.html" class="text-[15px] text-gray-300 hover:text-white transition-colors">Wegovy</a></li>
+            <li><a href="treatments.html" class="text-[15px] text-gray-300 hover:text-white transition-colors">All Treatments</a></li>
+            <li><a href="eligibility.html" class="text-[15px] text-gray-300 hover:text-white transition-colors">Check Eligibility</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-[11px] font-bold text-gray-400 uppercase tracking-[0.18em] mb-5">Support</h3>
+          <ul class="space-y-3.5">
+            <li><a href="switching.html" class="text-[15px] text-gray-300 hover:text-white transition-colors">Switching Providers</a></li>
+            <li><a href="customer-care.html" class="text-[15px] text-gray-300 hover:text-white transition-colors">Customer Care</a></li>
+            <li><a href="contact.html" class="text-[15px] text-gray-300 hover:text-white transition-colors">Contact Us</a></li>
+            <li><a href="reorder.html" class="text-[15px] text-gray-300 hover:text-white transition-colors">Reorder</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-[11px] font-bold text-gray-400 uppercase tracking-[0.18em] mb-5">Learn</h3>
+          <ul class="space-y-3.5">
+            <li><a href="health-hub.html" class="text-[15px] text-gray-300 hover:text-white transition-colors">Health Hub</a></li>
+            <li><a href="about.html" class="text-[15px] text-gray-300 hover:text-white transition-colors">About Us</a></li>
+            <li><a href="#" class="text-[15px] text-gray-300 hover:text-white transition-colors">FAQs</a></li>
+          </ul>
+        </div>
+        <div class="col-span-2 sm:col-span-3 lg:col-span-2">
+          <h3 class="text-[11px] font-bold text-gray-400 uppercase tracking-[0.18em] mb-5">Get In Touch</h3>
+          <div class="space-y-4">
+            <a href="tel:01613362548" class="flex items-center gap-3 group">
+              <div class="w-9 h-9 rounded-lg bg-white/[0.05] border border-white/[0.06] flex items-center justify-center flex-shrink-0 group-hover:bg-purple-600/20 group-hover:border-purple-500/30 transition-all">
+                <svg class="w-4 h-4 text-gray-400 group-hover:text-purple-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+              </div>
+              <div>
+                <p class="text-white text-sm font-medium group-hover:text-purple-300 transition-colors">0161 336 2548</p>
+                <p class="text-[11px] text-gray-500">Mon&ndash;Fri, 9am&ndash;6pm</p>
+              </div>
+            </a>
+            <a href="mailto:ahmed@at-health.co.uk" class="flex items-center gap-3 group">
+              <div class="w-9 h-9 rounded-lg bg-white/[0.05] border border-white/[0.06] flex items-center justify-center flex-shrink-0 group-hover:bg-purple-600/20 group-hover:border-purple-500/30 transition-all">
+                <svg class="w-4 h-4 text-gray-400 group-hover:text-purple-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              </div>
+              <div>
+                <p class="text-white text-sm font-medium group-hover:text-purple-300 transition-colors">ahmed@at-health.co.uk</p>
+                <p class="text-[11px] text-gray-500">Reply within 4 hours</p>
+              </div>
+            </a>
+          </div>
+          <form class="mt-6 flex gap-2">
+            <input type="email" placeholder="Your email" class="flex-1 min-w-0 bg-white/[0.04] border border-white/[0.08] text-white text-sm px-4 py-2.5 rounded-lg focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/20 transition-all placeholder-gray-600" />
+            <button type="submit" class="flex-shrink-0 bg-white/[0.08] hover:bg-purple-600 border border-white/[0.08] hover:border-purple-500 text-gray-300 hover:text-white text-sm font-semibold px-5 py-2.5 rounded-lg transition-all">Subscribe</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Trust badges -->
+      <div class="flex flex-wrap items-center gap-x-8 gap-y-4 py-8 border-t border-b border-white/[0.06]">
+        <div class="flex items-center gap-2.5">
+          <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          <span class="text-sm text-gray-300 font-medium">GPhC &amp; MHRA Regulated</span>
+        </div>
+        <div class="flex items-center gap-2.5">
+          <div class="flex gap-0.5">
+            <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          </div>
+          <span class="text-sm text-gray-300 font-medium">4.9/5 from 10,000+ patients</span>
+        </div>
+        <div class="flex items-center gap-2.5">
+          <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+          <span class="text-sm text-gray-300 font-medium">256-bit SSL Encrypted</span>
+        </div>
+        <div class="flex items-center gap-2.5">
+          <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+          <span class="text-sm text-gray-300 font-medium">Tracked 48h Delivery</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="max-w-[1400px] mx-auto px-6 md:px-[60px] py-6">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+        <p class="text-gray-500 text-xs">&copy; 2026 AT Health Ltd. All rights reserved. Company registered in England &amp; Wales.</p>
+        <div class="flex flex-wrap justify-center gap-5 text-xs text-gray-500">
+          <a href="terms.html" class="hover:text-gray-300 transition-colors">Terms</a>
+          <a href="#" class="hover:text-gray-300 transition-colors">Privacy</a>
+          <a href="#" class="hover:text-gray-300 transition-colors">Cookies</a>
+          <a href="#" class="hover:text-gray-300 transition-colors">Accessibility</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script>
+    // Mobile Menu
+    const menuToggle = document.getElementById('menuToggle');
+    const menuClose = document.getElementById('menuClose');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+
+    function openMenu() {
+      mobileMenu.classList.remove('translate-x-full');
+      mobileMenuOverlay.classList.remove('opacity-0', 'pointer-events-none');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMenu() {
+      mobileMenu.classList.add('translate-x-full');
+      mobileMenuOverlay.classList.add('opacity-0', 'pointer-events-none');
+      document.body.style.overflow = '';
+    }
+    if (menuToggle) menuToggle.addEventListener('click', openMenu);
+    if (menuClose) menuClose.addEventListener('click', closeMenu);
+    if (mobileMenuOverlay) mobileMenuOverlay.addEventListener('click', closeMenu);
+    document.querySelectorAll('#mobileMenu a').forEach(link => link.addEventListener('click', closeMenu));
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+
+    function toggleMobileSubmenu(id) {
+      const submenu = document.getElementById(id);
+      const icon = document.getElementById(id + '-icon');
+      if (submenu.classList.contains('hidden')) {
+        submenu.classList.remove('hidden');
+        if (icon) icon.style.transform = 'rotate(180deg)';
+      } else {
+        submenu.classList.add('hidden');
+        if (icon) icon.style.transform = 'rotate(0deg)';
+      }
+    }
+
+    // Scroll Reveal
+    (function() {
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+      document.querySelectorAll('[data-reveal]').forEach(el => revealObserver.observe(el));
+
+      document.querySelectorAll('[data-stagger]').forEach(container => {
+        const children = container.querySelectorAll('[data-reveal]');
+        children.forEach((child, i) => child.style.setProperty('--stagger-index', i));
+      });
+
+      // Animated lines
+      const lineObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const line = entry.target.querySelector('.animated-line');
+            if (line && line.style.width === '0px') {
+              line.style.transition = 'width 0.8s ease-out 0.3s';
+              line.style.width = '100%';
+            }
+            lineObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.3 });
+      document.querySelectorAll('.section-header').forEach(header => lineObserver.observe(header));
+    })();
+  </script>
+
+</body>
+</html>
