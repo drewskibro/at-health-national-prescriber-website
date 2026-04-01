@@ -18,6 +18,9 @@ add_action( 'after_setup_theme', function () {
     add_theme_support( 'title-tag' );
     add_theme_support( 'post-thumbnails' );
     add_theme_support( 'html5', array( 'search-form', 'comment-form', 'comment-list', 'gallery', 'caption' ) );
+    // WooCommerce support
+    add_theme_support( 'woocommerce' );
+
     add_theme_support( 'custom-logo', array(
         'height'      => 80,
         'width'       => 200,
@@ -230,6 +233,11 @@ require_once get_theme_file_path( 'inc/acf-options.php' );
 
 // ACF Field definitions
 require_once get_theme_file_path( 'inc/acf-fields.php' );
+
+// WooCommerce product setup (admin tool)
+if ( class_exists( 'WooCommerce' ) ) {
+    require_once get_theme_file_path( 'inc/woocommerce-setup.php' );
+}
 
 // ═══════════════════════════════════════════════
 // PERMALINK & CATEGORY SETUP (on theme activation)
