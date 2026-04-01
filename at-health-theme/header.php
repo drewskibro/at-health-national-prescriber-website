@@ -3,6 +3,36 @@
 <head>
     <meta charset="<?php bloginfo( 'charset' ); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              serif: ['DM Serif Display', 'serif'],
+              sans: ['Inter', 'sans-serif']
+            },
+            colors: {
+              purple: {
+                50: '#f5f3ff',
+                100: '#ede9fe',
+                200: '#ddd6fe',
+                300: '#c4b5fd',
+                400: '#a89dd6',
+                500: '#9b8fce',
+                600: '#8e88d0',
+                700: '#7d76ba',
+                800: '#6d28d9',
+                900: '#4c1d95',
+              }
+            },
+            backgroundImage: {
+              'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+            }
+          }
+        }
+      };
+    </script>
     <?php wp_head(); ?>
 </head>
 <body <?php body_class( 'text-gray-900' ); ?> style="background: #fdf8f3;">
