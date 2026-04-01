@@ -237,6 +237,22 @@ require_once get_theme_file_path( 'inc/acf-fields.php' );
 // WooCommerce product setup (admin tool)
 if ( class_exists( 'WooCommerce' ) ) {
     require_once get_theme_file_path( 'inc/woocommerce-setup.php' );
+
+    // Custom email headings — warm, supportive tone
+    add_filter( 'woocommerce_email_heading_customer_processing_order', function () {
+        return 'Your Weight Loss Journey Begins';
+    } );
+    add_filter( 'woocommerce_email_heading_customer_completed_order', function () {
+        return 'Your Medication Is On Its Way';
+    } );
+    add_filter( 'woocommerce_email_heading_customer_note', function () {
+        return 'A Message From Your Care Team';
+    } );
+
+    // Set "From" name to AT Health
+    add_filter( 'woocommerce_email_from_name', function () {
+        return function_exists( 'ah_company_name' ) ? ah_company_name() : 'AT Health';
+    } );
 }
 
 // ═══════════════════════════════════════════════
