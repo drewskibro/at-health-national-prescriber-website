@@ -903,7 +903,162 @@ function at_health_ec_render_shortcode() {
 				</div>
 			</div>
 
-			<!-- SCREENS_BLOCK_F: screens 16, 17, 18, 19, 20 — added in phase 3a-6 -->
+			<!-- Screen 16 -->
+			<div id="screen-16" class="screen">
+				<div class="container">
+					<h1 class="heading">Do you have a goal weight?</h1>
+
+					<div class="card" onclick="selectGoalWeight('yes')">
+						<div class="card-title">Yes</div>
+					</div>
+
+					<div class="card" onclick="selectGoalWeight('no')">
+						<div class="card-title">No</div>
+					</div>
+
+					<button class="button button-secondary" onclick="goBack()">Back</button>
+				</div>
+			</div>
+
+			<!-- Screen 17 -->
+			<div id="screen-17" class="screen">
+				<div class="container">
+					<h1 class="heading">What is your goal weight?</h1>
+
+					<div class="toggle-group">
+						<button class="toggle-button active" id="goal-kg-toggle" onclick="setGoalWeightUnit('kg')">kg</button>
+						<button class="toggle-button" id="goal-st-toggle" onclick="setGoalWeightUnit('st')">st / lbs</button>
+					</div>
+
+					<div id="goalWeightInputKg">
+						<div class="input-group">
+							<label class="label">Goal weight (kg)</label>
+							<input type="number" class="input" id="goalWeightKg" placeholder="Enter goal weight in kg">
+						</div>
+					</div>
+
+					<div id="goalWeightInputSt" style="display: none;">
+						<div class="weight-inputs">
+							<div class="input-group">
+								<label class="label">Stone</label>
+								<input type="number" class="input" id="goalWeightStone" placeholder="st">
+							</div>
+							<div class="input-group">
+								<label class="label">Pounds</label>
+								<input type="number" class="input" id="goalWeightPounds" placeholder="lbs">
+							</div>
+						</div>
+					</div>
+
+					<div class="button-group">
+						<button class="button button-secondary" onclick="goBack()">Back</button>
+						<button class="button button-primary" onclick="saveGoalWeight()">Next</button>
+					</div>
+				</div>
+			</div>
+
+			<!-- Screen 18 -->
+			<div id="screen-18" class="screen">
+				<div class="container">
+					<h1 class="heading">Almost there &mdash; just a couple more details</h1>
+					<p class="subheading">We need your date of birth to verify your eligibility.</p>
+
+					<div class="completing-as" id="completingAs"></div>
+
+					<div id="screen18Error" class="error-message" style="display: none;"></div>
+
+					<div class="input-group">
+						<label class="label">Date of Birth *</label>
+						<input type="date" class="input" id="dob" max="2008-04-01" required>
+					</div>
+
+					<div class="button-group">
+						<button class="button button-secondary" onclick="goBack()">Back</button>
+						<button class="button button-primary" onclick="savePersonalDetails()">Next</button>
+					</div>
+				</div>
+			</div>
+
+			<!-- Screen 19 -->
+			<div id="screen-19" class="screen">
+				<div class="container">
+					<h1 class="heading">Where should we deliver your treatment?</h1>
+					<p class="subheading">We'll use this address to ship your medication securely and discreetly.</p>
+
+					<div id="screen19Error" class="error-message" style="display: none;"></div>
+
+					<div class="input-group">
+						<label class="label">Address Line 1 *</label>
+						<input type="text" class="input" id="addressLine1" placeholder="Street address" required>
+					</div>
+
+					<div class="input-group">
+						<label class="label">Address Line 2</label>
+						<input type="text" class="input" id="addressLine2" placeholder="Apartment, suite, etc. (optional)">
+					</div>
+
+					<div class="input-group">
+						<label class="label">City/Town *</label>
+						<input type="text" class="input" id="city" placeholder="London" required>
+					</div>
+
+					<div class="input-group">
+						<label class="label">Postcode *</label>
+						<input type="text" class="input" id="postcode" placeholder="SW1A 1AA" required style="text-transform: uppercase;">
+					</div>
+
+					<div class="input-group">
+						<label class="label">Country *</label>
+						<select class="select" id="country" required>
+							<option value="United Kingdom">United Kingdom</option>
+							<option value="England">England</option>
+							<option value="Scotland">Scotland</option>
+							<option value="Wales">Wales</option>
+							<option value="Northern Ireland">Northern Ireland</option>
+						</select>
+					</div>
+
+					<div class="button-group">
+						<button class="button button-secondary" onclick="goBack()">Back</button>
+						<button class="button button-primary" onclick="saveAddress()">Next</button>
+					</div>
+				</div>
+			</div>
+
+			<!-- Screen 20 -->
+			<div id="screen-20" class="screen">
+				<div class="container">
+					<h1 class="heading">Who is your GP?</h1>
+
+					<div id="screen20Error" class="error-message" style="display: none;"></div>
+
+					<div class="input-group">
+						<label class="label">GP Surgery Name</label>
+						<input type="text" class="input" id="gpName" placeholder="Surgery name">
+					</div>
+
+					<div class="input-group">
+						<label class="label">GP Surgery Postcode</label>
+						<input type="text" class="input" id="gpPostcode" placeholder="SW1A 1AA">
+					</div>
+
+					<div class="checkbox-item" style="margin-bottom: 12px;">
+						<input type="checkbox" class="checkbox-input" id="gpConsent1">
+						<label>I consent for AT Health to share information regarding any treatment prescribed with my GP</label>
+					</div>
+
+					<div class="checkbox-item">
+						<input type="checkbox" class="checkbox-input" id="gpConsent2">
+						<label>I consent to a one-off request from AT Health to access my summary care record to verify the information I have provided</label>
+					</div>
+
+					<div class="button-group">
+						<button class="button button-secondary" onclick="goBack()">Back</button>
+						<button class="button button-primary" onclick="saveGPDetails()">Next</button>
+					</div>
+				</div>
+			</div>
+
 			<!-- SCREENS_BLOCK_G: screen 21 + ineligible — added in phase 3b -->
 
 		</div>
