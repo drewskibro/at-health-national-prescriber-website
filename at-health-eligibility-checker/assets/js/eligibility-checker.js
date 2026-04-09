@@ -883,7 +883,148 @@
 	window.selectAllergies = selectAllergies;
 	window.continueFromScreen15a = continueFromScreen15a;
 	window.selectPregnantPlanning = selectPregnantPlanning;
-	// HANDLERS_BLOCK_7: screens 16, 17, 18, 19, 20 — added in phase 4-8
+	// ---------- Screen 16 (goal weight yes/no) ----------
+
+	function selectGoalWeight(answer) {
+		if (answer === 'yes') {
+			addToHistory();
+			showScreen(17);
+		} else {
+			addToHistory();
+			showScreen(18);
+			updateCompletingAs();
+		}
+	}
+
+	// ---------- Screen 17 (goal weight value) ----------
+
+	function setGoalWeightUnit(unit) {
+		state.goalWeightUnit = unit;
+		document.getElementById('goal-kg-toggle').classList.toggle('active', unit === 'kg');
+		document.getElementById('goal-st-toggle').classList.toggle('active', unit === 'st');
+		document.getElementById('goalWeightInputKg').style.display = unit === 'kg' ? 'block' : 'none';
+		document.getElementById('goalWeightInputSt').style.display = unit === 'st' ? 'block' : 'none';
+	}
+
+	function saveGoalWeight() {
+		const goalKg = document.getElementById('goalWeightKg').value;
+		const goalStone = document.getElementById('goalWeightStone').value;
+		const goalPounds = document.getElementById('goalWeightPounds').value;
+
+		if (state.goalWeightUnit === 'kg' && goalKg) {
+			state.userData.goalWeight = goalKg;
+		} else if (goalStone) {
+			const weightKg = (parseFloat(goalStone) * 6.35029) + (parseFloat(goalPounds || 0) * 0.453592);
+			state.userData.goalWeight = weightKg.toFixed(1);
+		}
+
+		addToHistory();
+		showScreen(18);
+		updateCompletingAs();
+	}
+
+	// ---------- Screen 18 (DOB + "completing as" banner) ----------
+
+	function updateCompletingAs() {
+		document.getElementById('completingAs').textContent =
+			'Completing as ' + state.userData.fullName + ' · ' + state.userData.email;
+	}
+
+	function savePersonalDetails() {
+		const dob = document.getElementById('dob').value;
+		const errorDiv = document.getElementById('screen18Error');
+
+		if (!dob) {
+			errorDiv.textContent = 'Please enter your date of birth';
+			errorDiv.style.display = 'block';
+			return;
+		}
+
+		const dobDate = new Date(dob);
+		const today = new Date();
+		const age = today.getFullYear() - dobDate.getFullYear();
+		const monthDiff = today.getMonth() - dobDate.getMonth();
+
+		if (age < 18 || (age === 18 && monthDiff < 0)) {
+			errorDiv.textContent = 'You must be at least 18 years old';
+			errorDiv.style.display = 'block';
+			return;
+		}
+
+		state.userData.dob = dob;
+		errorDiv.style.display = 'none';
+		addToHistory();
+		showScreen(19);
+	}
+
+	// ---------- Screen 19 (delivery address) ----------
+
+	function saveAddress() {
+		const line1 = document.getElementById('addressLine1').value.trim();
+		const city = document.getElementById('city').value.trim();
+		const postcode = document.getElementById('postcode').value.trim();
+		const errorDiv = document.getElementById('screen19Error');
+
+		if (!line1 || !city || !postcode) {
+			errorDiv.textContent = 'Please fill in all required fields';
+			errorDiv.style.display = 'block';
+			return;
+		}
+
+		const postcodeRegex = /^[A-Z]{1,2}[0-9][A-Z0-9]?\s?[0-9][A-Z]{2}$/i;
+		if (!postcodeRegex.test(postcode)) {
+			errorDiv.textContent = 'Please enter a valid UK postcode';
+			errorDiv.style.display = 'block';
+			return;
+		}
+
+		state.userData.addressLine1 = line1;
+		state.userData.addressLine2 = document.getElementById('addressLine2').value.trim();
+		state.userData.city = city;
+		state.userData.postcode = postcode.toUpperCase();
+		state.userData.country = document.getElementById('country').value;
+
+		errorDiv.style.display = 'none';
+		addToHistory();
+		showScreen(20);
+	}
+
+	// ---------- Screen 20 (GP details + consent) ----------
+
+	function saveGPDetails() {
+		const gpName = document.getElementById('gpName').value.trim();
+		const gpPostcode = document.getElementById('gpPostcode').value.trim();
+		const consent1 = document.getElementById('gpConsent1').checked;
+		const consent2 = document.getElementById('gpConsent2').checked;
+		const errorDiv = document.getElementById('screen20Error');
+
+		if (!gpName || !gpPostcode) {
+			errorDiv.textContent = 'Please fill in all fields';
+			errorDiv.style.display = 'block';
+			return;
+		}
+
+		if (!consent1 || !consent2) {
+			errorDiv.textContent = 'Please agree to both consent statements';
+			errorDiv.style.display = 'block';
+			return;
+		}
+
+		state.userData.gpName = gpName;
+		state.userData.gpPostcode = gpPostcode;
+
+		errorDiv.style.display = 'none';
+		addToHistory();
+		showScreen(21);
+		setupScreen21();
+	}
+
+	window.selectGoalWeight = selectGoalWeight;
+	window.setGoalWeightUnit = setGoalWeightUnit;
+	window.saveGoalWeight = saveGoalWeight;
+	window.savePersonalDetails = savePersonalDetails;
+	window.saveAddress = saveAddress;
+	window.saveGPDetails = saveGPDetails;
 	// HANDLERS_BLOCK_8: screen 21 setup + proceedToCheckout — added in phase 4-9
 
 	// ---------- Expose handlers on window for inline onclick attributes ----------
