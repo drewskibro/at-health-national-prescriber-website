@@ -603,7 +603,135 @@ function at_health_ec_render_shortcode() {
 				</div>
 			</div>
 
-			<!-- SCREENS_BLOCK_D: screens 11, 11a, 12, 12a — added in phase 3a-4 -->
+			<!-- Screen 11 -->
+			<div id="screen-11" class="screen">
+				<div class="container">
+					<h1 class="heading">Do any of the following statements apply to you?</h1>
+					<p class="subheading">Select all that apply</p>
+
+					<div id="screen11Error" class="error-message" style="display: none;"></div>
+
+					<div class="checkbox-group" id="weight-conditions-checkbox-group">
+						<div class="checkbox-item" onclick="toggleWeightCondition('pcos')">
+							<input type="checkbox" class="checkbox-input" id="weight-condition-pcos" value="pcos">
+							<label>I have PCOS (Polycystic Ovary Syndrome)</label>
+						</div>
+						<div class="checkbox-item" onclick="toggleWeightCondition('sleep-apnea')">
+							<input type="checkbox" class="checkbox-input" id="weight-condition-sleep-apnea" value="sleep-apnea">
+							<label>I have sleep apnea</label>
+						</div>
+						<div class="checkbox-item" onclick="toggleWeightCondition('high-bp')">
+							<input type="checkbox" class="checkbox-input" id="weight-condition-high-bp" value="high-bp">
+							<label>I have high blood pressure</label>
+						</div>
+						<div class="checkbox-item" onclick="toggleWeightCondition('high-cholesterol')">
+							<input type="checkbox" class="checkbox-input" id="weight-condition-high-cholesterol" value="high-cholesterol">
+							<label>I have high cholesterol</label>
+						</div>
+						<div class="checkbox-item" onclick="toggleWeightCondition('heart-disease')">
+							<input type="checkbox" class="checkbox-input" id="weight-condition-heart-disease" value="heart-disease">
+							<label>I have heart disease</label>
+						</div>
+						<div class="checkbox-item" onclick="toggleWeightCondition('stroke')">
+							<input type="checkbox" class="checkbox-input" id="weight-condition-stroke" value="stroke">
+							<label>I have had a stroke</label>
+						</div>
+						<div class="checkbox-item" onclick="toggleWeightCondition('fatty-liver')">
+							<input type="checkbox" class="checkbox-input" id="weight-condition-fatty-liver" value="fatty-liver">
+							<label>I have fatty liver disease</label>
+						</div>
+						<div class="checkbox-item" onclick="toggleWeightCondition('joint-pain')">
+							<input type="checkbox" class="checkbox-input" id="weight-condition-joint-pain" value="joint-pain">
+							<label>I have joint pain or osteoarthritis</label>
+						</div>
+						<div class="checkbox-item" onclick="toggleWeightCondition('asthma')">
+							<input type="checkbox" class="checkbox-input" id="weight-condition-asthma" value="asthma">
+							<label>I have asthma</label>
+						</div>
+						<div class="checkbox-item" onclick="toggleWeightCondition('reflux')">
+							<input type="checkbox" class="checkbox-input" id="weight-condition-reflux" value="reflux">
+							<label>I have acid reflux/GERD</label>
+						</div>
+						<div class="checkbox-item" onclick="toggleWeightCondition('ibs')">
+							<input type="checkbox" class="checkbox-input" id="weight-condition-ibs" value="ibs">
+							<label>I have IBS or digestive issues</label>
+						</div>
+						<div class="checkbox-item" onclick="toggleWeightCondition('depression')">
+							<input type="checkbox" class="checkbox-input" id="weight-condition-depression" value="depression">
+							<label>I have depression or anxiety</label>
+						</div>
+						<div class="checkbox-item" onclick="toggleWeightCondition('mental-health')">
+							<input type="checkbox" class="checkbox-input" id="weight-condition-mental-health" value="mental-health">
+							<label>I have a mental health condition</label>
+						</div>
+						<div class="checkbox-item" onclick="toggleWeightCondition('fertility')">
+							<input type="checkbox" class="checkbox-input" id="weight-condition-fertility" value="fertility">
+							<label>I have fertility issues</label>
+						</div>
+						<div class="checkbox-item" onclick="toggleWeightCondition('skin')">
+							<input type="checkbox" class="checkbox-input" id="weight-condition-skin" value="skin">
+							<label>I have skin conditions related to weight</label>
+						</div>
+						<div class="checkbox-item" onclick="toggleWeightCondition('none-weight')">
+							<input type="checkbox" class="checkbox-input" id="weight-condition-none" value="none">
+							<label><strong>None of these apply</strong></label>
+						</div>
+					</div>
+
+					<div class="button-group">
+						<button class="button button-secondary" onclick="goBack()">Back</button>
+						<button class="button button-primary" onclick="continueFromScreen11()">Next</button>
+					</div>
+				</div>
+			</div>
+
+			<!-- Screen 11a -->
+			<div id="screen-11a" class="screen">
+				<div class="container">
+					<h1 class="heading">Please tell us more about your mental health condition</h1>
+					<p class="subheading">This helps us ensure the treatment is safe and appropriate for you</p>
+
+					<textarea class="textarea" id="mentalHealthDetails" placeholder="Please describe your mental health condition, any medications you're taking, and how it's currently managed..."></textarea>
+
+					<div class="button-group">
+						<button class="button button-secondary" onclick="goBack()">Back</button>
+						<button class="button button-primary" onclick="continueFromScreen11a()">Next</button>
+					</div>
+				</div>
+			</div>
+
+			<!-- Screen 12 -->
+			<div id="screen-12" class="screen">
+				<div class="container">
+					<h1 class="heading">Do you have any other medical conditions?</h1>
+					<p class="subheading">That we haven't already asked about</p>
+
+					<div class="card" onclick="selectOtherConditions('yes')">
+						<div class="card-title">Yes</div>
+					</div>
+
+					<div class="card" onclick="selectOtherConditions('no')">
+						<div class="card-title">No</div>
+					</div>
+
+					<button class="button button-secondary" onclick="goBack()">Back</button>
+				</div>
+			</div>
+
+			<!-- Screen 12a -->
+			<div id="screen-12a" class="screen">
+				<div class="container">
+					<h1 class="heading">Please list any other medical conditions</h1>
+
+					<textarea class="textarea" id="otherConditionsDetails" placeholder="Please list any other medical conditions you have..."></textarea>
+
+					<div class="button-group">
+						<button class="button button-secondary" onclick="goBack()">Back</button>
+						<button class="button button-primary" onclick="continueFromScreen12a()">Next</button>
+					</div>
+				</div>
+			</div>
+
 			<!-- SCREENS_BLOCK_E: screens 13, 13-weight, 14, 14a, 15, 15a, 15b — added in phase 3a-5 -->
 			<!-- SCREENS_BLOCK_F: screens 16, 17, 18, 19, 20 — added in phase 3a-6 -->
 			<!-- SCREENS_BLOCK_G: screen 21 + ineligible — added in phase 3b -->
