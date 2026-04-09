@@ -615,7 +615,12 @@
 	// ---------- Screen 11 (weight-related conditions) ----------
 
 	function toggleWeightCondition(condition) {
-		const checkbox = document.getElementById('weight-condition-' + condition);
+		// The "None of these apply" option is onclick="toggleWeightCondition('none-weight')"
+		// in the markup, but its element id is `weight-condition-none`. Map the suffix
+		// here so the lookup resolves — without this, clicking the "None" option would
+		// throw (getElementById returns null for weight-condition-none-weight).
+		const idSuffix = condition === 'none-weight' ? 'none' : condition;
+		const checkbox = document.getElementById('weight-condition-' + idSuffix);
 		const item = checkbox.parentElement;
 
 		if (condition === 'none-weight') {
