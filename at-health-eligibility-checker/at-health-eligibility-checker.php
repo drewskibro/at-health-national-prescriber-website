@@ -459,7 +459,150 @@ function at_health_ec_render_shortcode() {
 				</div>
 			</div>
 
-			<!-- SCREENS_BLOCK_C: screens 9, 10, 10a, 10b — added in phase 3a-3 -->
+			<!-- Screen 9 -->
+			<div id="screen-9" class="screen">
+				<div class="container">
+					<h1 class="heading">Have you been diagnosed with diabetes?</h1>
+
+					<div class="radio-group">
+						<div class="radio-item" onclick="selectDiabetes('medication')">
+							<input type="radio" name="diabetes" class="radio-input" value="medication">
+							<label>I have diabetes and take medication for it</label>
+						</div>
+						<div class="radio-item" onclick="selectDiabetes('diet-controlled')">
+							<input type="radio" name="diabetes" class="radio-input" value="diet-controlled">
+							<label>I have diabetes and it's diet-controlled</label>
+						</div>
+						<div class="radio-item" onclick="selectDiabetes('family-history')">
+							<input type="radio" name="diabetes" class="radio-input" value="family-history">
+							<label>No, but there is history of diabetes in my family</label>
+						</div>
+						<div class="radio-item" onclick="selectDiabetes('pre-diabetes')">
+							<input type="radio" name="diabetes" class="radio-input" value="pre-diabetes">
+							<label>I have pre-diabetes</label>
+						</div>
+						<div class="radio-item" onclick="selectDiabetes('no')">
+							<input type="radio" name="diabetes" class="radio-input" value="no">
+							<label>I don't have diabetes</label>
+						</div>
+					</div>
+
+					<button class="button button-secondary" style="margin-top: 24px;" onclick="goBack()">Back</button>
+				</div>
+			</div>
+
+			<!-- Screen 10 -->
+			<div id="screen-10" class="screen">
+				<div class="container">
+					<h1 class="heading">Do any of the following statements apply to you?</h1>
+					<p class="subheading">Select all that apply</p>
+
+					<div id="screen10Error" class="error-message" style="display: none;"></div>
+
+					<div class="checkbox-group" id="conditions-checkbox-group">
+						<div class="checkbox-item" onclick="toggleCondition('cancer')">
+							<input type="checkbox" class="checkbox-input" id="condition-cancer" value="cancer">
+							<label>I have or have had cancer</label>
+						</div>
+						<div class="checkbox-item" onclick="toggleCondition('pancreatitis')">
+							<input type="checkbox" class="checkbox-input" id="condition-pancreatitis" value="pancreatitis">
+							<label>I have or have had pancreatitis</label>
+						</div>
+						<div class="checkbox-item" onclick="toggleCondition('eating-disorder')">
+							<input type="checkbox" class="checkbox-input" id="condition-eating-disorder" value="eating-disorder">
+							<label>I have or have had an eating disorder</label>
+						</div>
+						<div class="checkbox-item" onclick="toggleCondition('bariatric')">
+							<input type="checkbox" class="checkbox-input" id="condition-bariatric" value="bariatric">
+							<label>I have had bariatric (weight loss) surgery</label>
+						</div>
+						<div class="checkbox-item" onclick="toggleCondition('thyroid')">
+							<input type="checkbox" class="checkbox-input" id="condition-thyroid" value="thyroid">
+							<label>I have a thyroid condition</label>
+						</div>
+						<div class="checkbox-item" onclick="toggleCondition('kidney')">
+							<input type="checkbox" class="checkbox-input" id="condition-kidney" value="kidney">
+							<label>I have kidney problems</label>
+						</div>
+						<div class="checkbox-item" onclick="toggleCondition('liver')">
+							<input type="checkbox" class="checkbox-input" id="condition-liver" value="liver">
+							<label>I have liver problems</label>
+						</div>
+						<div class="checkbox-item" onclick="toggleCondition('gallbladder')">
+							<input type="checkbox" class="checkbox-input" id="condition-gallbladder" value="gallbladder">
+							<label>I have gallbladder problems</label>
+						</div>
+						<div class="checkbox-item" onclick="toggleCondition('heart')">
+							<input type="checkbox" class="checkbox-input" id="condition-heart" value="heart">
+							<label>I have heart problems</label>
+						</div>
+						<div class="checkbox-item" onclick="toggleCondition('retinopathy')">
+							<input type="checkbox" class="checkbox-input" id="condition-retinopathy" value="retinopathy">
+							<label>I have diabetic retinopathy</label>
+						</div>
+						<div class="checkbox-item" onclick="toggleCondition('gastroparesis')">
+							<input type="checkbox" class="checkbox-input" id="condition-gastroparesis" value="gastroparesis">
+							<label>I have gastroparesis</label>
+						</div>
+						<div class="checkbox-item" onclick="toggleCondition('medullary')">
+							<input type="checkbox" class="checkbox-input" id="condition-medullary" value="medullary">
+							<label>I have a family history of medullary thyroid carcinoma</label>
+						</div>
+						<div class="checkbox-item" onclick="toggleCondition('none')">
+							<input type="checkbox" class="checkbox-input" id="condition-none" value="none">
+							<label><strong>None of these apply</strong></label>
+						</div>
+					</div>
+
+					<div class="button-group">
+						<button class="button button-secondary" onclick="goBack()">Back</button>
+						<button class="button button-primary" onclick="continueFromScreen10()">Next</button>
+					</div>
+				</div>
+			</div>
+
+			<!-- Screen 10a -->
+			<div id="screen-10a" class="screen">
+				<div class="container">
+					<h1 class="heading">Was your bariatric operation in the last 6 months?</h1>
+
+					<div class="card" onclick="selectBariatricRecent('yes')">
+						<div class="card-title">Yes</div>
+					</div>
+
+					<div class="card" onclick="selectBariatricRecent('no')">
+						<div class="card-title">No</div>
+					</div>
+
+					<button class="button button-secondary" onclick="goBack()">Back</button>
+				</div>
+			</div>
+
+			<!-- Screen 10b -->
+			<div id="screen-10b" class="screen">
+				<div class="container">
+					<h1 class="heading">Please tell us further details:</h1>
+
+					<div style="background: white; border: 2px solid #e5e7eb; border-radius: 12px; padding: 24px; margin-bottom: 24px;">
+						<ul style="list-style: decimal; padding-left: 24px; line-height: 2;">
+							<li>What type of bariatric surgery did you have?</li>
+							<li>When did you have the surgery?</li>
+							<li>What was your weight before surgery?</li>
+							<li>What is your current weight?</li>
+							<li>Have you had any complications from the surgery?</li>
+							<li>Why are you considering weight loss medication?</li>
+						</ul>
+					</div>
+
+					<textarea class="textarea" id="bariatricDetails" placeholder="Please provide details for the questions above..."></textarea>
+
+					<div class="button-group">
+						<button class="button button-secondary" onclick="goBack()">Back</button>
+						<button class="button button-primary" onclick="continueFromScreen10b()">Next</button>
+					</div>
+				</div>
+			</div>
+
 			<!-- SCREENS_BLOCK_D: screens 11, 11a, 12, 12a — added in phase 3a-4 -->
 			<!-- SCREENS_BLOCK_E: screens 13, 13-weight, 14, 14a, 15, 15a, 15b — added in phase 3a-5 -->
 			<!-- SCREENS_BLOCK_F: screens 16, 17, 18, 19, 20 — added in phase 3a-6 -->
