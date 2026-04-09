@@ -507,7 +507,111 @@
 	window.saveWeight = saveWeight;
 	window.setHeightUnit = setHeightUnit;
 	window.saveHeight = saveHeight;
-	// HANDLERS_BLOCK_4: screens 9, 10, 10a, 10b — added in phase 4-5
+	// ---------- Screen 9 (diabetes) ----------
+
+	function selectDiabetes(type) {
+		state.userData.diabetes = type;
+		addToHistory();
+		showScreen(10);
+	}
+
+	// ---------- Screen 10 (medical history conditions) ----------
+
+	function toggleCondition(condition) {
+		const checkbox = document.getElementById('condition-' + condition);
+		const item = checkbox.parentElement;
+
+		if (condition === 'none') {
+			if (checkbox.checked) {
+				document.querySelectorAll('#conditions-checkbox-group .checkbox-input').forEach(function (cb) {
+					if (cb.id !== 'condition-none') {
+						cb.checked = false;
+						cb.parentElement.classList.remove('selected');
+					}
+				});
+				item.classList.add('selected');
+				state.userData.conditions = ['none'];
+			} else {
+				item.classList.remove('selected');
+				state.userData.conditions = [];
+			}
+		} else {
+			const noneCheckbox = document.getElementById('condition-none');
+			if (noneCheckbox.checked) {
+				noneCheckbox.checked = false;
+				noneCheckbox.parentElement.classList.remove('selected');
+			}
+
+			if (checkbox.checked) {
+				item.classList.add('selected');
+				if (!state.userData.conditions.includes(condition)) {
+					state.userData.conditions.push(condition);
+				}
+			} else {
+				item.classList.remove('selected');
+				state.userData.conditions = state.userData.conditions.filter(function (c) {
+					return c !== condition;
+				});
+			}
+		}
+	}
+
+	function continueFromScreen10() {
+		const errorDiv = document.getElementById('screen10Error');
+
+		if (state.userData.conditions.length === 0) {
+			errorDiv.textContent = 'Please select at least one option';
+			errorDiv.style.display = 'block';
+			return;
+		}
+
+		errorDiv.style.display = 'none';
+
+		const ineligibleConditions = ['cancer', 'pancreatitis', 'eating-disorder'];
+		const hasIneligible = state.userData.conditions.some(function (c) {
+			return ineligibleConditions.includes(c);
+		});
+
+		if (hasIneligible) {
+			showIneligible('Unfortunately, based on your medical history, this treatment may not be suitable for you. Please speak to your GP about alternative weight management options.');
+			return;
+		}
+
+		if (state.userData.conditions.includes('bariatric')) {
+			state.userData.hasBariatric = true;
+			addToHistory();
+			showScreen('10a');
+		} else {
+			addToHistory();
+			showScreen(11);
+		}
+	}
+
+	// ---------- Screen 10a (bariatric recency) ----------
+
+	function selectBariatricRecent(answer) {
+		if (answer === 'yes') {
+			showIneligible('Unfortunately, this treatment is not suitable within 6 months of bariatric surgery. Please speak to your GP or bariatric surgeon about appropriate weight management options.');
+		} else {
+			addToHistory();
+			showScreen('10b');
+		}
+	}
+
+	// ---------- Screen 10b (bariatric details) ----------
+
+	function continueFromScreen10b() {
+		const details = document.getElementById('bariatricDetails').value;
+		state.userData.bariatricDetails = details;
+		addToHistory();
+		showScreen(11);
+	}
+
+	window.selectDiabetes = selectDiabetes;
+	window.toggleCondition = toggleCondition;
+	window.continueFromScreen10 = continueFromScreen10;
+	window.selectBariatricRecent = selectBariatricRecent;
+	window.continueFromScreen10b = continueFromScreen10b;
 	// HANDLERS_BLOCK_5: screens 11, 11a, 12, 12a — added in phase 4-6
 	// HANDLERS_BLOCK_6: screens 13, 13-weight, 14, 14a, 15, 15a, 15b — added in phase 4-7
 	// HANDLERS_BLOCK_7: screens 16, 17, 18, 19, 20 — added in phase 4-8
