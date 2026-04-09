@@ -413,7 +413,100 @@
 	window.setBreastfeeding = setBreastfeeding;
 	window.setConceive = setConceive;
 	window.continueFrom6b = continueFrom6b;
-	// HANDLERS_BLOCK_3: screens 7, 8 — added in phase 4-4
+	// ---------- Screen 7 (weight) ----------
+
+	function setWeightUnit(unit) {
+		state.weightUnit = unit;
+		document.getElementById('weight-kg-toggle').classList.toggle('active', unit === 'kg');
+		document.getElementById('weight-st-toggle').classList.toggle('active', unit === 'st');
+		document.getElementById('weightInputKg').style.display = unit === 'kg' ? 'block' : 'none';
+		document.getElementById('weightInputSt').style.display = unit === 'st' ? 'block' : 'none';
+	}
+
+	function saveWeight() {
+		const errorDiv = document.getElementById('weightError');
+		errorDiv.style.display = 'none';
+
+		let weightKg;
+
+		if (state.weightUnit === 'kg') {
+			weightKg = parseFloat(document.getElementById('weightKg').value);
+			if (!weightKg || weightKg < 40 || weightKg > 250) {
+				errorDiv.textContent = 'Please enter a valid weight between 40 and 250 kg';
+				errorDiv.style.display = 'block';
+				return;
+			}
+		} else {
+			const stone = parseFloat(document.getElementById('weightStone').value) || 0;
+			const pounds = parseFloat(document.getElementById('weightPounds').value) || 0;
+
+			if (stone < 6 || stone > 40) {
+				errorDiv.textContent = 'Please enter a valid weight';
+				errorDiv.style.display = 'block';
+				return;
+			}
+
+			weightKg = (stone * 6.35029) + (pounds * 0.453592);
+		}
+
+		state.userData.weight = weightKg;
+		state.userData.weightUnit = state.weightUnit;
+		addToHistory();
+		showScreen(8);
+	}
+
+	// ---------- Screen 8 (height + BMI calculation) ----------
+
+	function setHeightUnit(unit) {
+		state.heightUnit = unit;
+		document.getElementById('height-cm-toggle').classList.toggle('active', unit === 'cm');
+		document.getElementById('height-ft-toggle').classList.toggle('active', unit === 'ft');
+		document.getElementById('heightInputCm').style.display = unit === 'cm' ? 'block' : 'none';
+		document.getElementById('heightInputFt').style.display = unit === 'ft' ? 'block' : 'none';
+	}
+
+	function saveHeight() {
+		const errorDiv = document.getElementById('heightError');
+		errorDiv.style.display = 'none';
+
+		let heightCm;
+
+		if (state.heightUnit === 'cm') {
+			heightCm = parseFloat(document.getElementById('heightCm').value);
+			if (!heightCm || heightCm < 120 || heightCm > 230) {
+				errorDiv.textContent = 'Please enter a valid height between 120 and 230 cm';
+				errorDiv.style.display = 'block';
+				return;
+			}
+		} else {
+			const feet = parseFloat(document.getElementById('heightFeet').value) || 0;
+			const inches = parseFloat(document.getElementById('heightInches').value) || 0;
+
+			if (feet < 4 || feet > 7) {
+				errorDiv.textContent = 'Please enter a valid height';
+				errorDiv.style.display = 'block';
+				return;
+			}
+
+			heightCm = (feet * 30.48) + (inches * 2.54);
+		}
+
+		state.userData.height = heightCm;
+		state.userData.heightUnit = state.heightUnit;
+
+		// Calculate BMI from cm + kg.
+		const heightM = heightCm / 100;
+		const bmi = state.userData.weight / (heightM * heightM);
+		state.userData.bmi = bmi.toFixed(1);
+
+		addToHistory();
+		showScreen(9);
+	}
+
+	window.setWeightUnit = setWeightUnit;
+	window.saveWeight = saveWeight;
+	window.setHeightUnit = setHeightUnit;
+	window.saveHeight = saveHeight;
 	// HANDLERS_BLOCK_4: screens 9, 10, 10a, 10b — added in phase 4-5
 	// HANDLERS_BLOCK_5: screens 11, 11a, 12, 12a — added in phase 4-6
 	// HANDLERS_BLOCK_6: screens 13, 13-weight, 14, 14a, 15, 15a, 15b — added in phase 4-7
