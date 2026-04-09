@@ -703,7 +703,186 @@
 	window.continueFromScreen11a = continueFromScreen11a;
 	window.selectOtherConditions = selectOtherConditions;
 	window.continueFromScreen12a = continueFromScreen12a;
-	// HANDLERS_BLOCK_6: screens 13, 13-weight, 14, 14a, 15, 15a, 15b — added in phase 4-7
+	// ---------- Screen 13 (previous weight-loss medications) ----------
+
+	function togglePrevMed(med) {
+		const checkbox = document.getElementById('prev-med-' + med.toLowerCase().replace(/\s/g, '-'));
+		const item = checkbox.parentElement;
+
+		if (med === 'never') {
+			if (checkbox.checked) {
+				document.querySelectorAll('#prev-meds-checkbox-group .checkbox-input').forEach(function (cb) {
+					if (cb.id !== 'prev-med-never') {
+						cb.checked = false;
+						cb.parentElement.classList.remove('selected');
+					}
+				});
+				item.classList.add('selected');
+				state.userData.prevMeds = ['never'];
+			} else {
+				item.classList.remove('selected');
+				state.userData.prevMeds = [];
+			}
+		} else {
+			const neverCheckbox = document.getElementById('prev-med-never');
+			if (neverCheckbox.checked) {
+				neverCheckbox.checked = false;
+				neverCheckbox.parentElement.classList.remove('selected');
+			}
+
+			if (checkbox.checked) {
+				item.classList.add('selected');
+				if (!state.userData.prevMeds.includes(med)) {
+					state.userData.prevMeds.push(med);
+				}
+			} else {
+				item.classList.remove('selected');
+				state.userData.prevMeds = state.userData.prevMeds.filter(function (m) {
+					return m !== med;
+				});
+			}
+		}
+	}
+
+	function continueFromScreen13() {
+		const errorDiv = document.getElementById('screen13Error');
+
+		if (state.userData.prevMeds.length === 0) {
+			errorDiv.textContent = 'Please select at least one option';
+			errorDiv.style.display = 'block';
+			return;
+		}
+
+		errorDiv.style.display = 'none';
+
+		const realMeds = state.userData.prevMeds.filter(function (m) {
+			return m !== 'never';
+		});
+		if (realMeds.length > 0) {
+			state.userData.prevMedsToAsk = realMeds;
+			state.userData.currentMedIndex = 0;
+			addToHistory();
+			showScreen('13-weight');
+			updatePrevMedWeightScreen();
+		} else {
+			addToHistory();
+			showScreen(14);
+		}
+	}
+
+	// ---------- Screen 13-weight (per-medication weight loop) ----------
+
+	function updatePrevMedWeightScreen() {
+		const med = state.userData.prevMedsToAsk[state.userData.currentMedIndex];
+		document.getElementById('screen13WeightHeading').textContent =
+			'What was your weight in kg before starting ' + med + '?';
+	}
+
+	function savePrevWeight() {
+		const weight = document.getElementById('prevMedWeight').value;
+		const med = state.userData.prevMedsToAsk[state.userData.currentMedIndex];
+
+		if (weight) {
+			state.userData.prevWeights[med] = weight;
+		}
+
+		document.getElementById('prevMedWeight').value = '';
+		state.userData.currentMedIndex++;
+
+		if (state.userData.currentMedIndex < state.userData.prevMedsToAsk.length) {
+			updatePrevMedWeightScreen();
+		} else {
+			addToHistory();
+			showScreen(14);
+		}
+	}
+
+	function skipPrevWeight() {
+		document.getElementById('prevMedWeight').value = '';
+		state.userData.currentMedIndex++;
+
+		if (state.userData.currentMedIndex < state.userData.prevMedsToAsk.length) {
+			updatePrevMedWeightScreen();
+		} else {
+			addToHistory();
+			showScreen(14);
+		}
+	}
+
+	// ---------- Screen 14 (current prescription medications) ----------
+
+	function selectCurrentMeds(type) {
+		state.userData.currentMeds = type;
+		if (type === 'other') {
+			addToHistory();
+			showScreen('14a');
+		} else {
+			addToHistory();
+			showScreen(15);
+		}
+	}
+
+	// ---------- Screen 14a (current meds details) ----------
+
+	function continueFromScreen14a() {
+		const details = document.getElementById('currentMedsDetails').value;
+		state.userData.currentMedsDetails = details;
+		addToHistory();
+		showScreen(15);
+	}
+
+	// ---------- Screen 15 (allergies) ----------
+
+	function selectAllergies(answer) {
+		if (answer === 'yes') {
+			addToHistory();
+			showScreen('15a');
+		} else {
+			if (state.userData.sex === 'female') {
+				addToHistory();
+				showScreen('15b');
+			} else {
+				addToHistory();
+				showScreen(16);
+			}
+		}
+	}
+
+	// ---------- Screen 15a (allergies details) ----------
+
+	function continueFromScreen15a() {
+		const details = document.getElementById('allergiesDetails').value;
+		state.userData.allergiesDetails = details;
+
+		if (state.userData.sex === 'female') {
+			addToHistory();
+			showScreen('15b');
+		} else {
+			addToHistory();
+			showScreen(16);
+		}
+	}
+
+	// ---------- Screen 15b (pregnancy / planning / breastfeeding) ----------
+
+	function selectPregnantPlanning(answer) {
+		if (answer === 'yes') {
+			showIneligible('Unfortunately, this treatment is not suitable during pregnancy, if planning to become pregnant, or while breastfeeding. Please speak to your GP about alternative weight management options.');
+		} else {
+			addToHistory();
+			showScreen(16);
+		}
+	}
+
+	window.togglePrevMed = togglePrevMed;
+	window.continueFromScreen13 = continueFromScreen13;
+	window.savePrevWeight = savePrevWeight;
+	window.skipPrevWeight = skipPrevWeight;
+	window.selectCurrentMeds = selectCurrentMeds;
+	window.continueFromScreen14a = continueFromScreen14a;
+	window.selectAllergies = selectAllergies;
+	window.continueFromScreen15a = continueFromScreen15a;
+	window.selectPregnantPlanning = selectPregnantPlanning;
 	// HANDLERS_BLOCK_7: screens 16, 17, 18, 19, 20 — added in phase 4-8
 	// HANDLERS_BLOCK_8: screen 21 setup + proceedToCheckout — added in phase 4-9
 
