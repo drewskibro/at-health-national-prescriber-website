@@ -84,6 +84,8 @@ add_action( 'wp_enqueue_scripts', 'at_health_ec_enqueue_assets' );
  */
 function at_health_ec_render_shortcode() {
 	$testimonial_img = esc_url( plugins_url( 'assets/images/testimonial.jpg', __FILE__ ) );
+	$wegovy_img      = esc_url( plugins_url( 'assets/images/wegovy.jpg', __FILE__ ) );
+	$mounjaro_img    = esc_url( plugins_url( 'assets/images/mounjaro.png', __FILE__ ) );
 
 	ob_start();
 	?>
@@ -1059,7 +1061,223 @@ function at_health_ec_render_shortcode() {
 				</div>
 			</div>
 
-			<!-- SCREENS_BLOCK_G: screen 21 + ineligible — added in phase 3b -->
+			<!-- Screen 21 -->
+			<div id="screen-21" class="screen">
+				<div class="container container-wide" style="padding-top: 48px; padding-bottom: 48px;">
+					<div class="success-icon-wrapper" style="width: 128px; height: 128px; margin: 0 auto 32px;">
+						<div style="position: absolute; inset: 0; border-radius: 9999px; background: rgba(136,130,200,0.2); filter: blur(16px);"></div>
+						<div class="success-circle success-ring success-icon" style="width: 128px; height: 128px; position: relative; padding: 4px;">
+							<div style="width: 100%; height: 100%; border-radius: 9999px; background: white; display: flex; align-items: center; justify-content: center;">
+								<svg width="64" height="64" viewBox="0 0 52 52" fill="none">
+									<circle cx="26" cy="26" r="24" fill="url(#successGradientHTML)" opacity="0.1"/>
+									<path class="checkmark-path" d="M14 27l8 8 16-16" stroke="url(#successGradientHTML)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+									<defs>
+										<linearGradient id="successGradientHTML" x1="14" y1="19" x2="38" y2="35" gradientUnits="userSpaceOnUse">
+											<stop stop-color="#8882c8"/>
+											<stop offset="1" stop-color="#8882c8"/>
+										</linearGradient>
+									</defs>
+								</svg>
+							</div>
+						</div>
+					</div>
+
+					<div class="social-proof">
+						<svg style="display: inline-block; vertical-align: middle; width: 16px; height: 16px; color: #8882c8; margin-right: 8px;" fill="currentColor" viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+						<strong>23 people</strong> started their treatment in the last 24 hours
+					</div>
+
+					<div style="text-align: center; margin-bottom: 32px;">
+						<h1 id="screen21Heading" style="font-size: 36px; font-weight: 800; color: #111827; margin-bottom: 12px; line-height: 1.2;">Great news!</h1>
+						<p id="screen21Subtitle" style="color: #6b7280; font-size: 16px; line-height: 1.6; max-width: 600px; margin: 0 auto;">Based on your assessment, you qualify for GLP-1 weight loss treatment.</p>
+					</div>
+
+					<div id="currentMedicationInfo" style="display: none; max-width: 448px; margin: 0 auto 32px;">
+						<div style="background: #eff6ff; border: 2px solid #bfdbfe; border-radius: 12px; padding: 16px; text-align: center;">
+							<p style="font-size: 14px; color: #6b7280; font-weight: 500; margin-bottom: 4px;">Currently taking</p>
+							<p id="currentMedText" style="color: #111827; font-size: 18px; font-weight: 700;"></p>
+						</div>
+					</div>
+
+					<button class="cta-button" onclick="proceedToCheckout()" style="margin-bottom: 32px;">Continue to Checkout</button>
+
+					<div style="margin-bottom: 32px;">
+						<h2 style="font-size: 30px; font-weight: 700; color: #111827; margin-bottom: 12px; text-align: center;">Choose Your Treatment</h2>
+						<p id="treatmentSubtitle" style="color: #6b7280; font-size: 16px; text-align: center; margin-bottom: 24px; line-height: 1.6;"></p>
+
+						<div class="treatment-cards-grid">
+							<div id="wegovyCard" class="treatment-card" style="position: relative; cursor: pointer; border-radius: 16px; padding: 24px; text-align: left;" onclick="selectTreatmentCard('wegovy')">
+								<div id="wegovyBadge" style="display: none;" class="treatment-card-badge"></div>
+								<div class="treatment-card-header">
+									<h3 style="font-size: 24px; font-weight: 600; color: #111827;">Wegovy</h3>
+									<span class="treatment-tag treatment-tag-popular">Popular</span>
+								</div>
+
+								<div id="wegovyPricing"></div>
+
+								<div style="display: flex; justify-content: center; margin: 24px 0;">
+									<img src="<?php echo $wegovy_img; ?>" alt="Wegovy injection pens" style="max-height: 300px; width: auto; object-fit: contain;">
+								</div>
+
+								<p style="color: #6b7280; font-size: 16px; margin-bottom: 16px; line-height: 1.6;">Clinically proven semaglutide injection for significant weight loss</p>
+
+								<ul style="list-style: none; padding: 0; margin: 0;">
+									<li style="display: flex; align-items: flex-start; gap: 8px; font-size: 14px; color: #374151; margin-bottom: 8px;">
+										<svg class="checkmark-icon" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+										<span>Average 15% weight loss</span>
+									</li>
+									<li style="display: flex; align-items: flex-start; gap: 8px; font-size: 14px; color: #374151; margin-bottom: 8px;">
+										<svg class="checkmark-icon" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+										<span>Once-weekly injection</span>
+									</li>
+									<li style="display: flex; align-items: flex-start; gap: 8px; font-size: 14px; color: #374151;">
+										<svg class="checkmark-icon" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+										<span>FDA &amp; MHRA approved</span>
+									</li>
+								</ul>
+							</div>
+
+							<div id="mounjaroCard" class="treatment-card" style="position: relative; cursor: pointer; border-radius: 16px; padding: 24px; text-align: left;" onclick="selectTreatmentCard('mounjaro')">
+								<div id="mounjaroBadge" style="display: none;" class="treatment-card-badge"></div>
+								<div class="treatment-card-header">
+									<h3 style="font-size: 24px; font-weight: 600; color: #111827;">Mounjaro</h3>
+									<span class="treatment-tag treatment-tag-advanced">Advanced</span>
+								</div>
+
+								<div id="mounjaroPricing"></div>
+
+								<div style="display: flex; justify-content: center; margin: 24px 0;">
+									<img src="<?php echo $mounjaro_img; ?>" alt="Mounjaro injection pen and packaging" style="max-height: 300px; width: auto; object-fit: contain;">
+								</div>
+
+								<p style="color: #6b7280; font-size: 16px; margin-bottom: 16px; line-height: 1.6;">Dual-action tirzepatide formula for maximum weight loss results</p>
+
+								<ul style="list-style: none; padding: 0; margin: 0;">
+									<li style="display: flex; align-items: flex-start; gap: 8px; font-size: 14px; color: #374151; margin-bottom: 8px;">
+										<svg class="checkmark-icon" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+										<span>Average 20% weight loss</span>
+									</li>
+									<li style="display: flex; align-items: flex-start; gap: 8px; font-size: 14px; color: #374151; margin-bottom: 8px;">
+										<svg class="checkmark-icon" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+										<span>Once-weekly injection</span>
+									</li>
+									<li style="display: flex; align-items: flex-start; gap: 8px; font-size: 14px; color: #374151;">
+										<svg class="checkmark-icon" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+										<span>FDA &amp; MHRA approved</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+
+					<!-- What happens next -->
+					<div style="background: #fcf8f3; border-radius: 12px; padding: 24px; margin-bottom: 32px;">
+						<h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 16px; text-align: center;">What happens next</h3>
+						<div style="max-width: 500px; margin: 0 auto;">
+							<div class="timeline-item">
+								<div class="timeline-number">1</div>
+								<div class="timeline-content">
+									<h4 style="font-size: 14px;">Clinician Review</h4>
+									<p style="font-size: 14px;">Your assessment will be reviewed within 24 hours</p>
+								</div>
+							</div>
+							<div class="timeline-item">
+								<div class="timeline-number">2</div>
+								<div class="timeline-content">
+									<h4 style="font-size: 14px;">Prescription Issued</h4>
+									<p style="font-size: 14px;">If approved, your prescription is issued instantly</p>
+								</div>
+							</div>
+							<div class="timeline-item">
+								<div class="timeline-number">3</div>
+								<div class="timeline-content">
+									<h4 style="font-size: 14px;">Fast Delivery</h4>
+									<p style="font-size: 14px;">Free next-day delivery to your door</p>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Everything included -->
+					<div style="background: white; border: 2px solid #f3f4f6; border-radius: 12px; padding: 24px; margin-bottom: 32px;">
+						<h3 style="font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 16px; text-align: center;">Everything included</h3>
+						<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px 24px; max-width: 600px; margin: 0 auto;">
+							<div style="display: flex; align-items: center; gap: 12px;">
+								<svg class="checkmark-icon" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+								<span style="color: #374151; font-size: 14px;">Monthly medication supply</span>
+							</div>
+							<div style="display: flex; align-items: center; gap: 12px;">
+								<svg class="checkmark-icon" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+								<span style="color: #374151; font-size: 14px;">Free next-day delivery</span>
+							</div>
+							<div style="display: flex; align-items: center; gap: 12px;">
+								<svg class="checkmark-icon" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+								<span style="color: #374151; font-size: 14px;">Ongoing clinician support</span>
+							</div>
+							<div style="display: flex; align-items: center; gap: 12px;">
+								<svg class="checkmark-icon" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+								<span style="color: #374151; font-size: 14px;">Injection training materials</span>
+							</div>
+							<div style="display: flex; align-items: center; gap: 12px;">
+								<svg class="checkmark-icon" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+								<span style="color: #374151; font-size: 14px;">Progress tracking tools</span>
+							</div>
+							<div style="display: flex; align-items: center; gap: 12px;">
+								<svg class="checkmark-icon" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+								<span style="color: #374151; font-size: 14px;">Pause or cancel anytime</span>
+							</div>
+						</div>
+					</div>
+
+					<button id="startTreatmentBtn" class="cta-button" onclick="proceedToCheckout()" style="margin-bottom: 12px;"></button>
+
+					<div class="guarantee-text">
+						<strong>Cancel anytime</strong> - No long-term commitment required
+					</div>
+
+					<div class="trust-badges" style="margin-top: 24px;">
+						<div class="trust-badge" style="display: flex; align-items: center; gap: 8px;">
+							<svg class="shield-icon-trust" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+							<span>Secure checkout</span>
+						</div>
+						<div class="trust-badge" style="display: flex; align-items: center; gap: 8px;">
+							<svg class="shield-icon-trust" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+							<span>GPhC registered pharmacy</span>
+						</div>
+						<div class="trust-badge" style="display: flex; align-items: center; gap: 8px;">
+							<svg class="shield-icon-trust" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+							<span>UK-licensed clinicians</span>
+						</div>
+					</div>
+
+					<div style="text-align: center; margin-top: 24px;">
+						<a href="#" onclick="reviewAnswers(); return false;" style="color: #8882c8; font-size: 14px; font-weight: 600; text-decoration: none;">Review my answers</a>
+					</div>
+				</div>
+			</div>
+
+			<!-- Ineligible Screen -->
+			<div id="screen-ineligible" class="screen">
+				<div class="container">
+					<div class="ineligible-icon">
+						<svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+						</svg>
+					</div>
+
+					<h1 class="heading" style="text-align: center; color: #1f2937;">No suitable treatment</h1>
+
+					<div style="background: #fef2f2; border: 2px solid #fecaca; border-radius: 12px; padding: 24px; margin-bottom: 24px; text-align: center;">
+						<p id="ineligibleReason" style="color: #991b1b; line-height: 1.6;"></p>
+					</div>
+
+					<button class="button button-primary" onclick="reviewAnswers()">Review your answers</button>
+
+					<div style="text-align: center; margin-top: 16px;">
+						<a href="#" class="link">Back to homepage</a>
+					</div>
+				</div>
+			</div>
 
 		</div>
 	</div>
