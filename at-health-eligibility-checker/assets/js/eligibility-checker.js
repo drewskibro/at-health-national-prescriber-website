@@ -1025,7 +1025,244 @@
 	window.savePersonalDetails = savePersonalDetails;
 	window.saveAddress = saveAddress;
 	window.saveGPDetails = saveGPDetails;
-	// HANDLERS_BLOCK_8: screen 21 setup + proceedToCheckout — added in phase 4-9
+	// ---------- Screen 21 (success / treatment selection) ----------
+
+	let selectedTreatment = 'wegovy';
+	let selectedWegovyDose = '0.25mg';
+	let selectedMounjaroDose = '2.5mg';
+
+	function getRecommendedTreatment() {
+		const bmi = parseFloat(state.userData.bmi || '0');
+		const hasPrevMeds = state.userData.prevMeds &&
+			state.userData.prevMeds.length > 0 &&
+			!state.userData.prevMeds.includes('i have never taken medication to lose weight');
+		if (bmi >= 35 || hasPrevMeds) {
+			return 'mounjaro';
+		}
+		return 'wegovy';
+	}
+
+	function getCurrentPrice() {
+		if (selectedTreatment === 'wegovy') {
+			return wegovyPricing[selectedWegovyDose];
+		}
+		return mounjaroPricing[selectedMounjaroDose];
+	}
+
+	function updateStartTreatmentBtn() {
+		const btn = document.getElementById('startTreatmentBtn');
+		if (btn) {
+			btn.textContent = 'Start Treatment - \u00A3' + getCurrentPrice().toFixed(2) + '/month';
+		}
+	}
+
+	function updateBadges() {
+		const isNewUser = state.userData.userType === 'new';
+		const isSwitching = state.userData.userType === 'switching';
+		const currentMed = state.userData.currentMedication;
+		const recommendedTreatment = isSwitching && currentMed ? currentMed : getRecommendedTreatment();
+
+		const wegovyBadge = document.getElementById('wegovyBadge');
+		const mounjaroBadge = document.getElementById('mounjaroBadge');
+
+		wegovyBadge.style.display = 'none';
+		mounjaroBadge.style.display = 'none';
+
+		if (selectedTreatment === 'wegovy' && isNewUser) {
+			wegovyBadge.textContent = 'Selected';
+			wegovyBadge.style.display = 'block';
+		} else if (isSwitching && currentMed === 'wegovy' && selectedTreatment === 'wegovy') {
+			wegovyBadge.textContent = 'Current Medication - Selected';
+			wegovyBadge.style.display = 'block';
+		} else if (isNewUser && recommendedTreatment === 'wegovy' && selectedTreatment !== 'wegovy') {
+			wegovyBadge.textContent = 'Recommended';
+			wegovyBadge.style.display = 'block';
+		}
+
+		if (selectedTreatment === 'mounjaro' && isNewUser) {
+			mounjaroBadge.textContent = 'Selected';
+			mounjaroBadge.style.display = 'block';
+		} else if (isSwitching && currentMed === 'mounjaro' && selectedTreatment === 'mounjaro') {
+			mounjaroBadge.textContent = 'Current Medication - Selected';
+			mounjaroBadge.style.display = 'block';
+		} else if (isNewUser && recommendedTreatment === 'mounjaro' && selectedTreatment !== 'mounjaro') {
+			mounjaroBadge.textContent = 'Recommended';
+			mounjaroBadge.style.display = 'block';
+		}
+
+		const wegovyCard = document.getElementById('wegovyCard');
+		const mounjaroCard = document.getElementById('mounjaroCard');
+		if (selectedTreatment === 'wegovy') {
+			wegovyCard.classList.add('selected');
+			wegovyCard.style.borderWidth = '3px';
+			wegovyCard.style.borderColor = '#8882c8';
+			mounjaroCard.classList.remove('selected');
+			mounjaroCard.style.borderWidth = '2px';
+			mounjaroCard.style.borderColor = '#e5e7eb';
+		} else {
+			mounjaroCard.classList.add('selected');
+			mounjaroCard.style.borderWidth = '3px';
+			mounjaroCard.style.borderColor = '#8882c8';
+			wegovyCard.classList.remove('selected');
+			wegovyCard.style.borderWidth = '2px';
+			wegovyCard.style.borderColor = '#e5e7eb';
+		}
+	}
+
+	function selectTreatmentCard(treatment) {
+		selectedTreatment = treatment;
+		if (state.userData.userType === 'switching') {
+			if (treatment === 'wegovy' && state.userData.currentMedication !== 'wegovy') {
+				selectedWegovyDose = '0.25mg';
+			} else if (treatment === 'mounjaro' && state.userData.currentMedication !== 'mounjaro') {
+				selectedMounjaroDose = '2.5mg';
+			}
+		}
+		updateBadges();
+		updateStartTreatmentBtn();
+	}
+
+	function setupScreen21() {
+		const firstName = state.userData.firstName;
+		const heading = document.getElementById('screen21Heading');
+		if (firstName) {
+			heading.textContent = 'Great news, ' + firstName + '!';
+		} else {
+			heading.textContent = "You're eligible for treatment!";
+		}
+
+		const isSwitching = state.userData.userType === 'switching';
+		const currentMed = state.userData.currentMedication;
+		const recommendedTreatment = isSwitching && currentMed ? currentMed : getRecommendedTreatment();
+
+		// Set initial selected treatment.
+		if (isSwitching && currentMed) {
+			selectedTreatment = currentMed;
+			if (currentMed === 'wegovy' && state.userData.currentDose) {
+				selectedWegovyDose = state.userData.currentDose;
+			} else if (currentMed === 'mounjaro' && state.userData.currentDose) {
+				selectedMounjaroDose = state.userData.currentDose;
+			}
+		} else {
+			selectedTreatment = recommendedTreatment;
+		}
+
+		// Current medication info for switching users.
+		const currentMedInfo = document.getElementById('currentMedicationInfo');
+		if (isSwitching && currentMed) {
+			const medName = currentMed === 'wegovy' ? 'Wegovy' : 'Mounjaro';
+			const doseText = state.userData.currentDose ? ' ' + state.userData.currentDose : '';
+			document.getElementById('currentMedText').textContent = medName + doseText;
+			currentMedInfo.style.display = 'block';
+		} else {
+			currentMedInfo.style.display = 'none';
+		}
+
+		// Treatment subtitle.
+		const subtitleEl = document.getElementById('treatmentSubtitle');
+		if (isSwitching && currentMed) {
+			subtitleEl.textContent = 'Continue with your current treatment below or explore an alternative option.';
+		} else if (recommendedTreatment === 'wegovy') {
+			subtitleEl.textContent = 'Wegovy is recommended based on your profile';
+		} else {
+			subtitleEl.textContent = 'Mounjaro is recommended for enhanced results based on your profile';
+		}
+
+		// Pricing blocks — flat price for new users, dose-select dropdown for switching users.
+		const isNewUser = state.userData.userType === 'new';
+
+		if (isNewUser) {
+			document.getElementById('wegovyPricing').innerHTML =
+				'<div style="margin-bottom: 16px;">' +
+				'<p style="color: #111827; font-size: 30px; font-weight: 700;">\u00A3199<span style="font-size: 18px; font-weight: 400; color: #6b7280;">/month</span></p>' +
+				'<p style="color: #8882c8; font-size: 14px; font-weight: 600;">Save \u00A350 on your first month</p>' +
+				'</div>';
+
+			document.getElementById('mounjaroPricing').innerHTML =
+				'<div style="margin-bottom: 16px;">' +
+				'<p style="color: #111827; font-size: 30px; font-weight: 700;">\u00A3249<span style="font-size: 18px; font-weight: 400; color: #6b7280;">/month</span></p>' +
+				'<p style="color: #8882c8; font-size: 14px; font-weight: 600;">Save \u00A350 on your first month</p>' +
+				'</div>';
+		} else {
+			const wegovyOptions = Object.keys(wegovyPricing).map(function (dose) {
+				const price = wegovyPricing[dose];
+				const sel = dose === selectedWegovyDose ? ' selected' : '';
+				return '<option value="' + dose + '"' + sel + '>' + dose + ' - \u00A3' + price.toFixed(2) + '/month</option>';
+			}).join('');
+
+			document.getElementById('wegovyPricing').innerHTML =
+				'<div style="margin-bottom: 16px;">' +
+				'<label style="display: block; color: #6b7280; font-size: 12px; font-weight: 500; margin-bottom: 8px;">Select your dose</label>' +
+				'<select class="select" id="wegovyDoseSelect" onchange="updateWegovyPrice()" onclick="event.stopPropagation()">' +
+				wegovyOptions +
+				'</select>' +
+				'</div>';
+
+			const mounjaroOptions = Object.keys(mounjaroPricing).map(function (dose) {
+				const price = mounjaroPricing[dose];
+				const sel = dose === selectedMounjaroDose ? ' selected' : '';
+				return '<option value="' + dose + '"' + sel + '>' + dose + ' - \u00A3' + price.toFixed(2) + '/month</option>';
+			}).join('');
+
+			document.getElementById('mounjaroPricing').innerHTML =
+				'<div style="margin-bottom: 16px;">' +
+				'<label style="display: block; color: #6b7280; font-size: 12px; font-weight: 500; margin-bottom: 8px;">Select your dose</label>' +
+				'<select class="select" id="mounjaroDoseSelect" onchange="updateMounjaroPrice()" onclick="event.stopPropagation()">' +
+				mounjaroOptions +
+				'</select>' +
+				'</div>';
+		}
+
+		updateBadges();
+		updateStartTreatmentBtn();
+	}
+
+	function updateWegovyPrice() {
+		const dose = document.getElementById('wegovyDoseSelect').value;
+		selectedWegovyDose = dose;
+		updateStartTreatmentBtn();
+	}
+
+	function updateMounjaroPrice() {
+		const dose = document.getElementById('mounjaroDoseSelect').value;
+		selectedMounjaroDose = dose;
+		updateStartTreatmentBtn();
+	}
+
+	// Stub checkout — merchant will wire the real checkout URL later.
+	function proceedToCheckout() {
+		const dose = selectedTreatment === 'wegovy' ? selectedWegovyDose : selectedMounjaroDose;
+		state.userData.selectedTreatment = selectedTreatment;
+		state.userData.selectedDose = dose;
+		try {
+			localStorage.setItem('eligibility-data', JSON.stringify(state.userData));
+		} catch (err) {
+			// localStorage may be blocked — ignore.
+		}
+
+		const medName = selectedTreatment.charAt(0).toUpperCase() + selectedTreatment.slice(1);
+		const addr = state.userData.addressLine1 || '';
+		const addr2 = state.userData.addressLine2 ? '\n' + state.userData.addressLine2 : '';
+		const city = state.userData.city || '';
+		const postcode = state.userData.postcode || '';
+		const country = state.userData.country || '';
+
+		alert(
+			'Treatment selected: ' + medName + '\n' +
+			'Dose: ' + dose + '\n' +
+			'Price: \u00A3' + getCurrentPrice() + '/month\n\n' +
+			'Shipping to:\n' +
+			addr + addr2 + '\n' +
+			city + ', ' + postcode + '\n' +
+			country + '\n\n' +
+			'Checkout URL will be configured by AT Health.'
+		);
+	}
+
+	window.selectTreatmentCard = selectTreatmentCard;
+	window.updateWegovyPrice = updateWegovyPrice;
+	window.updateMounjaroPrice = updateMounjaroPrice;
+	window.proceedToCheckout = proceedToCheckout;
 
 	// ---------- Expose handlers on window for inline onclick attributes ----------
 	// Additional window.* exports are added alongside each handler block above.
