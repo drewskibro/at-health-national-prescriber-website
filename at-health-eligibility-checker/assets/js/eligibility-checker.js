@@ -191,7 +191,83 @@
 	}
 
 	// ---------- Handler blocks (populated in Phase 4-2 through 4-9) ----------
-	// HANDLERS_BLOCK_1: screens 1, 1b, 2, 3 — added in phase 4-2
+	// ---------- Screen 1 (agreement) ----------
+
+	function agreeAndStart() {
+		state.userData.termsAgreed = true;
+		addToHistory();
+		showScreen(2);
+	}
+
+	// ---------- Screen 1b (early contact details) ----------
+
+	function saveEarlyDetails() {
+		const firstName = document.getElementById('earlyFirstName').value.trim();
+		const lastName = document.getElementById('earlyLastName').value.trim();
+		const email = document.getElementById('earlyEmail').value.trim();
+		const phone = document.getElementById('earlyPhone').value.trim();
+
+		const errorDiv = document.getElementById('earlyFormError');
+
+		if (!firstName || !lastName || !email || !phone) {
+			errorDiv.textContent = 'Please fill in all fields';
+			errorDiv.style.display = 'block';
+			return;
+		}
+
+		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+		if (!emailRegex.test(email)) {
+			errorDiv.textContent = 'Please enter a valid email address';
+			errorDiv.style.display = 'block';
+			return;
+		}
+
+		const phoneRegex = /^[0-9]{10,11}$/;
+		const cleanPhone = phone.replace(/\s/g, '');
+		if (!phoneRegex.test(cleanPhone)) {
+			errorDiv.textContent = 'Please enter a valid UK phone number (10-11 digits)';
+			errorDiv.style.display = 'block';
+			return;
+		}
+
+		state.userData.firstName = firstName;
+		state.userData.lastName = lastName;
+		state.userData.fullName = firstName + ' ' + lastName;
+		state.userData.email = email;
+		state.userData.phone = phone;
+
+		errorDiv.style.display = 'none';
+		addToHistory();
+		showScreen(5);
+	}
+
+	// ---------- Screen 2 (new vs switching) ----------
+
+	function selectNewUser() {
+		state.userData.userType = 'new';
+		addToHistory();
+		showScreen(4);
+	}
+
+	function selectSwitching() {
+		state.userData.userType = 'switching';
+		addToHistory();
+		showScreen(3);
+	}
+
+	// ---------- Screen 3 (current provider) ----------
+
+	function selectProvider(provider) {
+		state.userData.provider = provider;
+		addToHistory();
+		showScreen('3a');
+	}
+
+	window.agreeAndStart = agreeAndStart;
+	window.saveEarlyDetails = saveEarlyDetails;
+	window.selectNewUser = selectNewUser;
+	window.selectSwitching = selectSwitching;
+	window.selectProvider = selectProvider;
 	// HANDLERS_BLOCK_2: screens 3a, 3b, 4, 5, 6, 6b — added in phase 4-3
 	// HANDLERS_BLOCK_3: screens 7, 8 — added in phase 4-4
 	// HANDLERS_BLOCK_4: screens 9, 10, 10a, 10b — added in phase 4-5
