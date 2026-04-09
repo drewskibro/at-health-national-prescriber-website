@@ -271,7 +271,194 @@ function at_health_ec_render_shortcode() {
 				</div>
 			</div>
 
-			<!-- SCREENS_BLOCK_B: screens 4, 5, 6, 6b, 7, 8 — added in phase 3a-2 -->
+			<!-- Screen 4 -->
+			<div id="screen-4" class="screen">
+				<div class="container">
+					<h1 class="heading">How old are you?</h1>
+
+					<div class="radio-group">
+						<div class="radio-item" onclick="selectAge('under18')">
+							<input type="radio" name="age" class="radio-input" value="under18">
+							<label>Under 18</label>
+						</div>
+						<div class="radio-item" onclick="selectAge('18-74')">
+							<input type="radio" name="age" class="radio-input" value="18-74">
+							<label>18 to 74</label>
+						</div>
+						<div class="radio-item" onclick="selectAge('75+')">
+							<input type="radio" name="age" class="radio-input" value="75+">
+							<label>75 or over</label>
+						</div>
+					</div>
+
+					<button class="button button-secondary" style="margin-top: 24px;" onclick="goBack()">Back</button>
+				</div>
+			</div>
+
+			<!-- Screen 5 -->
+			<div id="screen-5" class="screen">
+				<div class="container">
+					<h1 class="heading">Which ethnicity are you?</h1>
+					<p class="subheading">Healthy BMI ranges are different according to your ethnic background. Our clinicians will carefully evaluate your BMI and complete medical history to determine the most appropriate treatment.</p>
+
+					<div class="radio-group">
+						<div class="radio-item" onclick="selectEthnicity('Asian or Asian British')">
+							<input type="radio" name="ethnicity" class="radio-input" value="Asian or Asian British">
+							<label>Asian or Asian British</label>
+						</div>
+						<div class="radio-item" onclick="selectEthnicity('Black (Caribbean, African)')">
+							<input type="radio" name="ethnicity" class="radio-input" value="Black (Caribbean, African)">
+							<label>Black (Caribbean, African)</label>
+						</div>
+						<div class="radio-item" onclick="selectEthnicity('Mixed ethnicities')">
+							<input type="radio" name="ethnicity" class="radio-input" value="Mixed ethnicities">
+							<label>Mixed ethnicities</label>
+						</div>
+						<div class="radio-item" onclick="selectEthnicity('Other ethnic group')">
+							<input type="radio" name="ethnicity" class="radio-input" value="Other ethnic group">
+							<label>Other ethnic group</label>
+						</div>
+						<div class="radio-item" onclick="selectEthnicity('White')">
+							<input type="radio" name="ethnicity" class="radio-input" value="White">
+							<label>White</label>
+						</div>
+					</div>
+
+					<button class="button button-secondary" style="margin-top: 24px;" onclick="goBack()">Back</button>
+				</div>
+			</div>
+
+			<!-- Screen 6 -->
+			<div id="screen-6" class="screen">
+				<div class="container">
+					<h1 class="heading">What sex were you assigned at birth?</h1>
+
+					<div class="card" onclick="selectSex('male')">
+						<div class="card-title">Male</div>
+					</div>
+
+					<div class="card" onclick="selectSex('female')">
+						<div class="card-title">Female</div>
+					</div>
+
+					<button class="button button-secondary" onclick="goBack()">Back</button>
+				</div>
+			</div>
+
+			<!-- Screen 6b -->
+			<div id="screen-6b" class="screen">
+				<div class="container">
+					<h1 class="heading">A few important questions to keep you safe</h1>
+
+					<div class="yes-no-group">
+						<div class="yes-no-question">Are you currently pregnant?</div>
+						<div class="yes-no-buttons">
+							<button class="yes-no-button" id="pregnant-yes" onclick="setPregnant('yes')">Yes</button>
+							<button class="yes-no-button" id="pregnant-no" onclick="setPregnant('no')">No</button>
+						</div>
+					</div>
+
+					<div class="yes-no-group">
+						<div class="yes-no-question">Are you currently breastfeeding?</div>
+						<div class="yes-no-buttons">
+							<button class="yes-no-button" id="breastfeeding-yes" onclick="setBreastfeeding('yes')">Yes</button>
+							<button class="yes-no-button" id="breastfeeding-no" onclick="setBreastfeeding('no')">No</button>
+						</div>
+					</div>
+
+					<div class="yes-no-group">
+						<div class="yes-no-question">Are you trying to conceive?</div>
+						<div class="yes-no-buttons">
+							<button class="yes-no-button" id="conceive-yes" onclick="setConceive('yes')">Yes</button>
+							<button class="yes-no-button" id="conceive-no" onclick="setConceive('no')">No</button>
+						</div>
+					</div>
+
+					<div class="button-group">
+						<button class="button button-secondary" onclick="goBack()">Back</button>
+						<button class="button button-primary" id="screen6bContinue" onclick="continueFrom6b()" disabled>Continue</button>
+					</div>
+				</div>
+			</div>
+
+			<!-- Screen 7 -->
+			<div id="screen-7" class="screen">
+				<div class="container">
+					<h1 class="heading">What is your weight?</h1>
+
+					<div class="toggle-group">
+						<button class="toggle-button active" id="weight-kg-toggle" onclick="setWeightUnit('kg')">kg</button>
+						<button class="toggle-button" id="weight-st-toggle" onclick="setWeightUnit('st')">st / lbs</button>
+					</div>
+
+					<div id="weightError" class="error-message" style="display: none;"></div>
+
+					<div id="weightInputKg">
+						<div class="input-group">
+							<label class="label">Weight (kg)</label>
+							<input type="number" class="input" id="weightKg" placeholder="Enter weight in kg" min="40" max="250">
+						</div>
+					</div>
+
+					<div id="weightInputSt" style="display: none;">
+						<div class="weight-inputs">
+							<div class="input-group">
+								<label class="label">Stone</label>
+								<input type="number" class="input" id="weightStone" placeholder="st" min="6" max="40">
+							</div>
+							<div class="input-group">
+								<label class="label">Pounds</label>
+								<input type="number" class="input" id="weightPounds" placeholder="lbs" min="0" max="13">
+							</div>
+						</div>
+					</div>
+
+					<div class="button-group">
+						<button class="button button-secondary" onclick="goBack()">Back</button>
+						<button class="button button-primary" onclick="saveWeight()">Next</button>
+					</div>
+				</div>
+			</div>
+
+			<!-- Screen 8 -->
+			<div id="screen-8" class="screen">
+				<div class="container">
+					<h1 class="heading">What is your height?</h1>
+
+					<div class="toggle-group">
+						<button class="toggle-button active" id="height-cm-toggle" onclick="setHeightUnit('cm')">cm</button>
+						<button class="toggle-button" id="height-ft-toggle" onclick="setHeightUnit('ft')">ft / in</button>
+					</div>
+
+					<div id="heightError" class="error-message" style="display: none;"></div>
+
+					<div id="heightInputCm">
+						<div class="input-group">
+							<label class="label">Height (cm)</label>
+							<input type="number" class="input" id="heightCm" placeholder="Enter height in cm" min="120" max="230">
+						</div>
+					</div>
+
+					<div id="heightInputFt" style="display: none;">
+						<div class="weight-inputs">
+							<div class="input-group">
+								<label class="label">Feet</label>
+								<input type="number" class="input" id="heightFeet" placeholder="ft" min="4" max="7">
+							</div>
+							<div class="input-group">
+								<label class="label">Inches</label>
+								<input type="number" class="input" id="heightInches" placeholder="in" min="0" max="11">
+							</div>
+						</div>
+					</div>
+
+					<div class="button-group">
+						<button class="button button-secondary" onclick="goBack()">Back</button>
+						<button class="button button-primary" onclick="saveHeight()">Next</button>
+					</div>
+				</div>
+			</div>
+
 			<!-- SCREENS_BLOCK_C: screens 9, 10, 10a, 10b — added in phase 3a-3 -->
 			<!-- SCREENS_BLOCK_D: screens 11, 11a, 12, 12a — added in phase 3a-4 -->
 			<!-- SCREENS_BLOCK_E: screens 13, 13-weight, 14, 14a, 15, 15a, 15b — added in phase 3a-5 -->
