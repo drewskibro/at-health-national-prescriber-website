@@ -732,7 +732,177 @@ function at_health_ec_render_shortcode() {
 				</div>
 			</div>
 
-			<!-- SCREENS_BLOCK_E: screens 13, 13-weight, 14, 14a, 15, 15a, 15b — added in phase 3a-5 -->
+			<!-- Screen 13 -->
+			<div id="screen-13" class="screen">
+				<div class="container">
+					<h1 class="heading">Have you ever taken any of the following medications?</h1>
+					<p class="subheading">Select all that apply</p>
+
+					<div id="screen13Error" class="error-message" style="display: none;"></div>
+
+					<div class="checkbox-group" id="prev-meds-checkbox-group">
+						<div class="checkbox-item" onclick="togglePrevMed('Wegovy')">
+							<input type="checkbox" class="checkbox-input" id="prev-med-wegovy" value="Wegovy">
+							<label>Wegovy</label>
+						</div>
+						<div class="checkbox-item" onclick="togglePrevMed('Ozempic')">
+							<input type="checkbox" class="checkbox-input" id="prev-med-ozempic" value="Ozempic">
+							<label>Ozempic</label>
+						</div>
+						<div class="checkbox-item" onclick="togglePrevMed('Saxenda')">
+							<input type="checkbox" class="checkbox-input" id="prev-med-saxenda" value="Saxenda">
+							<label>Saxenda</label>
+						</div>
+						<div class="checkbox-item" onclick="togglePrevMed('Rybelsus')">
+							<input type="checkbox" class="checkbox-input" id="prev-med-rybelsus" value="Rybelsus">
+							<label>Rybelsus</label>
+						</div>
+						<div class="checkbox-item" onclick="togglePrevMed('Mounjaro')">
+							<input type="checkbox" class="checkbox-input" id="prev-med-mounjaro" value="Mounjaro">
+							<label>Mounjaro</label>
+						</div>
+						<div class="checkbox-item" onclick="togglePrevMed('Alli')">
+							<input type="checkbox" class="checkbox-input" id="prev-med-alli" value="Alli">
+							<label>Alli</label>
+						</div>
+						<div class="checkbox-item" onclick="togglePrevMed('Mysimba')">
+							<input type="checkbox" class="checkbox-input" id="prev-med-mysimba" value="Mysimba">
+							<label>Mysimba</label>
+						</div>
+						<div class="checkbox-item" onclick="togglePrevMed('Other')">
+							<input type="checkbox" class="checkbox-input" id="prev-med-other" value="Other">
+							<label>Other</label>
+						</div>
+						<div class="checkbox-item" onclick="togglePrevMed('never')">
+							<input type="checkbox" class="checkbox-input" id="prev-med-never" value="never">
+							<label><strong>I have never taken medication to lose weight</strong></label>
+						</div>
+					</div>
+
+					<div class="button-group">
+						<button class="button button-secondary" onclick="goBack()">Back</button>
+						<button class="button button-primary" onclick="continueFromScreen13()">Next</button>
+					</div>
+				</div>
+			</div>
+
+			<!-- Screen 13-weight -->
+			<div id="screen-13-weight" class="screen">
+				<div class="container">
+					<h1 class="heading" id="screen13WeightHeading">What was your weight in kg before starting medication?</h1>
+
+					<div class="input-group">
+						<label class="label">Weight (kg)</label>
+						<input type="number" class="input" id="prevMedWeight" placeholder="Enter weight in kg">
+					</div>
+
+					<div class="button-group">
+						<button class="button button-secondary" onclick="skipPrevWeight()">Skip</button>
+						<button class="button button-primary" onclick="savePrevWeight()">Next</button>
+					</div>
+				</div>
+			</div>
+
+			<!-- Screen 14 -->
+			<div id="screen-14" class="screen">
+				<div class="container">
+					<h1 class="heading">Are you currently taking any regular prescription medications?</h1>
+
+					<div class="radio-group">
+						<div class="radio-item" onclick="selectCurrentMeds('none')">
+							<input type="radio" name="current-meds" class="radio-input" value="none">
+							<label>No, I don't take any prescription medications</label>
+						</div>
+						<div class="radio-item" onclick="selectCurrentMeds('blood-pressure')">
+							<input type="radio" name="current-meds" class="radio-input" value="blood-pressure">
+							<label>Blood pressure medication</label>
+						</div>
+						<div class="radio-item" onclick="selectCurrentMeds('cholesterol')">
+							<input type="radio" name="current-meds" class="radio-input" value="cholesterol">
+							<label>Cholesterol medication</label>
+						</div>
+						<div class="radio-item" onclick="selectCurrentMeds('diabetes')">
+							<input type="radio" name="current-meds" class="radio-input" value="diabetes">
+							<label>Diabetes medication</label>
+						</div>
+						<div class="radio-item" onclick="selectCurrentMeds('mental-health')">
+							<input type="radio" name="current-meds" class="radio-input" value="mental-health">
+							<label>Mental health medication</label>
+						</div>
+						<div class="radio-item" onclick="selectCurrentMeds('other')">
+							<input type="radio" name="current-meds" class="radio-input" value="other">
+							<label>Other / I take more than one</label>
+						</div>
+					</div>
+
+					<button class="button button-secondary" style="margin-top: 24px;" onclick="goBack()">Back</button>
+				</div>
+			</div>
+
+			<!-- Screen 14a -->
+			<div id="screen-14a" class="screen">
+				<div class="container">
+					<h1 class="heading">Please include a full list of all medication</h1>
+					<p class="subheading">Include the name, dose, and frequency of each medication</p>
+
+					<textarea class="textarea" id="currentMedsDetails" placeholder="Please list all your current medications..."></textarea>
+
+					<div class="button-group">
+						<button class="button button-secondary" onclick="goBack()">Back</button>
+						<button class="button button-primary" onclick="continueFromScreen14a()">Next</button>
+					</div>
+				</div>
+			</div>
+
+			<!-- Screen 15 -->
+			<div id="screen-15" class="screen">
+				<div class="container">
+					<h1 class="heading">Do you have any allergies?</h1>
+
+					<div class="card" onclick="selectAllergies('yes')">
+						<div class="card-title">Yes</div>
+					</div>
+
+					<div class="card" onclick="selectAllergies('no')">
+						<div class="card-title">No</div>
+					</div>
+
+					<button class="button button-secondary" onclick="goBack()">Back</button>
+				</div>
+			</div>
+
+			<!-- Screen 15a -->
+			<div id="screen-15a" class="screen">
+				<div class="container">
+					<h1 class="heading">Please list your allergies</h1>
+					<p class="subheading">Include medications, foods, and environmental allergies</p>
+
+					<textarea class="textarea" id="allergiesDetails" placeholder="Please list all your allergies and any reactions you've had..."></textarea>
+
+					<div class="button-group">
+						<button class="button button-secondary" onclick="goBack()">Back</button>
+						<button class="button button-primary" onclick="continueFromScreen15a()">Next</button>
+					</div>
+				</div>
+			</div>
+
+			<!-- Screen 15b -->
+			<div id="screen-15b" class="screen">
+				<div class="container">
+					<h1 class="heading">Are you currently pregnant, planning to become pregnant, or breastfeeding?</h1>
+
+					<div class="card" onclick="selectPregnantPlanning('yes')">
+						<div class="card-title">Yes</div>
+					</div>
+
+					<div class="card" onclick="selectPregnantPlanning('no')">
+						<div class="card-title">No</div>
+					</div>
+
+					<button class="button button-secondary" onclick="goBack()">Back</button>
+				</div>
+			</div>
+
 			<!-- SCREENS_BLOCK_F: screens 16, 17, 18, 19, 20 — added in phase 3a-6 -->
 			<!-- SCREENS_BLOCK_G: screen 21 + ineligible — added in phase 3b -->
 
