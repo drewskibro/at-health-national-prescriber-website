@@ -612,7 +612,97 @@
 	window.continueFromScreen10 = continueFromScreen10;
 	window.selectBariatricRecent = selectBariatricRecent;
 	window.continueFromScreen10b = continueFromScreen10b;
-	// HANDLERS_BLOCK_5: screens 11, 11a, 12, 12a — added in phase 4-6
+	// ---------- Screen 11 (weight-related conditions) ----------
+
+	function toggleWeightCondition(condition) {
+		const checkbox = document.getElementById('weight-condition-' + condition);
+		const item = checkbox.parentElement;
+
+		if (condition === 'none-weight') {
+			if (checkbox.checked) {
+				document.querySelectorAll('#weight-conditions-checkbox-group .checkbox-input').forEach(function (cb) {
+					if (cb.id !== 'weight-condition-none') {
+						cb.checked = false;
+						cb.parentElement.classList.remove('selected');
+					}
+				});
+				item.classList.add('selected');
+			} else {
+				item.classList.remove('selected');
+			}
+		} else {
+			const noneCheckbox = document.getElementById('weight-condition-none');
+			if (noneCheckbox.checked) {
+				noneCheckbox.checked = false;
+				noneCheckbox.parentElement.classList.remove('selected');
+			}
+
+			if (checkbox.checked) {
+				item.classList.add('selected');
+			} else {
+				item.classList.remove('selected');
+			}
+		}
+	}
+
+	function continueFromScreen11() {
+		const errorDiv = document.getElementById('screen11Error');
+		const checkboxes = document.querySelectorAll('#weight-conditions-checkbox-group .checkbox-input:checked');
+
+		if (checkboxes.length === 0) {
+			errorDiv.textContent = 'Please select at least one option';
+			errorDiv.style.display = 'block';
+			return;
+		}
+
+		errorDiv.style.display = 'none';
+
+		const mentalHealthCheckbox = document.getElementById('weight-condition-mental-health');
+		if (mentalHealthCheckbox && mentalHealthCheckbox.checked) {
+			state.userData.hasMentalHealth = true;
+			addToHistory();
+			showScreen('11a');
+		} else {
+			addToHistory();
+			showScreen(12);
+		}
+	}
+
+	// ---------- Screen 11a (mental health details) ----------
+
+	function continueFromScreen11a() {
+		const details = document.getElementById('mentalHealthDetails').value;
+		state.userData.mentalHealthDetails = details;
+		addToHistory();
+		showScreen(12);
+	}
+
+	// ---------- Screen 12 (other medical conditions) ----------
+
+	function selectOtherConditions(answer) {
+		if (answer === 'yes') {
+			addToHistory();
+			showScreen('12a');
+		} else {
+			addToHistory();
+			showScreen(13);
+		}
+	}
+
+	// ---------- Screen 12a (other conditions details) ----------
+
+	function continueFromScreen12a() {
+		const details = document.getElementById('otherConditionsDetails').value;
+		state.userData.otherConditionsDetails = details;
+		addToHistory();
+		showScreen(13);
+	}
+
+	window.toggleWeightCondition = toggleWeightCondition;
+	window.continueFromScreen11 = continueFromScreen11;
+	window.continueFromScreen11a = continueFromScreen11a;
+	window.selectOtherConditions = selectOtherConditions;
+	window.continueFromScreen12a = continueFromScreen12a;
 	// HANDLERS_BLOCK_6: screens 13, 13-weight, 14, 14a, 15, 15a, 15b — added in phase 4-7
 	// HANDLERS_BLOCK_7: screens 16, 17, 18, 19, 20 — added in phase 4-8
 	// HANDLERS_BLOCK_8: screen 21 setup + proceedToCheckout — added in phase 4-9
