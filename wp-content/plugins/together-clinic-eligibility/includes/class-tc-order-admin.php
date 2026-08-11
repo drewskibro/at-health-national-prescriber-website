@@ -23,6 +23,10 @@ class TC_Order_Admin {
 
 		$this->render_review_panel( $order );
 
+		if ( class_exists( 'TC_Secure_Docs' ) ) {
+			TC_Secure_Docs::render_admin_panel( $order );
+		}
+
 		if ( $elig_raw ) {
 			$payload = json_decode( $elig_raw, true );
 			if ( is_array( $payload ) ) {
