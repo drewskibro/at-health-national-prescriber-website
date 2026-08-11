@@ -38,6 +38,7 @@ class TC_Review_Payment {
 
 	public static function init() {
 		add_filter( 'woocommerce_valid_order_statuses_for_payment', [ __CLASS__, 'make_review_status_payable' ], 10, 2 );
+		add_filter( 'woocommerce_valid_order_statuses_for_payment_complete', [ __CLASS__, 'allow_payment_complete_in_review' ], 10, 2 );
 		add_filter( 'woocommerce_payment_complete_order_status', [ __CLASS__, 'route_payment_complete_status' ], 20, 3 );
 		add_action( 'woocommerce_payment_complete', [ __CLASS__, 'note_authorisation' ] );
 	}
@@ -45,8 +46,29 @@ class TC_Review_Payment {
 	/**
 	 * Treatment orders must be payable while awaiting prescriber review, so
 	 * the order-pay URL returned at submission works immediately.
+	 *
+	 * Once an authorisation is held the order must STOP reporting
+	 * needs_payment(): otherwise WooCommerce renders "Pay" actions on the
+	 * thank-you page and My Account, and a patient could authorise twice.
 	 */
 	public static function make_review_status_payable( $statuses, $order ) {
+		if ( $order instanceof WC_Order
+			&& TC_Review_Status::is_treatment_order( $order )
+			&& ! self::is_authorised_uncaptured( $order ) ) {
+			$statuses[] = TC_Review_Status::STATUS;
+		}
+		return $statuses;
+	}
+
+	/**
+	 * WooCommerce keeps a SECOND status allow-list deciding whether
+	 * WC_Order::payment_complete() may finalise an order (default:
+	 * on-hold / pending / failed / cancelled). Without awaiting-review in
+	 * it, an authorisation completed against a review-queue order was
+	 * silently skipped: no transaction ID stored, no date_paid, and the
+	 * route/note hooks above never ran — leaving the order looking unpaid.
+	 */
+	public static function allow_payment_complete_in_review( $statuses, $order ) {
 		if ( $order instanceof WC_Order && TC_Review_Status::is_treatment_order( $order ) ) {
 			$statuses[] = TC_Review_Status::STATUS;
 		}
