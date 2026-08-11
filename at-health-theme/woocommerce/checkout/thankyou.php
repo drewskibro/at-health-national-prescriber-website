@@ -113,6 +113,20 @@ defined( 'ABSPATH' ) || exit;
 			</div>
 		</div>
 
+		<!-- Track your order / account access -->
+		<div class="max-w-3xl mx-auto mb-12">
+			<div class="rounded-3xl p-8 md:p-10 text-center" style="background:#8e88d0;">
+				<h3 class="text-xl font-serif mb-3" style="color:#fdf8f4;">Track your order any time</h3>
+				<?php if ( is_user_logged_in() ) : ?>
+					<p class="text-sm mb-6" style="color:rgba(253,248,244,0.85);">Your account shows the live status of this order &mdash; from prescriber review through to dispatch and tracking.</p>
+					<a href="<?php echo esc_url( wc_get_page_permalink( 'myaccount' ) ); ?>" class="inline-flex items-center gap-2 text-sm font-semibold px-7 py-3.5 rounded-xl transition-all hover:opacity-90" style="background:#fdf8f4;color:#8e88d0;">View my orders &rarr;</a>
+				<?php else : ?>
+					<p class="text-sm mb-6" style="color:rgba(253,248,244,0.85);">We created an account for you using <strong style="color:#fdf8f4;"><?php echo esc_html( $order->get_billing_email() ); ?></strong>. Set your password to log in and follow your order from prescriber review through to dispatch.</p>
+					<a href="<?php echo esc_url( wp_lostpassword_url( wc_get_page_permalink( 'myaccount' ) ) ); ?>" class="inline-flex items-center gap-2 text-sm font-semibold px-7 py-3.5 rounded-xl transition-all hover:opacity-90" style="background:#fdf8f4;color:#8e88d0;">Set my password &rarr;</a>
+				<?php endif; ?>
+			</div>
+		</div>
+
 		<!-- Testimonial + trust -->
 		<div class="max-w-3xl mx-auto mb-12">
 			<div class="bg-white rounded-3xl border border-gray-200 shadow-sm p-8 md:p-10">
