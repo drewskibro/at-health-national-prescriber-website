@@ -5,10 +5,22 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class TC_My_Account {
 
+	/** Memoised per request: does the current user have a reorderable order? */
+	private $reorder_available = null;
+
 	public function __construct() {
 		add_action( 'template_redirect', [ $this, 'redirect_shop' ], 10 );
 		add_filter( 'woocommerce_return_to_shop_redirect', [ $this, 'filter_return_url' ] );
 		add_filter( 'gettext', [ $this, 'filter_strings' ], 20, 3 );
+
+		// Reorder discoverability: a "Reorder" item in the My Account menu and a
+		// dashboard call-to-action, shown only to returning customers (a patient
+		// whose first order has reached the pharmacy). The link resolves to the
+		// reorder page — a label-only menu item whose URL we rewrite, so there is
+		// no rewrite endpoint to register and no template to duplicate.
+		add_filter( 'woocommerce_account_menu_items', [ $this, 'add_reorder_menu_item' ] );
+		add_filter( 'woocommerce_get_endpoint_url', [ $this, 'reorder_menu_url' ], 10, 4 );
+		add_action( 'woocommerce_account_dashboard', [ $this, 'dashboard_reorder_cta' ], 5 );
 	}
 
 	public function redirect_shop() {
@@ -69,6 +81,61 @@ class TC_My_Account {
 		return $translated;
 	}
 
+	/**
+	 * Add a "Reorder" item to the My Account menu, spliced in immediately after
+	 * "Orders". Shown only to returning customers — a non-returning or logged-out
+	 * user would only be bounced to the assessment by the reorder page's own
+	 * access guard, so gating on the same flag that guard uses keeps the menu
+	 * honest and avoids a pointless redirect.
+	 */
+	public function add_reorder_menu_item( $items ) {
+		if ( ! $this->has_reorderable_history() ) {
+			return $items;
+		}
+
+		$reordered = [];
+		foreach ( $items as $key => $label ) {
+			$reordered[ $key ] = $label;
+			if ( 'orders' === $key ) {
+				$reordered['tc-reorder'] = 'Reorder';
+			}
+		}
+		if ( ! isset( $reordered['tc-reorder'] ) ) {
+			$reordered['tc-reorder'] = 'Reorder';
+		}
+
+		return $reordered;
+	}
+
+	/**
+	 * Point the "tc-reorder" menu item at the reorder page. It is a label-only
+	 * pseudo-endpoint (never registered as a real WooCommerce endpoint), so its
+	 * link is rewritten here to the canonical reorder URL rather than resolving
+	 * to /my-account/tc-reorder/.
+	 */
+	public function reorder_menu_url( $url, $endpoint, $value, $permalink ) {
+		if ( 'tc-reorder' === $endpoint ) {
+			return TC_Checkout::reorder_url();
+		}
+		return $url;
+	}
+
+	/** A reorder call-to-action at the top of the My Account dashboard. */
+	public function dashboard_reorder_cta() {
+		if ( ! $this->has_reorderable_history() ) {
+			return;
+		}
+
+		$url = TC_Checkout::reorder_url();
+		?>
+		<div style="background:#f7f4f9;border:1px solid #e5e0ef;border-left:4px solid #7d76ba;padding:16px 20px;margin:0 0 24px;border-radius:6px;">
+			<h3 style="margin:0 0 6px;">Need a repeat prescription?</h3>
+			<p style="margin:0 0 12px;">Reorder your treatment in a couple of clicks — a prescriber reviews every request before it is dispensed.</p>
+			<a class="button" href="<?php echo esc_url( $url ); ?>" style="background:#7d76ba;color:#fff;">Reorder now</a>
+		</div>
+		<?php
+	}
+
 	private function destination_for_current_user() {
 		$assessment_page_id = (int) get_option( 'tc_eligibility_assessment_page_id', 0 );
 
@@ -82,5 +149,27 @@ class TC_My_Account {
 		return is_user_logged_in()
 			&& class_exists( 'TC_Returning_Customer' )
 			&& TC_Returning_Customer::is_returning();
+	}
+
+	/**
+	 * Whether to surface the reorder link. Gated on the returning flag AND the
+	 * live has_previous_order check the reorder page itself uses, so the link
+	 * only ever appears when the reorder page will actually render the form —
+	 * never sending a flagged-but-orderless patient into the assessment bounce.
+	 * Memoised because the menu filter fires on every My Account page render.
+	 */
+	private function has_reorderable_history() {
+		if ( null !== $this->reorder_available ) {
+			return $this->reorder_available;
+		}
+
+		$this->reorder_available = false;
+
+		if ( $this->is_returning_customer() && class_exists( 'TC_Reorder_Prefill' ) ) {
+			$prefill = TC_Reorder_Prefill::for_user( get_current_user_id() );
+			$this->reorder_available = ! empty( $prefill['has_previous_order'] );
+		}
+
+		return $this->reorder_available;
 	}
 }

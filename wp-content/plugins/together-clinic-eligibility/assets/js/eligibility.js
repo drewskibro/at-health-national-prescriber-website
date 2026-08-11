@@ -17,6 +17,7 @@
 		selectedTreatment: '',
 		selectedWegovyDose: '0.25mg',
 		selectedMounjaroDose: '2.5mg',
+		selectedTabletsDose: '1.5mg',
 		isSubmitting: false,
 		ineligibleReason: ''
 	};
@@ -150,6 +151,25 @@
 		});
 	}
 
+	// The assessment page HTML embeds the nonce (cfg.nonce), but that HTML can be
+	// served from the CDN cache — leaving the nonce stale or bound to another
+	// session, which fails the server's security check (seen most often when a
+	// logged-in user lands on a page cached while logged out). admin-ajax is never
+	// edge-cached, so pull a fresh nonce for THIS session and use it thereafter.
+	// Requesting a nonce needs no nonce: it is bound to the caller's own session
+	// and grants nothing on its own.
+	function refreshNonce() {
+		var url = (cfg.ajaxUrl || '/wp-admin/admin-ajax.php') + '?action=tc_eligibility_refresh_nonce';
+		return fetch(url, { method: 'GET', credentials: 'same-origin', cache: 'no-store' })
+			.then(function (resp) { return resp.json(); })
+			.then(function (body) {
+				if (body && body.success && body.data && body.data.nonce) {
+					cfg.nonce = body.data.nonce;
+				}
+			})
+			.catch(function () { /* keep the embedded nonce as a best-effort fallback */ });
+	}
+
 	function buildCookiePayload() {
 		var u = state.userData;
 		return {
@@ -199,7 +219,12 @@
 			selectedTreatment: state.selectedTreatment,
 			selectedWegovyDose: state.selectedWegovyDose,
 			selectedMounjaroDose: state.selectedMounjaroDose,
-			selectedDose: state.selectedTreatment === 'wegovy' ? state.selectedWegovyDose : state.selectedMounjaroDose,
+			selectedTabletsDose: state.selectedTabletsDose,
+			selectedDose: (function () {
+				if (state.selectedTreatment === 'mounjaro') return state.selectedMounjaroDose;
+				if (state.selectedTreatment === 'wegovy-tablets') return state.selectedTabletsDose;
+				return state.selectedWegovyDose;
+			})(),
 			termsAgreed: state.agreementChecks.every(Boolean),
 			bariatricRecent: u.bariatricRecent || ''
 		};
@@ -337,7 +362,8 @@
 		// copy is only a fallback for stale cached configs.
 		var ladders = cfg.doseLadders || {
 			wegovy: ['0.25mg', '0.5mg', '1mg', '1.7mg', '2.4mg'],
-			mounjaro: ['2.5mg', '5mg', '7.5mg', '10mg', '12.5mg', '15mg']
+			mounjaro: ['2.5mg', '5mg', '7.5mg', '10mg', '12.5mg', '15mg'],
+			'wegovy-tablets': ['1.5mg', '4mg', '9mg', '25mg']
 		};
 		var ladder = ladders[state.userData.currentMedication] || [];
 		var doses = ladder.map(function (dose, i) {
@@ -811,8 +837,10 @@
 	function updateTreatmentCards() {
 		var w = $('wegovy-card');
 		var m = $('mounjaro-card');
-		if (w) w.classList.toggle('selected', state.selectedTreatment === 'wegovy');
-		if (m) m.classList.toggle('selected', state.selectedTreatment === 'mounjaro');
+		var t = $('wegovy-tablets-card');
+		if (w) { var wOn = state.selectedTreatment === 'wegovy';         w.classList.toggle('selected', wOn); w.setAttribute('aria-pressed', String(wOn)); }
+		if (m) { var mOn = state.selectedTreatment === 'mounjaro';       m.classList.toggle('selected', mOn); m.setAttribute('aria-pressed', String(mOn)); }
+		if (t) { var tOn = state.selectedTreatment === 'wegovy-tablets'; t.classList.toggle('selected', tOn); t.setAttribute('aria-pressed', String(tOn)); }
 	}
 
 	function updateSubmitButton() {
@@ -833,7 +861,9 @@
 		if (btn) { btn.disabled = true; btn.textContent = 'Submitting...'; }
 
 		var payload = buildCookiePayload();
-		ajax('tc_eligibility_save', payload).then(function (data) {
+		refreshNonce().then(function () {
+			return ajax('tc_eligibility_save', payload);
+		}).then(function (data) {
 			if (data.eligible === false) {
 				showIneligible(data.reason || 'You do not meet the eligibility criteria.');
 				state.isSubmitting = false;
@@ -866,8 +896,14 @@
 	}
 
 	function updateConfirmedTreatmentBanner(info) {
-		var name = state.selectedTreatment === 'mounjaro' ? 'Mounjaro' : 'Wegovy';
-		var price = state.selectedTreatment === 'mounjaro' ? '£159/month · Starting dose (2.5mg)' : '£109/month · Starting dose (0.25mg)';
+		var names = { wegovy: 'Wegovy', mounjaro: 'Mounjaro', 'wegovy-tablets': 'Wegovy Tablets' };
+		var prices = {
+			wegovy: '£109/month · Starting dose (0.25mg)',
+			mounjaro: '£159/month · Starting dose (2.5mg)',
+			'wegovy-tablets': '£99/month · Starting dose (1.5mg)'
+		};
+		var name = names[state.selectedTreatment] || 'Wegovy';
+		var price = prices[state.selectedTreatment] || prices.wegovy;
 
 		// The server reports the dose it actually supplied (switchers start on
 		// the converted dose, not the starter) and the order's real price.
@@ -968,6 +1004,10 @@
 
 	function init() {
 		if (!root()) return;
+
+		// Replace any CDN-cached/stale nonce with a fresh, session-bound one
+		// before the patient interacts with the form.
+		refreshNonce();
 
 		initCheckboxes();
 		setupAgreement();

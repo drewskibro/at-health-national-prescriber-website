@@ -28,6 +28,8 @@ class TC_Eligibility_Plugin {
 		new TC_Ajax();
 		new TC_Checkout();
 		new TC_Checkout_Blocks();
+		new TC_Payment_Methods();
+		new TC_Change_Treatment();
 		new TC_Order_Admin();
 		new TC_Settings();
 		new TC_Cron();
@@ -222,8 +224,9 @@ class TC_Eligibility_Plugin {
 			'minBmiAsian'     => (float) get_option( 'tc_eligibility_min_bmi_south_asian', 23 ),
 			'doseLadders'     => TC_Dose_Ladder::ladders(),
 			'assets'          => [
-				'wegovy'   => TC_ELIGIBILITY_URL . 'assets/img/wegovy.jpg',
-				'mounjaro' => TC_ELIGIBILITY_URL . 'assets/img/mounjaro.png',
+				'wegovy'         => TC_ELIGIBILITY_URL . 'assets/img/wegovy.jpg',
+				'mounjaro'       => TC_ELIGIBILITY_URL . 'assets/img/mounjaro.png',
+				'wegovy-tablets' => TC_ELIGIBILITY_URL . 'assets/img/wegovy-tablets.png',
 			],
 		] );
 	}

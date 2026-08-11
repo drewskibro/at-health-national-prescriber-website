@@ -43,6 +43,8 @@ require_once TC_ELIGIBILITY_PATH . 'includes/class-tc-my-account.php';
 require_once TC_ELIGIBILITY_PATH . 'includes/class-tc-ajax.php';
 require_once TC_ELIGIBILITY_PATH . 'includes/class-tc-checkout.php';
 require_once TC_ELIGIBILITY_PATH . 'includes/class-tc-checkout-blocks.php';
+require_once TC_ELIGIBILITY_PATH . 'includes/class-tc-payment-methods.php';
+require_once TC_ELIGIBILITY_PATH . 'includes/class-tc-change-treatment.php';
 require_once TC_ELIGIBILITY_PATH . 'includes/class-tc-order-admin.php';
 require_once TC_ELIGIBILITY_PATH . 'includes/class-tc-settings.php';
 require_once TC_ELIGIBILITY_PATH . 'includes/class-tc-account.php';
