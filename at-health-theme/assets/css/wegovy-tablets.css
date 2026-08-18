@@ -1,0 +1,27 @@
+/* ═══════════════════════════════════════════════
+   Together Clinic — Wegovy Tablets Page Styles
+   Prefix: wt-
+   ═══════════════════════════════════════════════ */
+
+.wt-hero {
+    background: var(--ah-cream);
+}
+
+.wt-dosing-step {
+    position: relative;
+    padding-left: 48px;
+}
+
+.wt-dosing-step::before {
+    content: '';
+    position: absolute;
+    left: 18px;
+    top: 40px;
+    bottom: -20px;
+    width: 2px;
+    background: var(--ah-purple-200);
+}
+
+.wt-dosing-step:last-child::before {
+    display: none;
+}

@@ -575,6 +575,67 @@ acf_add_local_field_group( array(
 ) );
 
 // ═══════════════════════════════════════════════
+// E3/E4-SERIES: WEGOVY TABLETS PAGE
+// ═══════════════════════════════════════════════
+
+acf_add_local_field_group( array(
+    'key'      => 'group_ah_e3_wegovy_tablets',
+    'title'    => 'E3 — Wegovy Tablets: All Fields',
+    'fields'   => array(
+        array( 'key' => 'field_ah_wt_eyebrow', 'label' => 'Eyebrow', 'name' => 'wt_eyebrow', 'type' => 'text', 'default_value' => 'Semaglutide · Once-Daily Tablet' ),
+        array( 'key' => 'field_ah_wt_rating_text', 'label' => 'Rating Text', 'name' => 'wt_rating_text', 'type' => 'text', 'default_value' => 'The same trusted semaglutide — now needle-free' ),
+        array( 'key' => 'field_ah_wt_title', 'label' => 'Page Title', 'name' => 'wt_title', 'type' => 'text', 'default_value' => 'Wegovy Tablets' ),
+        array( 'key' => 'field_ah_wt_description', 'label' => 'Description', 'name' => 'wt_description', 'type' => 'textarea', 'rows' => 4 ),
+        array( 'key' => 'field_ah_wt_product_image', 'label' => 'Product Image', 'name' => 'wt_product_image', 'type' => 'image', 'return_format' => 'id' ),
+        array( 'key' => 'field_ah_wt_price', 'label' => 'Price (number only)', 'name' => 'wt_price', 'type' => 'text', 'default_value' => '99' ),
+        array( 'key' => 'field_ah_wt_cta_text', 'label' => 'CTA Text', 'name' => 'wt_cta_text', 'type' => 'text', 'default_value' => 'Start Journey →' ),
+    ),
+    'location' => array( array( array( 'param' => 'page_template', 'operator' => '==', 'value' => 'page-templates/page-wegovy-tablets.php' ) ) ),
+) );
+
+acf_add_local_field_group( array(
+    'key'   => 'group_ah_e4_wegovy_tablets_extended',
+    'title' => 'E4 — Wegovy Tablets: Ingredient, Dosing & FAQ',
+    'fields' => array(
+        array( 'key' => 'field_ah_wt_price_includes', 'label' => 'Price Includes Text', 'name' => 'wt_price_includes', 'type' => 'text', 'default_value' => 'Includes medication, consultations & support · 30-day supply' ),
+        array( 'key' => 'field_ah_wt_ingredient_eyebrow', 'label' => 'Ingredient Section Eyebrow', 'name' => 'wt_ingredient_eyebrow', 'type' => 'text', 'default_value' => 'The Same Active Ingredient' ),
+        array( 'key' => 'field_ah_wt_ingredient_title', 'label' => 'Ingredient Section Title (HTML)', 'name' => 'wt_ingredient_title', 'type' => 'textarea', 'rows' => 2 ),
+        array( 'key' => 'field_ah_wt_ingredient_text', 'label' => 'Ingredient Section Text', 'name' => 'wt_ingredient_text', 'type' => 'textarea', 'rows' => 3 ),
+        array( 'key' => 'field_ah_wt_dosing_eyebrow', 'label' => 'Dosing Eyebrow', 'name' => 'wt_dosing_eyebrow', 'type' => 'text', 'default_value' => 'Gradual & Personalised' ),
+        array( 'key' => 'field_ah_wt_dosing_title', 'label' => 'Dosing Title (HTML)', 'name' => 'wt_dosing_title', 'type' => 'textarea', 'rows' => 2 ),
+        array( 'key' => 'field_ah_wt_dosing_subtitle', 'label' => 'Dosing Subtitle', 'name' => 'wt_dosing_subtitle', 'type' => 'textarea', 'rows' => 2 ),
+        array( 'key' => 'field_ah_wt_dosing_note', 'label' => 'Dosing Note', 'name' => 'wt_dosing_note', 'type' => 'textarea', 'rows' => 2 ),
+        array(
+            'key' => 'field_ah_wt_doses', 'label' => 'Doses', 'name' => 'wt_doses', 'type' => 'repeater', 'min' => 0, 'max' => 8, 'layout' => 'table',
+            'sub_fields' => array(
+                array( 'key' => 'field_ah_wt_dose_dose', 'label' => 'Dose', 'name' => 'dose', 'type' => 'text' ),
+                array( 'key' => 'field_ah_wt_dose_label', 'label' => 'Label', 'name' => 'label', 'type' => 'text' ),
+                array( 'key' => 'field_ah_wt_dose_price', 'label' => 'Price (number only)', 'name' => 'price', 'type' => 'text' ),
+                array( 'key' => 'field_ah_wt_dose_desc', 'label' => 'Description', 'name' => 'desc', 'type' => 'text' ),
+            ),
+        ),
+        array(
+            'key' => 'field_ah_wt_benefits', 'label' => 'Benefits List', 'name' => 'wt_benefits', 'type' => 'repeater', 'min' => 0, 'max' => 6, 'layout' => 'table',
+            'sub_fields' => array(
+                array( 'key' => 'field_ah_wt_benefit_text', 'label' => 'Benefit (HTML)', 'name' => 'text', 'type' => 'text' ),
+            ),
+        ),
+        array( 'key' => 'field_ah_wt_faq_title', 'label' => 'FAQ Title', 'name' => 'wt_faq_title', 'type' => 'text', 'default_value' => 'Wegovy Tablets FAQs' ),
+        array(
+            'key' => 'field_ah_wt_faqs', 'label' => 'FAQs', 'name' => 'wt_faqs', 'type' => 'repeater', 'min' => 0, 'max' => 10, 'layout' => 'block',
+            'sub_fields' => array(
+                array( 'key' => 'field_ah_wt_faq_q', 'label' => 'Question', 'name' => 'question', 'type' => 'text' ),
+                array( 'key' => 'field_ah_wt_faq_a', 'label' => 'Answer', 'name' => 'answer', 'type' => 'textarea', 'rows' => 3 ),
+            ),
+        ),
+        array( 'key' => 'field_ah_wt_cta_eyebrow', 'label' => 'CTA Eyebrow', 'name' => 'wt_cta_eyebrow', 'type' => 'text', 'default_value' => 'Start Today' ),
+        array( 'key' => 'field_ah_wt_cta_title', 'label' => 'CTA Title (HTML)', 'name' => 'wt_cta_title', 'type' => 'textarea', 'rows' => 2 ),
+        array( 'key' => 'field_ah_wt_cta_subtitle', 'label' => 'CTA Subtitle', 'name' => 'wt_cta_subtitle', 'type' => 'textarea', 'rows' => 2 ),
+    ),
+    'location' => array( array( array( 'param' => 'page_template', 'operator' => '==', 'value' => 'page-templates/page-wegovy-tablets.php' ) ) ),
+) );
+
+// ═══════════════════════════════════════════════
 // F-SERIES: TREATMENTS PAGE
 // ═══════════════════════════════════════════════
 
@@ -591,6 +652,9 @@ acf_add_local_field_group( array(
         array( 'key' => 'field_ah_tr_wegovy_image', 'label' => 'Wegovy Card Image', 'name' => 'tr_wegovy_image', 'type' => 'image', 'return_format' => 'id' ),
         array( 'key' => 'field_ah_tr_wegovy_desc', 'label' => 'Wegovy Description', 'name' => 'tr_wegovy_desc', 'type' => 'textarea', 'rows' => 2 ),
         array( 'key' => 'field_ah_tr_wegovy_price', 'label' => 'Wegovy Price (e.g. "from £XX")', 'name' => 'tr_wegovy_price', 'type' => 'text', 'default_value' => 'from £XX' ),
+        array( 'key' => 'field_ah_tr_wegovy_tablets_image', 'label' => 'Wegovy Tablets Card Image', 'name' => 'tr_wegovy_tablets_image', 'type' => 'image', 'return_format' => 'id' ),
+        array( 'key' => 'field_ah_tr_wegovy_tablets_desc', 'label' => 'Wegovy Tablets Description', 'name' => 'tr_wegovy_tablets_desc', 'type' => 'textarea', 'rows' => 2 ),
+        array( 'key' => 'field_ah_tr_wegovy_tablets_price', 'label' => 'Wegovy Tablets Price (e.g. "from £99")', 'name' => 'tr_wegovy_tablets_price', 'type' => 'text', 'default_value' => 'from £99' ),
         array( 'key' => 'field_ah_tr_orlistat_image', 'label' => 'Orlistat Card Image', 'name' => 'tr_orlistat_image', 'type' => 'image', 'return_format' => 'id' ),
         array( 'key' => 'field_ah_tr_orlistat_desc', 'label' => 'Orlistat Description', 'name' => 'tr_orlistat_desc', 'type' => 'textarea', 'rows' => 2, 'default_value' => 'A clinically proven weight loss tablet that reduces the amount of fat your body absorbs from food. Suitable for patients with a Body Mass Index (BMI) of 28 or above.' ),
         array( 'key' => 'field_ah_tr_orlistat_price', 'label' => 'Orlistat Price (e.g. "from £XX")', 'name' => 'tr_orlistat_price', 'type' => 'text', 'default_value' => 'from £XX' ),
