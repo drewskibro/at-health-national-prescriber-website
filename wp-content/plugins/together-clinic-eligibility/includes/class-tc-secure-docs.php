@@ -265,7 +265,21 @@ class TC_Secure_Docs {
 		if ( ! $screen || strpos( (string) $screen->id, 'woocommerce' ) === false && strpos( (string) $screen->id, 'shop_order' ) === false && strpos( (string) $screen->id, 'wc-orders' ) === false ) {
 			return;
 		}
-		echo '<div class="notice notice-warning"><p><strong>Together Clinic:</strong> secure ID storage is not configured — patient ID uploads are disabled (fail-closed, per engineering standards). Complete the Kinsta storage request (CLAUDE.md &sect;0), then add <code>define( \'TC_SECURE_DOC_DIR\', \'/www/&lt;site&gt;/additional/secure-uploads/\' );</code> to wp-config.php and verify per &sect;3.</p></div>';
+		// Per-check diagnostics: name the FIRST failing check so nobody has
+		// to debug this blind. Evaluated live in the web PHP context — the
+		// one that actually matters (CLI can pass while FPM fails).
+		$dir = defined( 'TC_SECURE_DOC_DIR' ) ? TC_SECURE_DOC_DIR : '';
+		$dir = apply_filters( 'tc_secure_doc_dir', $dir );
+
+		if ( ! $dir ) {
+			$detail = 'Failing check: <strong>the <code>TC_SECURE_DOC_DIR</code> constant is not defined</strong> in this web request. If it has been added to wp-config.php, the web server is still running the old cached copy — restart PHP (MyKinsta &rarr; Tools &rarr; Restart PHP).';
+		} elseif ( ! is_dir( $dir ) ) {
+			$detail = 'Failing check: <strong>web PHP cannot see the directory</strong> <code>' . esc_html( $dir ) . '</code> (it exists per SSH, so this is usually <code>open_basedir</code> not yet loaded by PHP-FPM) — restart PHP (MyKinsta &rarr; Tools &rarr; Restart PHP), or confirm the path with the host.';
+		} else {
+			$detail = 'Failing check: <strong>web PHP cannot write to</strong> <code>' . esc_html( $dir ) . '</code> — ask the host to make it writable by the site&rsquo;s PHP user.';
+		}
+
+		echo '<div class="notice notice-warning"><p><strong>Together Clinic:</strong> secure ID storage is not configured — patient ID uploads are disabled (fail-closed, per engineering standards). ' . wp_kses_post( $detail ) . '</p></div>';
 	}
 
 	/** Panel for the order screen (called from TC_Order_Admin). */
