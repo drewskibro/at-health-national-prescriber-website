@@ -171,8 +171,29 @@ get_header();
         </div>
       </div>
 
-      <!-- Orlistat / Xenical Card -->
+      <!-- Wegovy Tablets Card -->
       <div class="tr-treatment-card" data-reveal style="--stagger-index:2">
+        <div class="relative">
+          <span class="absolute top-4 left-4 bg-indigo-500 text-white text-xs font-bold px-3 py-1 rounded-full">Needle-Free</span>
+          <?php $wt_img = ah_field( 'tr_wegovy_tablets_image', '' ); ?>
+          <?php if ( $wt_img ) : echo wp_get_attachment_image( $wt_img, 'treatment-card', false, array( 'class' => 'w-full h-56 object-cover' ) ); else : ?>
+          <img src="https://c.animaapp.com/mkl3lxzpWoqisd/img/wegovy-%281%29.jpg" alt="Wegovy Tablets" class="w-full h-56 object-cover" />
+          <?php endif; ?>
+        </div>
+        <div class="p-8">
+          <h3 class="text-3xl font-serif text-gray-900 mb-2">Wegovy Tablets</h3>
+          <p class="text-purple-600 font-bold text-lg mb-3">Up to 16.6% average weight loss</p>
+          <p class="text-gray-600 text-[15px] leading-relaxed mb-6"><?php echo esc_html( ah_field( 'tr_wegovy_tablets_desc', 'A once-daily oral form of semaglutide — the same active ingredient as Wegovy® injection — for adults who prefer a needle-free option for weight management.' ) ); ?></p>
+          <p class="tr-price"><?php echo esc_html( ah_field( 'tr_wegovy_tablets_price', 'from £99' ) ); ?></p>
+          <div class="flex gap-3">
+            <a href="<?php echo esc_url( ah_booking_url() ); ?>" class="flex-1 text-center bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 rounded-xl transition-all">Start Journey</a>
+            <a href="<?php echo esc_url( get_permalink( get_page_by_path( 'wegovy-tablets' ) ) ); ?>" class="flex-1 text-center border-2 border-gray-200 hover:border-purple-300 text-gray-700 font-semibold py-3 rounded-xl transition-all">Learn More</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Orlistat / Xenical Card -->
+      <div class="tr-treatment-card" data-reveal style="--stagger-index:3">
         <div class="relative">
           <span class="absolute top-4 left-4 bg-blue-500 text-white text-xs font-bold px-3 py-1 rounded-full">Tablet Option</span>
           <?php $or_img = ah_field( 'tr_orlistat_image', '' ); ?>
@@ -213,15 +234,16 @@ get_header();
     <div class="max-w-4xl mx-auto bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm" data-reveal>
       <table class="tr-comparison-table">
         <thead>
-          <tr><th></th><th>Mounjaro</th><th>Wegovy</th></tr>
+          <tr><th></th><th>Mounjaro</th><th>Wegovy</th><th>Wegovy Tablets</th></tr>
         </thead>
         <tbody>
-          <tr><td class="font-semibold text-gray-900">Active Ingredient</td><td>Tirzepatide</td><td>Semaglutide</td></tr>
-          <tr><td class="font-semibold text-gray-900">Weight Loss</td><td class="text-purple-700 font-bold">Up to 22.5%</td><td class="text-purple-700 font-bold">Up to 20.7%</td></tr>
-          <tr><td class="font-semibold text-gray-900">Starting Dose</td><td>2.5mg</td><td>0.25mg</td></tr>
-          <tr><td class="font-semibold text-gray-900">Dosing Plan</td><td>20 weeks to full dose</td><td>16 weeks to full dose</td></tr>
-          <tr><td class="font-semibold text-gray-900">Delivery</td><td>Within 48 hours</td><td>Within 48 hours</td></tr>
-          <tr><td class="font-semibold text-gray-900">Side Effects</td><td>Nausea, diarrhoea, reduced appetite</td><td>Nausea, diarrhoea, reduced appetite</td></tr>
+          <tr><td class="font-semibold text-gray-900">Active Ingredient</td><td>Tirzepatide</td><td>Semaglutide</td><td>Semaglutide (oral)</td></tr>
+          <tr><td class="font-semibold text-gray-900">Weight Loss</td><td class="text-purple-700 font-bold">Up to 22.5%</td><td class="text-purple-700 font-bold">Up to 20.7%</td><td class="text-purple-700 font-bold">Up to 16.6%</td></tr>
+          <tr><td class="font-semibold text-gray-900">How It's Taken</td><td>Once-weekly injection</td><td>Once-weekly injection</td><td>Once-daily tablet</td></tr>
+          <tr><td class="font-semibold text-gray-900">Starting Dose</td><td>2.5mg</td><td>0.25mg</td><td>1.5mg</td></tr>
+          <tr><td class="font-semibold text-gray-900">Dosing Plan</td><td>20 weeks to full dose</td><td>16 weeks to full dose</td><td>Four tablet strengths</td></tr>
+          <tr><td class="font-semibold text-gray-900">Delivery</td><td>Within 48 hours</td><td>Within 48 hours</td><td>Within 48 hours</td></tr>
+          <tr><td class="font-semibold text-gray-900">Side Effects</td><td>Nausea, diarrhoea, reduced appetite</td><td>Nausea, diarrhoea, reduced appetite</td><td>Nausea, diarrhoea, reduced appetite</td></tr>
         </tbody>
       </table>
     </div>
